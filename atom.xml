@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://www.ntlx.top</id>
     <title>Gridea</title>
-    <updated>2021-05-15T12:28:12.342Z</updated>
+    <updated>2021-05-15T12:34:58.348Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://www.ntlx.top"/>
     <link rel="self" href="http://www.ntlx.top/atom.xml"/>
@@ -10,6 +10,36 @@
     <logo>http://www.ntlx.top/images/avatar.png</logo>
     <icon>http://www.ntlx.top/favicon.ico</icon>
     <rights>All rights reserved 2021, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[mDNS]]></title>
+        <id>http://www.ntlx.top/post/mdns/</id>
+        <link href="http://www.ntlx.top/post/mdns/">
+        </link>
+        <updated>2021-05-15T12:34:41.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="alpine">Alpine</h1>
+<pre><code class="language-bash">sudo apk add avahi dbus
+sudo rc-update add avahi-daemon
+sudo service avahi-daemon start
+</code></pre>
+<h1 id="centos">CentOS</h1>
+<pre><code class="language-bash">sudo yum install avahi
+sudo yum install avahi-tools
+sudo systemctl start avahi-daemon
+sudo systemctl enable avahi-daemon
+sudo yum install -y nss-mdns
+</code></pre>
+<p>then modify <code>/etc/nsswitch.conf</code> with root privilege, replace <code>hosts: files dns</code> to <code>hosts: files mdns_minimal [NOTFOUND=return] dns</code>.</p>
+<p>At last, firewall setting must be modified:</p>
+<pre><code class="language-bash"># sudo firewall-cmd --get-services
+# sudo firewall-cmd --add-service=mdns
+sudo firewall-cmd --permanent --add-service=mdns
+sudo firewall-cmd --reload
+</code></pre>
+<h1 id="ubuntu">Ubuntu</h1>
+<pre><code class="language-bash">sudo apt install avahi-daemon
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
         <id>http://www.ntlx.top/post/hello-gridea/</id>
