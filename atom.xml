@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://www.ntlx.top</id>
     <title>NTLx&apos;s Blog</title>
-    <updated>2021-05-18T05:13:57.503Z</updated>
+    <updated>2021-05-18T05:20:38.689Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://www.ntlx.top"/>
     <link rel="self" href="http://www.ntlx.top/atom.xml"/>
@@ -10,6 +10,93 @@
     <logo>http://www.ntlx.top/images/avatar.png</logo>
     <icon>http://www.ntlx.top/favicon.ico</icon>
     <rights>All rights reserved 2021, NTLx&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[Add Linux to AD]]></title>
+        <id>http://www.ntlx.top/post/add-linux-to-ad/</id>
+        <link href="http://www.ntlx.top/post/add-linux-to-ad/">
+        </link>
+        <updated>2021-05-18T05:19:42.000Z</updated>
+        <summary type="html"><![CDATA[<p>Tested on Ubuntu</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>Tested on Ubuntu</p>
+<!-- more -->
+<h1 id="host-name">Host Name</h1>
+<pre><code class="language-bash">cat &gt; /etc/hostname
+vmpc-ubuntu.cm.com
+
+# test hostname
+hostname -f
+host vmpc-ubuntu.cm.com
+host xxx.xxx.xxx.xxx
+</code></pre>
+<h1 id="dns">DNS</h1>
+<p>Both hostname and reverse lookup had been set up before further settings.</p>
+<h1 id="time-synchronisation">Time Synchronisation</h1>
+<blockquote>
+<p>The default clock skew tolerance is 300 seconds (5 minutes)</p>
+</blockquote>
+<pre><code class="language-bash">cat &gt;&gt; /etc/systemd/timesyncd.conf
+NTP=ad.cm.com
+FallbackNTP=ntp.ubuntu.com
+</code></pre>
+<p>Test:</p>
+<pre><code class="language-bash">timedatectl status
+</code></pre>
+<h1 id="pbis-open-installation">PBIS-Open Installation</h1>
+<p>Download <code>PowerBroker Identity Service Open</code> &quot;AD Bridge&quot; on <a href="https://github.com/BeyondTrust/pbis-open/releases">Github</a>, then:</p>
+<pre><code class="language-bash">sudo pbis-open-9.1.0.551.linux.x86_64.deb.sh
+</code></pre>
+<h1 id="add-sudo-privileges">Add sudo privileges</h1>
+<pre><code class="language-bash">cat &gt; /etc/sudoers.d/local
+CM\\CM021 ALL=(ALL) ALL
+%CM\\domain^admins ALL=(ALL) ALL
+</code></pre>
+<h1 id="pbis-open-settings">PBIS-Open Settings</h1>
+<p>Change the default shell (from <code>/bin/sh</code> to <code>/bin/bash</code>):</p>
+<pre><code class="language-bash">sudo /opt/pbis/bin/config LoginShellTemplate /bin/bash
+</code></pre>
+<p>Change <code>home</code> dir (default is <code>/home/local/&lt;Domain Name&gt;/&lt;User Name&gt;</code>):</p>
+<pre><code class="language-bash">sudo /opt/pbis/bin/config HomeDirTemplate %H/%D/%U
+</code></pre>
+<blockquote>
+<p><code>%H</code> = <code>home</code> , <code>%D</code> = <code>AD Name</code> , <code>%U</code> = <code>User Name</code></p>
+</blockquote>
+<h1 id="pbis-open-commands">PBIS-Open Commands</h1>
+<p>Join AD:</p>
+<pre><code class="language-bash">sudo domainjoin-cli join --disable ssh cm.com Administrator
+</code></pre>
+<p>Check status:</p>
+<pre><code class="language-bash">sudo domainjoin-cli query
+</code></pre>
+<p>Check users in AD:</p>
+<pre><code class="language-bash">/opt/pbis/bin/enum-users
+</code></pre>
+<p>Check groups in AD:</p>
+<pre><code class="language-bash">/opt/pbis/bin/enum-groups
+</code></pre>
+<p>Check groups for a user:</p>
+<pre><code class="language-bash">/opt/pbis/bin/list-groups-for-user
+</code></pre>
+<p>Leave current AD:</p>
+<pre><code class="language-bash">sudo domainjoin-cli leave
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Active Directory]]></title>
+        <id>http://www.ntlx.top/post/active-directory/</id>
+        <link href="http://www.ntlx.top/post/active-directory/">
+        </link>
+        <updated>2021-05-18T05:17:04.000Z</updated>
+        <summary type="html"><![CDATA[<p>Usefull Settings Collection</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>Usefull Settings Collection</p>
+<!-- more -->
+<h1 id="windows-server">Windows Server</h1>
+<h2 id="配置文件漫游">配置文件漫游</h2>
+<p>路径设置示例：<code>\\dsm.cm.com\Remote\%username%</code></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[RSS Collections]]></title>
         <id>http://www.ntlx.top/post/rss-collections/</id>
@@ -1388,40 +1475,6 @@ esac
 <ul>
 <li><a href="https://www.jianshu.com/p/f6c528df20c2">windows、office、visio、project 激活方法</a></li>
 </ul>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[mDNS]]></title>
-        <id>http://www.ntlx.top/post/mdns/</id>
-        <link href="http://www.ntlx.top/post/mdns/">
-        </link>
-        <updated>2021-05-15T12:34:41.000Z</updated>
-        <summary type="html"><![CDATA[<p>Settings for mDNS under multi OS (Linux).</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>Settings for mDNS under multi OS (Linux).</p>
-<!-- more -->
-<h1 id="alpine">Alpine</h1>
-<pre><code class="language-bash">sudo apk add avahi dbus
-sudo rc-update add avahi-daemon
-sudo service avahi-daemon start
-</code></pre>
-<h1 id="centos">CentOS</h1>
-<pre><code class="language-bash">sudo yum install avahi
-sudo yum install avahi-tools
-sudo systemctl start avahi-daemon
-sudo systemctl enable avahi-daemon
-sudo yum install -y nss-mdns
-</code></pre>
-<p>then modify <code>/etc/nsswitch.conf</code> with root privilege, replace <code>hosts: files dns</code> to <code>hosts: files mdns_minimal [NOTFOUND=return] dns</code>.</p>
-<p>At last, firewall setting must be modified:</p>
-<pre><code class="language-bash"># sudo firewall-cmd --get-services
-# sudo firewall-cmd --add-service=mdns
-sudo firewall-cmd --permanent --add-service=mdns
-sudo firewall-cmd --reload
-</code></pre>
-<h1 id="ubuntu">Ubuntu</h1>
-<pre><code class="language-bash">sudo apt install avahi-daemon
-</code></pre>
 ]]></content>
     </entry>
 </feed>
