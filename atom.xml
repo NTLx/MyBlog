@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://www.ntlx.top</id>
     <title>NTLx&apos;s Blog</title>
-    <updated>2021-05-18T02:16:30.338Z</updated>
+    <updated>2021-05-18T03:14:13.132Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://www.ntlx.top"/>
     <link rel="self" href="http://www.ntlx.top/atom.xml"/>
@@ -16,7 +16,11 @@
         <link href="http://www.ntlx.top/post/windows-system-settings/">
         </link>
         <updated>2021-05-18T02:02:04.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="activate-windows">Activate Windows</h1>
+        <summary type="html"><![CDATA[<p>Settings for a brand new installation of Windows OS.</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>Settings for a brand new installation of Windows OS.</p>
+<!-- more -->
+<h1 id="activate-windows">Activate Windows</h1>
 <p>According <a href="https://freeproductkeys.com/how-to-activate-windows-server-without-product-key/">How to activate Windows Server without product key</a>.</p>
 <h2 id="auto-activate-script">Auto Activate Script</h2>
 <h3 id="windows-10-pro">Windows 10 Pro</h3>
