@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://www.ntlx.top</id>
-    <title>Gridea</title>
-    <updated>2021-05-18T02:05:18.157Z</updated>
+    <title>NTLx&apos;s Blog</title>
+    <updated>2021-05-18T02:16:30.338Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://www.ntlx.top"/>
     <link rel="self" href="http://www.ntlx.top/atom.xml"/>
-    <subtitle>温故而知新</subtitle>
+    <subtitle>My Tech Notes &amp; Thoughts</subtitle>
     <logo>http://www.ntlx.top/images/avatar.png</logo>
     <icon>http://www.ntlx.top/favicon.ico</icon>
-    <rights>All rights reserved 2021, Gridea</rights>
+    <rights>All rights reserved 2021, NTLx&apos;s Blog</rights>
     <entry>
         <title type="html"><![CDATA[Windows System Settings]]></title>
         <id>http://www.ntlx.top/post/windows-system-settings/</id>
