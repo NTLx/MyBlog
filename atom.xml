@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://www.ntlx.top</id>
     <title>NTLx&apos;s Blog</title>
-    <updated>2021-05-18T04:51:48.754Z</updated>
+    <updated>2021-05-18T04:54:59.595Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://www.ntlx.top"/>
     <link rel="self" href="http://www.ntlx.top/atom.xml"/>
@@ -10,6 +10,266 @@
     <logo>http://www.ntlx.top/images/avatar.png</logo>
     <icon>http://www.ntlx.top/favicon.ico</icon>
     <rights>All rights reserved 2021, NTLx&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[Raspberry Pi]]></title>
+        <id>http://www.ntlx.top/post/raspberry-pi/</id>
+        <link href="http://www.ntlx.top/post/raspberry-pi/">
+        </link>
+        <updated>2021-05-18T04:53:52.000Z</updated>
+        <summary type="html"><![CDATA[<p>The most popular IoT core!</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>The most popular IoT core!</p>
+<!-- more -->
+<h1 id="k3s">k3s</h1>
+<p><a href="https://medium.com/@alexellisuk/five-years-of-raspberry-pi-clusters-77e56e547875">Five years of Raspberry Pi Clusters</a></p>
+<h1 id="initial-configure">Initial configure</h1>
+<blockquote>
+<p>For Official OS: Raspbian Buster (based on Debian)</p>
+</blockquote>
+<p>Add blow content to a file, such as <code>~/init.sh</code>, then just run it like this <code>~/init.sh</code>.</p>
+<pre><code class="language-bash">#!/usr/bin/expect -f
+
+sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
+sudo cp /etc/apt/sources.list.d/raspi.list /etc/apt/sources.list.d/raspi.list.bak
+
+cat &lt;&lt; EOF &gt; sources.list
+deb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi
+deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi
+EOF
+
+cat &lt;&lt; EOF &gt; raspi.list
+deb http://mirrors.tuna.tsinghua.edu.cn/raspberrypi/ buster main ui
+deb-src http://mirrors.tuna.tsinghua.edu.cn/raspberrypi/ buster main ui
+EOF
+
+mkdir -p ~/.pip/
+cat &lt;&lt; EOF &gt; ~/.pip/pip.conf
+[global]
+index-url = https://pypi.tuna.tsinghua.edu.cn/simple/
+EOF
+
+sudo cp sources.list /etc/apt/sources.list
+sudo cp raspi.list /etc/apt/sources.list.d/raspi.list
+
+sudo apt update
+sudo apt upgrade -y
+
+sudo apt install -y git vim htop ncdu tmux bash-completion tcl expect
+sudo apt install -y p7zip-full libio-compress-perl unrar-free unzip ncompress libperlio-gzip-perl bzip2
+
+cat &lt;&lt; EOF &gt;&gt; ~/.bashrc
+
+tablook () {
+    column -s $'\t' -t &quot;\$1&quot; | less -S
+}
+
+alias les=&quot;less -SN&quot;
+
+alias ls=&quot;ls --color=auto&quot;
+alias l=&quot;ls -a&quot;
+alias ll=&quot;ls -l&quot;
+alias lll=&quot;ls -la&quot;
+
+alias ..='cd ..'
+alias ...='cd ../../'
+alias ....='cd ../../../'
+alias .....='cd ../../../../'
+alias ......='cd ../../../../../'
+
+# Use mcd to create a directory and cd to it simultaneously:
+function mcd { mkdir -p &quot;\$1&quot; &amp;&amp; cd &quot;\$1&quot;;}
+
+# Make grep pretty:
+alias grep=&quot;grep --color=auto&quot;
+
+# Show your \$PATH in a prettier format:
+alias showpath='echo \$PATH | tr &quot;:&quot; &quot;\n&quot; | nl'
+
+# as suggested by Mendel Cooper in &quot;Advanced Bash Scripting Guide&quot;
+extract () {
+   if [ -f \$1 ] ; then
+       case \$1 in
+        *.tar.bz2)      tar xvjf \$1 ;;
+        *.tar.gz)       tar xvzf \$1 ;;
+        *.tar.xz)       tar Jxvf \$1 ;;
+        *.bz2)          bunzip2 \$1 ;;
+        *.rar)          unrar x \$1 ;;
+        *.gz)           gunzip \$1 ;;
+        *.tar)          tar xvf \$1 ;;
+        *.tbz2)         tar xvjf \$1 ;;
+        *.tgz)          tar xvzf \$1 ;;
+        *.zip)          unzip \$1 ;;
+        *.Z)            uncompress \$1 ;;
+        *.7z)           7z x \$1 ;;
+        *)              echo &quot;don't know how to extract '\$1'...&quot; ;;
+       esac
+   else
+       echo &quot;'\$1' is not a valid file!&quot;
+   fi
+}
+
+EOF
+
+source ~/.bashrc
+
+git config --global user.name &quot;NTLx&quot;
+git config --global user.email &quot;lx3325360@gmail.com&quot;
+
+spawn ssh-keygen -t rsa -b 4096 -C &quot;lx3325360@gmail.com&quot;
+expect &quot;*home*&quot;
+send &quot;\n&quot;
+expect &quot;*empty*&quot;
+send &quot;\n&quot;
+expect &quot;*again*&quot;
+send &quot;\n&quot;
+expect eof
+
+# sudo apt install -y zsh zsh-autosuggestions zsh-syntax-highlighting zsh-theme-powerlevel9k remmina remmina-common remmina-dev remmina-plugin-rdp remmina-plugin-vnc fcitx fcitx-googlepinyin fcitx-module-cloudpinyin fcitx-sunpinyin
+# cat &lt;&lt; EOF &gt; ~/.zshrc
+# source /usr/share/powerlevel9k/powerlevel9k.zsh-theme
+# source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# export TERM=&quot;xterm-256color&quot;
+
+# POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+# POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon user dir_writable dir vcs)
+# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time root_indicator background_jobs time disk_usage ram load)
+# POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX=&quot;%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )&quot;
+# POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=&quot;&quot;
+# POWERLEVEL9K_USER_ICON=&quot;\uF415&quot; # &lt;U+F415&gt;
+# POWERLEVEL9K_ROOT_ICON=&quot;\uF09C&quot;
+# POWERLEVEL9K_SUDO_ICON=$'\uF09C' # &lt;U+F09C&gt;
+# POWERLEVEL9K_TIME_FORMAT=&quot;%D{%H:%M}&quot;
+# POWERLEVEL9K_VCS_GIT_ICON='\uF408'
+# POWERLEVEL9K_VCS_GIT_GITHUB_ICON='\uF408'
+# EOF
+
+echo 'You can now reboot your rpi to take effect, Good Luck!'
+</code></pre>
+<h2 id="install-docker">Install Docker</h2>
+<pre><code class="language-bash">curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
+sudo usermod -aG docker pi
+</code></pre>
+<h2 id="install-docker-compose">Install Docker Compose</h2>
+<pre><code class="language-bash">sudo curl -L &quot;https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose
+</code></pre>
+<p>OR</p>
+<pre><code class="language-bash">sudo apt install -y libssl-dev libffi-dev
+sudo apt install -y python3-pip
+pip3 install docker-compose
+</code></pre>
+<h2 id="additional-settings">Additional Settings</h2>
+<blockquote>
+<p>Especially for Raspbian Buster Lite</p>
+<ul>
+<li>Default user: <strong>pi</strong></li>
+<li>Default user password: <strong>raspberry</strong></li>
+</ul>
+</blockquote>
+<p>Turn on SSH:</p>
+<p><code>sudo raspi-config</code>, choose <code>5 Interface Options</code>, then choose <code>SSH</code> to enable.</p>
+<p>Connect WiFi:</p>
+<p><code>sudo raspi-config</code>, choose <code>2 Network Options</code>, then choose <code>N2 Wi-fi</code> and enter SSID &amp; password to connect.</p>
+<h2 id="cpu-temprature">CPU Temprature</h2>
+<p>Could just write a perl script to check, like <code>CPU.pl</code>:</p>
+<pre><code class="language-perl">#!/usr/bin/perl
+while(1) {
+    print `cat /sys/class/thermal/thermal_zone0/temp`/1000;
+    &lt;STDIN&gt;;
+}
+</code></pre>
+<h1 id="manjaro-for-arm">Manjaro For ARM</h1>
+<h2 id="download-system-file">Download system file</h2>
+<p>Download system installation mirror files at <a href="https://osdn.net/projects/manjaro-arm/storage/rpi4/">OSDN</a>, you can choose form minimal, xfce, kde-plasma, mate and lxqt.</p>
+<h2 id="flash-to-tf-card">Flash to TF card</h2>
+<p>Use <a href="https://www.balena.io/etcher/">Etcher</a> or <code>dd</code> command described below:</p>
+<ol>
+<li>find portable device in Mac OS (use <code>diskutil list</code>) or Linux (use <code>lsblk</code> or <code>df</code> or something), for example <code>/dev/disk2</code>.</li>
+<li>Unmount portable device on Mac OS (<code>diskutil unmountDisk /dev/disk2</code>) or Linux (<code>umount /dev/sdb</code>).</li>
+<li>Use command <code>dd</code> to flash a system file to portable device like below:</li>
+</ol>
+<pre><code class="language-bash">sudo dd if=path/to/img_or_iso of=/dev/disk2 bs=4m;sync
+</code></pre>
+<blockquote>
+<p>Remember to eject the portable device after above steps on Mac OS (<code>diskutil eject /dev/disk2</code>) or Linux (<code>eject -s /dev/disk2</code>).</p>
+</blockquote>
+<h2 id="choose-mirror">Choose mirror</h2>
+<blockquote>
+<p>For users in China, Denmark is the fastest mirror currently.</p>
+</blockquote>
+<pre><code class="language-bash">sudo pacman-mirrors -c Denmark -m rank [-i]
+</code></pre>
+<h2 id="instalation-script">Instalation Script</h2>
+<pre><code class="language-bash">sudo cp /etc/pacman.conf /etc/pacman.conf.bak
+
+cat &lt;&lt; EOF &gt; ~/pacman.conf
+[options]
+HoldPkg      = pacman glibc manjaro-system
+XferCommand = /usr/bin/curl -x http://192.168.120.63:8888 -C - -f %u --output %o
+Architecture = aarch64
+
+CheckSpace
+VerbosePkgLists
+
+SigLevel    = Required DatabaseOptional
+LocalFileSigLevel = Optional
+
+[core]
+Include = /etc/pacman.d/mirrorlist
+
+[extra]
+Include = /etc/pacman.d/mirrorlist
+
+[community]
+Include = /etc/pacman.d/mirrorlist
+
+EOF
+
+sudo cp ~/pacman.conf /etc/pacman.conf
+
+git config --global http.proxy http://192.168.120.63:8888
+git config --global https.proxy http://192.168.120.63:8888
+export http_proxy=&quot;http://192.168.120.63:8888&quot;; export https_proxy=&quot;http://192.168.120.63:8888&quot;; export ftp_proxy=&quot;http://192.168.120.63:8888&quot;
+
+sudo pacman-mirrors -c United_States -m rank
+sudo pacman -Syyu
+sudo pacman -S patch pkgconf fakeroot autoconf automake make cmake gcc clang vim yay wqy-microhei binutils nasm
+yay -S xrdp
+sudo systemctl enable xrdp.service
+sudo systemctl start xrdp.service
+sudo pacman -S remmina
+# sudo pacman -S patch pkgconf fakeroot autoconf automake make cmake gcc clang vim yay wqy-microhei freerdp remmina
+# yay -S xrdp xorgxrdp remmina-plugin-rdesktop remmina
+# libtool --finish /usr/lib/xrdp
+# libtool --finish /usr/lib/xorg/modules/input
+</code></pre>
+<h1 id="windows-iot-for-arm">Windows IoT For ARM</h1>
+<h2 id="download-system">Download system</h2>
+<p>Go to <a href="https://uupdump.ml/">UUP dump</a>, choose a system version (arm64), and choose <code>Download using aria2 and convert</code>, get the generated <code>*.zip</code> file, extract it, then run <code>*.cmd</code> under a windows system, you will get the <code>*.iso</code> system mirror file.</p>
+<h2 id="deploy-system-to-tf-card">Deploy system to TF card</h2>
+<p>First, download <a href="https://github.com/WOA-Project/WOA-Deployer-Rpi">WOA</a>.</p>
+<p>Then, open system file (<code>*.iso</code>), and choose <code>source/install.wim</code> as source for deploying.</p>
+<h1 id="software">Software</h1>
+<h2 id="aria2-ng">Aria2 &amp; NG</h2>
+<pre><code class="language-bash">git clone git@github.com:NTLx/aira2-ng.git
+docker build -t aira2webui-ng aira2-ng
+mkdir -p /home/pi/Download /home/pi/aria2_conf
+docker run -d --name='aria2' -p '6800:6800/tcp' -p '6800:6800/udp' -p '80:80/tcp' -p '80:80/udp' -v '/home/pi/Download':'/data':'rw' -v '/home/pi/aria2_conf':'/config':'rw' aira2webui-ng
+</code></pre>
+<h1 id="disk">Disk</h1>
+<pre><code class="language-bash">sudo mkfs.xfs -f /dev/sda1
+</code></pre>
+<h1 id="smb">SMB</h1>
+<pre><code class="language-bash">sudo /etc/init.d/smbd restart
+sudo /etc/init.d/nmbd restart
+</code></pre>
+<h1 id="service-dploy-by-docker">Service Dploy (by Docker)</h1>
+<h2 id="postgresql">PostgreSQL</h2>
+<pre><code class="language-bash">docker run -d --name='postgresql' --net='bridge' --log-opt max-size=1m -e TZ=&quot;Asia/Shanghai&quot; -e 'POSTGRES_PASSWORD'='password' -p '5432:5432/tcp' -v '/home/pi/postgresql':'/var/lib/postgresql/data':'rw' 'postgres'
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[ZSH]]></title>
         <id>http://www.ntlx.top/post/zsh/</id>
