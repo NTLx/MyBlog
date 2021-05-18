@@ -1,0 +1,659 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Docker - NTLx&#39;s Blog</title>
+<link rel="shortcut icon" href="http://www.ntlx.top/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="http://www.ntlx.top/media/css/tailwind.css">
+<link rel="stylesheet" href="http://www.ntlx.top/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Docker - NTLx&#39;s Blog - Atom Feed" href="http://www.ntlx.top/atom.xml">
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PM6M384V04"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-PM6M384V04');
+  </script>
+    
+
+  <meta name="description" content="Usage &amp;amp; Settings
+
+Install Docker in OSs
+
+CentOS
+Ubuntu
+Windows
+Mac OS
+
+
+Install Docker Compose
+
+Set mirror for regis..." />
+  <meta property="og:title" content="Docker - NTLx&#39;s Blog">
+  <meta property="og:description" content="Usage &amp;amp; Settings
+
+Install Docker in OSs
+
+CentOS
+Ubuntu
+Windows
+Mac OS
+
+
+Install Docker Compose
+
+Set mirror for regis..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="http://www.ntlx.top/post/docker/" />
+  <meta property="og:image" content="http://www.ntlx.top/post-images/docker.png">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="Docker - NTLx&#39;s Blog">
+  <meta name="twitter:description" content="Usage &amp;amp; Settings
+
+Install Docker in OSs
+
+CentOS
+Ubuntu
+Windows
+Mac OS
+
+
+Install Docker Compose
+
+Set mirror for regis...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="http://www.ntlx.top/post/docker/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="http://www.ntlx.top/media/css/prism-atom-dark.css">
+  
+
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="http://www.ntlx.top" class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      NTLx&#39;s Blog
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          Docker
+        </h1>
+        
+          <img src="http://www.ntlx.top/post-images/docker.png" alt="Docker" class="block w-full mb-8">
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">2021-05-18 · 7 min read</div>
+          
+            <a href="http://www.ntlx.top/tag/aac2IOTQy/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              docker
+            </a>
+          
+            <a href="http://www.ntlx.top/tag/hbvpXyRe-/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              setting
+            </a>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <p>Usage &amp; Settings</p>
+<!-- more -->
+<h1 id="install-docker-in-oss">Install Docker in OSs</h1>
+<ul>
+<li><a href="https://www.runoob.com/docker/centos-docker-install.html">CentOS</a></li>
+<li><a href="https://www.runoob.com/docker/ubuntu-docker-install.html">Ubuntu</a></li>
+<li><a href="https://www.runoob.com/docker/windows-docker-install.html">Windows</a></li>
+<li><a href="https://www.runoob.com/docker/macos-docker-install.html">Mac OS</a></li>
+</ul>
+<blockquote>
+<p><a href="https://www.runoob.com/docker/docker-compose.html">Install Docker Compose</a></p>
+</blockquote>
+<h1 id="set-mirror-for-registry">Set mirror for registry</h1>
+<p>Add below to <code>/etc/docker/daemon.json</code></p>
+<pre><code class="language-yaml">{
+  &quot;registry-mirrors&quot; : [
+    &quot;http://docker.mirrors.ustc.edu.cn&quot;
+  ],
+  &quot;insecure-registries&quot; : [
+    &quot;docker.mirrors.ustc.edu.cn&quot;
+  ],
+  &quot;debug&quot; : true,
+  &quot;experimental&quot; : true
+}
+</code></pre>
+<h1 id="set-proxy-for-container">Set Proxy for container</h1>
+<p>Add below to <code>~/.docker/config.json</code></p>
+<pre><code class="language-yaml">{
+  &quot;proxies&quot;:
+  {
+    &quot;default&quot;:
+    {
+      &quot;httpProxy&quot;: &quot;http://xxx:xxx&quot;,
+      &quot;httpsProxy&quot;: &quot;http://xxx:xxx&quot;,
+      &quot;noProxy&quot;: &quot;*.ntlx.top&quot;
+    }
+  }
+}
+</code></pre>
+<h1 id="tips">Tips</h1>
+<h2 id="clear-docker-logs">Clear Docker Logs</h2>
+<blockquote>
+<p><a href="https://blog.csdn.net/xunzhaoyao/article/details/72959917">Reference</a></p>
+</blockquote>
+<pre><code class="language-bash">#!/bin/sh
+
+echo &quot;==================== start clean docker containers logs ==========================&quot;
+
+logs=$(find /var/lib/docker/containers/ -name *-json.log)
+
+for log in $logs
+        do
+                echo &quot;clean logs : $log&quot;
+                cat /dev/null &gt; $log
+        done
+
+echo &quot;==================== end clean docker containers logs   ==========================&quot;
+</code></pre>
+<h1 id="service-deploy-note">Service Deploy Note</h1>
+<h2 id="nexus">Nexus</h2>
+<blockquote>
+<p>如果构建的 Docker Image 比较多，推荐自建仓库进行管理</p>
+</blockquote>
+<pre><code class="language-bash">mkdir -p /public/Docker/Nexus
+chown -R 200 /public/Docker/Nexus
+docker run -d -p 8081:8081 -v /public/Docker/Nexus:/nexus-data --name nexus sonatype/nexus3
+</code></pre>
+<blockquote>
+<p>访问 http://Docker.Host.IP:8081 进行配置，账户名为 admin，初始密码在 /public/Docker/Nexus/admin.password 文件里</p>
+</blockquote>
+<blockquote>
+<ul>
+<li>Nexus 还能作为各种包管理器、数据库甚至脚本的存储仓库，方便进行发布管理</li>
+<li>Nexus 支持接入 LDAP 进行多用户管理</li>
+</ul>
+</blockquote>
+<h3 id="login-error">Login ERROR</h3>
+<p>Issue:</p>
+<pre><code class="language-bash">Error saving credentials: error storing credentials - err: exit status 1, out: `Cannot autolaunch D-Bus without X11 $DISPLAY`
+</code></pre>
+<p>Fix:</p>
+<pre><code class="language-bash">dpkg -r --ignore-depends=golang-docker-credential-helpers golang-docker-credential-helpers
+</code></pre>
+<h2 id="postgresql">postgresql</h2>
+<pre><code class="language-bash">docker run -d --name='postgresql' --restart unless-stopped --log-opt max-size=10m -e 'POSTGRES_PASSWORD'='password' -p '5432:5432/tcp' -v './postgresql':'/var/lib/postgresql/data':'rw' 'postgres'
+</code></pre>
+<h2 id="wikijs">wikijs</h2>
+<pre><code class="language-bash">docker run -d --name='wikijs' --restart unless-stopped --log-opt max-size=10m -e 'DB_TYPE'='postgres' -e 'DB_HOST'='10.1.1.4' -e 'DB_PORT'='5432' -e 'DB_USER'='postgres' -e 'DB_PASS'='password' -e 'DB_NAME'='postgres' -e SSL_ACTIVE=true -e LETSENCRYPT_DOMAIN=ntlx.top -e LETSENCRYPT_EMAIL=xxx@outlook.com  -p 80:3000 -p 443:3443 'requarks/wiki'
+</code></pre>
+<h2 id="aria2">aria2</h2>
+<pre><code class="language-yaml">version: &quot;3&quot;
+services:
+  aria2:
+    image: superng6/aria2
+    container_name: aria2
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Shanghai
+      - SECRET=YourAria2SecretToken
+      - CACHE=512M
+      - UT=true
+      - RUT=true
+      - QUIET=true
+      - FA=falloc
+      - RECYCLE=true
+      - MOVE=true
+      - SMD=false
+      - ANIDIR=ani
+      - MOVDIR=movies
+      - TVDIR=tv
+      - CUSDIR=Z
+    volumes:
+      - ./config:/config
+      - ./Download:/downloads
+    ports:
+      - 6881:6881
+      - 6881:6881/udp
+      - 6800:6800
+    logging:
+      options:
+        max-size: &quot;1m&quot;
+
+  ariang:
+    image: superng6/ariang
+    container_name: ariang
+    restart: unless-stopped
+    ports:
+      - 8888:80
+    logging:
+      options:
+        max-size: &quot;1m&quot;
+</code></pre>
+<h2 id="gitea">Gitea</h2>
+<pre><code class="language-yaml">version: &quot;3&quot;
+
+networks:
+  gitea:
+    external: false
+
+services:
+  server:
+    image: gitea/gitea:latest
+    container_name: gitea
+    restart: always
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
+      - DB_TYPE=postgres
+      - DB_HOST=postgres:5432
+      - DB_NAME=gitea
+      - DB_USER=gitea
+      - DB_PASSWD=gitea
+    networks:
+      - gitea
+    volumes:
+      - /public/gitea:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - &quot;80:3000&quot;
+      - &quot;222:22&quot;
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:13
+    container_name: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=gitea
+      - POSTGRES_PASSWORD=gitea
+      - POSTGRES_DB=gitea
+    networks:
+      - gitea
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+</code></pre>
+<h2 id="gitlab">gitlab</h2>
+<pre><code class="language-yaml">version: &quot;3&quot;
+services:
+  gitlab:
+    image: 'gitlab/gitlab-ce'
+    restart: always
+    container_name: gitlab
+    hostname: 'ntlx.top'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://ntlx.top:23333'
+        gitlab_rails['gitlab_shell_ssh_port'] = 22222
+    ports:
+      - '23333:23333'
+      - '22222:22'
+    volumes:
+      - './config:/etc/gitlab'
+      - './logs:/var/log/gitlab'
+      - './data:/var/opt/gitlab'
+    logging:
+      options:
+        max-size: &quot;1m&quot;
+</code></pre>
+<h3 id="smtp-settings">SMTP Settings</h3>
+<p>If you would rather send application email via an SMTP server instead of via Sendmail, add the following configuration information to <code>/etc/gitlab/gitlab.rb</code> and run <code>gitlab-ctl reconfigure</code>, for example:</p>
+<pre><code class="language-ruby">gitlab_rails['gitlab_email_enabled'] = true
+gitlab_rails['smtp_enable'] = true
+gitlab_rails['smtp_address'] = &quot;smtp.xxx.com&quot;
+gitlab_rails['smtp_port'] = 25
+gitlab_rails['smtp_user_name'] = &quot;xxx@xxx.com&quot;
+gitlab_rails['smtp_password'] = &quot;YourPassword&quot;
+gitlab_rails['smtp_domain'] = &quot;xxx.com&quot;
+gitlab_rails['smtp_authentication'] = &quot;login&quot;
+gitlab_rails['smtp_enable_starttls_auto'] = false
+gitlab_rails['smtp_tls'] = false
+gitlab_rails['gitlab_email_from'] = 'xxx@xxx.com'
+gitlab_rails['gitlab_email_display_name'] = 'xxx GitLab'
+gitlab_rails['gitlab_email_reply_to'] = 'xxx@xxx.com'
+</code></pre>
+<h2 id="nextcloud">NextCloud</h2>
+<pre><code class="language-bash">docker run -d --name='NextCloud' --restart unless-stopped --log-opt max-size=10m -e 'POSTGRES_DB'='nextcloud' -e 'POSTGRES_USER'='postgres' -e 'POSTGRES_PASSWORD'='password' -e 'POSTGRES_HOST'='10.1.1.4' -e 'NEXTCLOUD_TRUSTED_DOMAINS'='ntlx.top:8080' -p '8080:80/tcp' -p '8080:80/udp' -v './NextCloud':'/var/www/html/':'rw' 'nextcloud'
+</code></pre>
+<h2 id="freshrss">FreshRSS</h2>
+<pre><code class="language-bash">docker run -d --name=FreshRSS --log-opt max-size=10m --restart unless-stopped -e PUID=1000 -e PGID=1000 -e TZ=Asia/Shanghai -p 8070:80 -v ./config:/config linuxserver/freshrss
+</code></pre>
+<h2 id="rstudio-server">Rstudio Server</h2>
+<pre><code class="language-bash">docker run --name &quot;Rstudio&quot; -d --restart unless-stopped --log-opt max-size=10m -p 8787:8787 -p 6311:6311 -v ./RstudioServer/home:/home quantumobject/docker-rstudio
+</code></pre>
+<h3 id="add-user">Add user</h3>
+<pre><code class="language-bash">docker exec -it Rstudio /bin/bash
+adduser lx
+passwd password
+mkdir /home/lx
+chmod -R 755 /home/lx
+</code></pre>
+<h2 id="pptp">PPTP</h2>
+<pre><code class="language-bash">docker run -d --name='PPTP' --net='bridge' --log-opt max-size=10m --privileged=true -e TZ=&quot;Asia/Shanghai&quot; -p '1723:1723/tcp' -p '1723:1723/udp' -v './PPTP/chap-secrets':'/etc/ppp/chap-secrets':'rw' 'mobtitude/vpn-pptp'
+</code></pre>
+<h2 id="l2tp">L2TP</h2>
+<pre><code class="language-bash">modprobe af_key
+docker run -d --name='L2TP' --net='bridge' --privileged=true -e TZ=&quot;Asia/Shanghai&quot; -p '500:500/tcp' -p '500:500/udp' -p '4500:4500/tcp' -p '4500:4500/udp' -p '1701:1701/tcp' -p '1701:1701/udp' -v '/lib/modules':'/lib/modules':'ro' --env-file ./L2TP/L2TP.env --log-opt max-size=10m 'fcojean/l2tp-ipsec-vpn-server'
+</code></pre>
+<h2 id="cloudflare-ddns">Cloudflare DDNS</h2>
+<h3 id="using-config-file">Using config file</h3>
+<blockquote>
+<p><code>joshava/cloudflare-ddns</code> for x86_64 CPU, <code>joshava/cloudflare-ddns:arm32v6</code> for pi</p>
+</blockquote>
+<pre><code class="language-bash">docker run -d --name=DDNS -v ./CloudflareDDNS/config.yaml:/app/config.yaml joshava/cloudflare-ddns:arm32v6
+</code></pre>
+<p>docker compose version:</p>
+<pre><code class="language-yaml">version: &quot;3&quot;
+services:
+  ddns:
+    image: joshava/cloudflare-ddns
+    restart: always
+    container_name: ddns
+    volumes:
+      - './CloudflareDDNS/config.yaml:/app/config.yaml'
+</code></pre>
+<p>Example config file:</p>
+<pre><code class="language-yaml">auth:
+  scopedToken: xxx
+domains:
+  - name: xxx
+    type: A
+    proxied: false
+    create: true
+    zoneId: xxx
+</code></pre>
+<h3 id="using-env-settings">Using env settings</h3>
+<blockquote>
+<p>tags for arm: <code>arm32v6</code>, <code>armhf</code>, <code>aarch64</code>, <code>arm64v8</code>, <code>latest</code></p>
+</blockquote>
+<pre><code class="language-bash">docker run -d --name=DDNS -e API_KEY=xxx -e ZONE=xxx -e SUBDOMAIN=xxx oznu/cloudflare-ddns
+</code></pre>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+        <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div>
+      </div>
+
+      
+        
+
+        
+          <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css">
+<script type="application/javascript" src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script type="application/javascript">
+
+var options = {
+  shortname: 'ntlxtop',
+  apikey: 'qkYOLyDMvFLlG9amD55l4ALA8O4r3VLrYuycPz9GvCEkhk0FjnoobeFo2KKQKZdD',
+}
+if ('') {
+  options.api = ''
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+        
+      
+
+      
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Feel free to share & use
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li><a href="#install-docker-in-oss">Install Docker in OSs</a></li>
+<li><a href="#set-mirror-for-registry">Set mirror for registry</a></li>
+<li><a href="#set-proxy-for-container">Set Proxy for container</a></li>
+<li><a href="#tips">Tips</a>
+<ul>
+<li><a href="#clear-docker-logs">Clear Docker Logs</a></li>
+</ul>
+</li>
+<li><a href="#service-deploy-note">Service Deploy Note</a>
+<ul>
+<li><a href="#nexus">Nexus</a>
+<ul>
+<li><a href="#login-error">Login ERROR</a></li>
+</ul>
+</li>
+<li><a href="#postgresql">postgresql</a></li>
+<li><a href="#wikijs">wikijs</a></li>
+<li><a href="#aria2">aria2</a></li>
+<li><a href="#gitea">Gitea</a></li>
+<li><a href="#gitlab">gitlab</a>
+<ul>
+<li><a href="#smtp-settings">SMTP Settings</a></li>
+</ul>
+</li>
+<li><a href="#nextcloud">NextCloud</a></li>
+<li><a href="#freshrss">FreshRSS</a></li>
+<li><a href="#rstudio-server">Rstudio Server</a>
+<ul>
+<li><a href="#add-user">Add user</a></li>
+</ul>
+</li>
+<li><a href="#pptp">PPTP</a></li>
+<li><a href="#l2tp">L2TP</a></li>
+<li><a href="#cloudflare-ddns">Cloudflare DDNS</a>
+<ul>
+<li><a href="#using-config-file">Using config file</a></li>
+<li><a href="#using-env-settings">Using env settings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200" @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="http://www.ntlx.top/media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="http://www.ntlx.top/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+  
+  
+    
+  
+</body>
+
+</html>

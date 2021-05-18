@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://www.ntlx.top</id>
     <title>NTLx&apos;s Blog</title>
-    <updated>2021-05-18T04:54:59.595Z</updated>
+    <updated>2021-05-18T05:08:46.396Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://www.ntlx.top"/>
     <link rel="self" href="http://www.ntlx.top/atom.xml"/>
@@ -10,6 +10,290 @@
     <logo>http://www.ntlx.top/images/avatar.png</logo>
     <icon>http://www.ntlx.top/favicon.ico</icon>
     <rights>All rights reserved 2021, NTLx&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[Docker]]></title>
+        <id>http://www.ntlx.top/post/docker/</id>
+        <link href="http://www.ntlx.top/post/docker/">
+        </link>
+        <updated>2021-05-18T04:59:39.000Z</updated>
+        <summary type="html"><![CDATA[<p>Usage &amp; Settings</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>Usage &amp; Settings</p>
+<!-- more -->
+<h1 id="install-docker-in-oss">Install Docker in OSs</h1>
+<ul>
+<li><a href="https://www.runoob.com/docker/centos-docker-install.html">CentOS</a></li>
+<li><a href="https://www.runoob.com/docker/ubuntu-docker-install.html">Ubuntu</a></li>
+<li><a href="https://www.runoob.com/docker/windows-docker-install.html">Windows</a></li>
+<li><a href="https://www.runoob.com/docker/macos-docker-install.html">Mac OS</a></li>
+</ul>
+<blockquote>
+<p><a href="https://www.runoob.com/docker/docker-compose.html">Install Docker Compose</a></p>
+</blockquote>
+<h1 id="set-mirror-for-registry">Set mirror for registry</h1>
+<p>Add below to <code>/etc/docker/daemon.json</code></p>
+<pre><code class="language-yaml">{
+  &quot;registry-mirrors&quot; : [
+    &quot;http://docker.mirrors.ustc.edu.cn&quot;
+  ],
+  &quot;insecure-registries&quot; : [
+    &quot;docker.mirrors.ustc.edu.cn&quot;
+  ],
+  &quot;debug&quot; : true,
+  &quot;experimental&quot; : true
+}
+</code></pre>
+<h1 id="set-proxy-for-container">Set Proxy for container</h1>
+<p>Add below to <code>~/.docker/config.json</code></p>
+<pre><code class="language-yaml">{
+  &quot;proxies&quot;:
+  {
+    &quot;default&quot;:
+    {
+      &quot;httpProxy&quot;: &quot;http://xxx:xxx&quot;,
+      &quot;httpsProxy&quot;: &quot;http://xxx:xxx&quot;,
+      &quot;noProxy&quot;: &quot;*.ntlx.top&quot;
+    }
+  }
+}
+</code></pre>
+<h1 id="tips">Tips</h1>
+<h2 id="clear-docker-logs">Clear Docker Logs</h2>
+<blockquote>
+<p><a href="https://blog.csdn.net/xunzhaoyao/article/details/72959917">Reference</a></p>
+</blockquote>
+<pre><code class="language-bash">#!/bin/sh
+
+echo &quot;==================== start clean docker containers logs ==========================&quot;
+
+logs=$(find /var/lib/docker/containers/ -name *-json.log)
+
+for log in $logs
+        do
+                echo &quot;clean logs : $log&quot;
+                cat /dev/null &gt; $log
+        done
+
+echo &quot;==================== end clean docker containers logs   ==========================&quot;
+</code></pre>
+<h1 id="service-deploy-note">Service Deploy Note</h1>
+<h2 id="nexus">Nexus</h2>
+<blockquote>
+<p>如果构建的 Docker Image 比较多，推荐自建仓库进行管理</p>
+</blockquote>
+<pre><code class="language-bash">mkdir -p /public/Docker/Nexus
+chown -R 200 /public/Docker/Nexus
+docker run -d -p 8081:8081 -v /public/Docker/Nexus:/nexus-data --name nexus sonatype/nexus3
+</code></pre>
+<blockquote>
+<p>访问 http://Docker.Host.IP:8081 进行配置，账户名为 admin，初始密码在 /public/Docker/Nexus/admin.password 文件里</p>
+</blockquote>
+<blockquote>
+<ul>
+<li>Nexus 还能作为各种包管理器、数据库甚至脚本的存储仓库，方便进行发布管理</li>
+<li>Nexus 支持接入 LDAP 进行多用户管理</li>
+</ul>
+</blockquote>
+<h3 id="login-error">Login ERROR</h3>
+<p>Issue:</p>
+<pre><code class="language-bash">Error saving credentials: error storing credentials - err: exit status 1, out: `Cannot autolaunch D-Bus without X11 $DISPLAY`
+</code></pre>
+<p>Fix:</p>
+<pre><code class="language-bash">dpkg -r --ignore-depends=golang-docker-credential-helpers golang-docker-credential-helpers
+</code></pre>
+<h2 id="postgresql">postgresql</h2>
+<pre><code class="language-bash">docker run -d --name='postgresql' --restart unless-stopped --log-opt max-size=10m -e 'POSTGRES_PASSWORD'='password' -p '5432:5432/tcp' -v './postgresql':'/var/lib/postgresql/data':'rw' 'postgres'
+</code></pre>
+<h2 id="wikijs">wikijs</h2>
+<pre><code class="language-bash">docker run -d --name='wikijs' --restart unless-stopped --log-opt max-size=10m -e 'DB_TYPE'='postgres' -e 'DB_HOST'='10.1.1.4' -e 'DB_PORT'='5432' -e 'DB_USER'='postgres' -e 'DB_PASS'='password' -e 'DB_NAME'='postgres' -e SSL_ACTIVE=true -e LETSENCRYPT_DOMAIN=ntlx.top -e LETSENCRYPT_EMAIL=xxx@outlook.com  -p 80:3000 -p 443:3443 'requarks/wiki'
+</code></pre>
+<h2 id="aria2">aria2</h2>
+<pre><code class="language-yaml">version: &quot;3&quot;
+services:
+  aria2:
+    image: superng6/aria2
+    container_name: aria2
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Shanghai
+      - SECRET=YourAria2SecretToken
+      - CACHE=512M
+      - UT=true
+      - RUT=true
+      - QUIET=true
+      - FA=falloc
+      - RECYCLE=true
+      - MOVE=true
+      - SMD=false
+      - ANIDIR=ani
+      - MOVDIR=movies
+      - TVDIR=tv
+      - CUSDIR=Z
+    volumes:
+      - ./config:/config
+      - ./Download:/downloads
+    ports:
+      - 6881:6881
+      - 6881:6881/udp
+      - 6800:6800
+    logging:
+      options:
+        max-size: &quot;1m&quot;
+
+  ariang:
+    image: superng6/ariang
+    container_name: ariang
+    restart: unless-stopped
+    ports:
+      - 8888:80
+    logging:
+      options:
+        max-size: &quot;1m&quot;
+</code></pre>
+<h2 id="gitea">Gitea</h2>
+<pre><code class="language-yaml">version: &quot;3&quot;
+
+networks:
+  gitea:
+    external: false
+
+services:
+  server:
+    image: gitea/gitea:latest
+    container_name: gitea
+    restart: always
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
+      - DB_TYPE=postgres
+      - DB_HOST=postgres:5432
+      - DB_NAME=gitea
+      - DB_USER=gitea
+      - DB_PASSWD=gitea
+    networks:
+      - gitea
+    volumes:
+      - /public/gitea:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - &quot;80:3000&quot;
+      - &quot;222:22&quot;
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:13
+    container_name: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=gitea
+      - POSTGRES_PASSWORD=gitea
+      - POSTGRES_DB=gitea
+    networks:
+      - gitea
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+</code></pre>
+<h2 id="gitlab">gitlab</h2>
+<pre><code class="language-yaml">version: &quot;3&quot;
+services:
+  gitlab:
+    image: 'gitlab/gitlab-ce'
+    restart: always
+    container_name: gitlab
+    hostname: 'ntlx.top'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://ntlx.top:23333'
+        gitlab_rails['gitlab_shell_ssh_port'] = 22222
+    ports:
+      - '23333:23333'
+      - '22222:22'
+    volumes:
+      - './config:/etc/gitlab'
+      - './logs:/var/log/gitlab'
+      - './data:/var/opt/gitlab'
+    logging:
+      options:
+        max-size: &quot;1m&quot;
+</code></pre>
+<h3 id="smtp-settings">SMTP Settings</h3>
+<p>If you would rather send application email via an SMTP server instead of via Sendmail, add the following configuration information to <code>/etc/gitlab/gitlab.rb</code> and run <code>gitlab-ctl reconfigure</code>, for example:</p>
+<pre><code class="language-ruby">gitlab_rails['gitlab_email_enabled'] = true
+gitlab_rails['smtp_enable'] = true
+gitlab_rails['smtp_address'] = &quot;smtp.xxx.com&quot;
+gitlab_rails['smtp_port'] = 25
+gitlab_rails['smtp_user_name'] = &quot;xxx@xxx.com&quot;
+gitlab_rails['smtp_password'] = &quot;YourPassword&quot;
+gitlab_rails['smtp_domain'] = &quot;xxx.com&quot;
+gitlab_rails['smtp_authentication'] = &quot;login&quot;
+gitlab_rails['smtp_enable_starttls_auto'] = false
+gitlab_rails['smtp_tls'] = false
+gitlab_rails['gitlab_email_from'] = 'xxx@xxx.com'
+gitlab_rails['gitlab_email_display_name'] = 'xxx GitLab'
+gitlab_rails['gitlab_email_reply_to'] = 'xxx@xxx.com'
+</code></pre>
+<h2 id="nextcloud">NextCloud</h2>
+<pre><code class="language-bash">docker run -d --name='NextCloud' --restart unless-stopped --log-opt max-size=10m -e 'POSTGRES_DB'='nextcloud' -e 'POSTGRES_USER'='postgres' -e 'POSTGRES_PASSWORD'='password' -e 'POSTGRES_HOST'='10.1.1.4' -e 'NEXTCLOUD_TRUSTED_DOMAINS'='ntlx.top:8080' -p '8080:80/tcp' -p '8080:80/udp' -v './NextCloud':'/var/www/html/':'rw' 'nextcloud'
+</code></pre>
+<h2 id="freshrss">FreshRSS</h2>
+<pre><code class="language-bash">docker run -d --name=FreshRSS --log-opt max-size=10m --restart unless-stopped -e PUID=1000 -e PGID=1000 -e TZ=Asia/Shanghai -p 8070:80 -v ./config:/config linuxserver/freshrss
+</code></pre>
+<h2 id="rstudio-server">Rstudio Server</h2>
+<pre><code class="language-bash">docker run --name &quot;Rstudio&quot; -d --restart unless-stopped --log-opt max-size=10m -p 8787:8787 -p 6311:6311 -v ./RstudioServer/home:/home quantumobject/docker-rstudio
+</code></pre>
+<h3 id="add-user">Add user</h3>
+<pre><code class="language-bash">docker exec -it Rstudio /bin/bash
+adduser lx
+passwd password
+mkdir /home/lx
+chmod -R 755 /home/lx
+</code></pre>
+<h2 id="pptp">PPTP</h2>
+<pre><code class="language-bash">docker run -d --name='PPTP' --net='bridge' --log-opt max-size=10m --privileged=true -e TZ=&quot;Asia/Shanghai&quot; -p '1723:1723/tcp' -p '1723:1723/udp' -v './PPTP/chap-secrets':'/etc/ppp/chap-secrets':'rw' 'mobtitude/vpn-pptp'
+</code></pre>
+<h2 id="l2tp">L2TP</h2>
+<pre><code class="language-bash">modprobe af_key
+docker run -d --name='L2TP' --net='bridge' --privileged=true -e TZ=&quot;Asia/Shanghai&quot; -p '500:500/tcp' -p '500:500/udp' -p '4500:4500/tcp' -p '4500:4500/udp' -p '1701:1701/tcp' -p '1701:1701/udp' -v '/lib/modules':'/lib/modules':'ro' --env-file ./L2TP/L2TP.env --log-opt max-size=10m 'fcojean/l2tp-ipsec-vpn-server'
+</code></pre>
+<h2 id="cloudflare-ddns">Cloudflare DDNS</h2>
+<h3 id="using-config-file">Using config file</h3>
+<blockquote>
+<p><code>joshava/cloudflare-ddns</code> for x86_64 CPU, <code>joshava/cloudflare-ddns:arm32v6</code> for pi</p>
+</blockquote>
+<pre><code class="language-bash">docker run -d --name=DDNS -v ./CloudflareDDNS/config.yaml:/app/config.yaml joshava/cloudflare-ddns:arm32v6
+</code></pre>
+<p>docker compose version:</p>
+<pre><code class="language-yaml">version: &quot;3&quot;
+services:
+  ddns:
+    image: joshava/cloudflare-ddns
+    restart: always
+    container_name: ddns
+    volumes:
+      - './CloudflareDDNS/config.yaml:/app/config.yaml'
+</code></pre>
+<p>Example config file:</p>
+<pre><code class="language-yaml">auth:
+  scopedToken: xxx
+domains:
+  - name: xxx
+    type: A
+    proxied: false
+    create: true
+    zoneId: xxx
+</code></pre>
+<h3 id="using-env-settings">Using env settings</h3>
+<blockquote>
+<p>tags for arm: <code>arm32v6</code>, <code>armhf</code>, <code>aarch64</code>, <code>arm64v8</code>, <code>latest</code></p>
+</blockquote>
+<pre><code class="language-bash">docker run -d --name=DDNS -e API_KEY=xxx -e ZONE=xxx -e SUBDOMAIN=xxx oznu/cloudflare-ddns
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Raspberry Pi]]></title>
         <id>http://www.ntlx.top/post/raspberry-pi/</id>
