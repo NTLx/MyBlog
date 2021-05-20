@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://www.ntlx.top</id>
     <title>NTLx&apos;s Blog</title>
-    <updated>2021-05-18T05:20:38.689Z</updated>
+    <updated>2021-05-20T04:24:49.063Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://www.ntlx.top"/>
     <link rel="self" href="http://www.ntlx.top/atom.xml"/>
@@ -10,6 +10,86 @@
     <logo>http://www.ntlx.top/images/avatar.png</logo>
     <icon>http://www.ntlx.top/favicon.ico</icon>
     <rights>All rights reserved 2021, NTLx&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[Ubuntu Server Installation Note]]></title>
+        <id>http://www.ntlx.top/post/ubuntu-server-installation-note/</id>
+        <link href="http://www.ntlx.top/post/ubuntu-server-installation-note/">
+        </link>
+        <updated>2021-05-20T02:38:02.000Z</updated>
+        <summary type="html"><![CDATA[<p>How to deploy Ubuntu Server operation system to a server or any computer.</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>How to deploy Ubuntu Server operation system to a server or any computer.</p>
+<!-- more -->
+<h1 id="getready">Getready</h1>
+<h2 id="download-os-image">Download OS image</h2>
+<p>Ubuntu 18.04.5 Server <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu-releases/bionic/ubuntu-18.04.5-live-server-amd64.iso">Download Link</a></p>
+<h2 id="create-bootable-usb-drive">Create bootable USB drive</h2>
+<p>Rufus 3.14 (Portable) <a href="https://github.com/pbatard/rufus/releases/download/v3.14/rufus-3.14p.exe">Download Link</a></p>
+<figure data-type="image" tabindex="1"><img src="https://rufus.ie/pics/rufus_en.png" alt="Rufus" loading="lazy"></figure>
+<p>You can find usage instructions on <a href="https://rufus.ie/en/">Rufus Official Web Site</a>.</p>
+<h1 id="install-system">Install System</h1>
+<h2 id="devices-dependency">Devices Dependency</h2>
+<ul>
+<li>Plug in the bootable USB drive which created by Rufus &amp; OS image to target server</li>
+<li>Plug in a screen to target server</li>
+<li>Plug in a keyboard</li>
+<li>Connect Power</li>
+<li>Connect network (optional)</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<ol>
+<li>Power on.</li>
+<li>Select language (English).<br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20210520105855.png" alt="" loading="lazy"></li>
+<li>If you see screen as below, choose <code>Continue without updating</code>.<br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20210520110013.png" alt="" loading="lazy"></li>
+<li>Keep the default layout, then choos <code>Done</code>.<br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20210520110420.png" alt="" loading="lazy"></li>
+<li>If you have no specific network requirment, just keep the default network settings, choose <code>Done</code>.<br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20210520110628.png" alt="" loading="lazy"></li>
+<li>Then you'll be in <code>Configure proxy</code> step. Usually, we keep the default settings and just choose <code>Done</code>, but if you want update system through the internet during the installation or you want add some software during the installation, you may need set proxy correct to get some <code>foreign resources</code>.<br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20210520110655.png" alt="" loading="lazy"></li>
+<li>Compared to proxy, set a suitable mirror is far more usefull for system installation (if you need update or add software during the installation from the internet). For convenience, we keep the default setting and choose <code>Done</code>.<br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20210520111422.png" alt="" loading="lazy"></li>
+<li>In <code>Guided storage configuration</code>, move cursor down and uncheck <code>Set up this disk as an LVM group</code>, after this operation, the screen will look like below, then just choose <code>Done</code>.<br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20210520112032.png" alt="" loading="lazy"></li>
+<li>We need a little modify in <code>Storage configuration</code>. You'll see the pic below in this step.<br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20210520112326.png" alt="" loading="lazy">
+<ol>
+<li>Move cursor up to <code>partition 2</code> (here is only show settings for one disk for example), then hit <code>Enter</code>, the screen will be look like below:<br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20210520112433.png" alt="" loading="lazy"></li>
+<li>Choose <code>Edit</code> and then change <code>Format</code> to <code>xfs</code>, the screen will be look like below:<br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20210520112603.png" alt="" loading="lazy"></li>
+<li><code>Save</code> settings and choose <code>Done</code>, then choose <code>Continue</code> when you see below:<br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20210520112727.png" alt="" loading="lazy"></li>
+</ol>
+</li>
+<li>Set suitable info for your system, the screen will be look like below:<br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20210520112824.png" alt="" loading="lazy">
+<blockquote>
+<p>Recommand set profile like this:</p>
+<ul>
+<li>Your name: manager</li>
+<li>Your server's name: ubuntu</li>
+<li>Pick a username: manager</li>
+<li>Choose a password: YOURPASSWORD</li>
+<li>Confirm your password: YOURPASSWORD<br>
+And the screen will be look like this:<br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20210520113204.png" alt="" loading="lazy"></li>
+</ul>
+</blockquote>
+</li>
+<li>In <code>SSH Setup</code>, you need check <code>Install OpenSSH server</code> in order to connect your server through the internet after the system installaion, the screen will be look like below:<br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20210520113338.png" alt="" loading="lazy"></li>
+<li>Don't choose any package in <code>Featured Server Snaps</code>, just choose <code>Done</code> directly.<br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20210520113402.png" alt="" loading="lazy"></li>
+<li>Then you'll see the installation progress screen:<br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20210520113540.png" alt="" loading="lazy"></li>
+<li>When you see screen like below, you can <code>Reboot</code> system and that's all of the basic installation steps (remove USB device may be required, there will be notes on the screen).<br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20210520122209.png" alt="" loading="lazy"></li>
+</ol>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Add Linux to AD]]></title>
         <id>http://www.ntlx.top/post/add-linux-to-ad/</id>
@@ -999,482 +1079,6 @@ services:
     volumes:
       - ./content:/var/lib/ghost/content
 </code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Windows System Settings]]></title>
-        <id>http://www.ntlx.top/post/windows-system-settings/</id>
-        <link href="http://www.ntlx.top/post/windows-system-settings/">
-        </link>
-        <updated>2021-05-18T02:02:04.000Z</updated>
-        <summary type="html"><![CDATA[<p>Settings for a brand new installation of Windows OS.</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>Settings for a brand new installation of Windows OS.</p>
-<!-- more -->
-<h1 id="activate-windows">Activate Windows</h1>
-<p>According <a href="https://freeproductkeys.com/how-to-activate-windows-server-without-product-key/">How to activate Windows Server without product key</a>.</p>
-<h2 id="auto-activate-script">Auto Activate Script</h2>
-<h3 id="windows-10-pro">Windows 10 Pro</h3>
-<pre><code class="language-bash">slmgr /ipk W269N-WFGWX-YVC9B-4J6C9-T83GX
-slmgr /skms kms8.msguides.com
-slmgr /ato
-</code></pre>
-<h3 id="windows-10-enterprise">Windows 10 Enterprise</h3>
-<pre><code class="language-bash">slmgr /ipk NPPR9-FWDCX-D2C8J-H872K-2YT43
-slmgr /skms kms8.msguides.com
-slmgr /ato
-</code></pre>
-<h2 id="manually-installing-kms-client-key-to-activate-windows">Manually installing KMS client key to activate Windows</h2>
-<h3 id="step-1">Step 1</h3>
-<p>Get the right product key from <a href="https://docs.microsoft.com/en-us/windows-server/get-started/kmsclientkeys">the official article of Microsoft</a>.</p>
-<pre><code>Windows Server Semi-Annual Channel versions
-Windows Server, version 1903 and Windows Server, version 1809
-Operating system edition	KMS Client Setup Key
-Windows Server Datacenter	6NMRW-2C8FM-D24W7-TQWMY-CWH2D
-Windows Server Standard	N2KJX-J94YW-TQVFB-DG9YT-724CC
-Windows Server, version 1803
-Operating system edition	KMS Client Setup Key
-Windows Server Datacenter	2HXDN-KRXHB-GPYC7-YCKFJ-7FVDG
-Windows Server Standard	PTXN8-JFHJM-4WC78-MPCBR-9W4KR
-Windows Server, version 1709
-Operating system edition	KMS Client Setup Key
-Windows Server Datacenter	6Y6KB-N82V8-D8CQV-23MJW-BWTG6
-Windows Server Standard	DPCNP-XQFKJ-BJF7R-FRC8D-GF6G4
-Windows Server LTSC/LTSB versions
-Windows Server 2019
-Operating system edition	KMS Client Setup Key
-Windows Server 2019 Datacenter	WMDGN-G9PQG-XVVXX-R3X43-63DFG
-Windows Server 2019 Standard	N69G4-B89J2-4G8F4-WWYCC-J464C
-Windows Server 2019 Essentials	WVDHN-86M7X-466P6-VHXV7-YY726
-Windows Server 2016
-Operating system edition	KMS Client Setup Key
-Windows Server 2016 Datacenter	CB7KF-BWN84-R7R2Y-793K2-8XDDG
-Windows Server 2016 Standard	WC2BQ-8NRM3-FDDYY-2BFGV-KHKQY
-Windows Server 2016 Essentials	JCKRF-N37P4-C2D82-9YXRT-4M63B
-Windows 10, all supported Semi-Annual Channel versions
-See the Windows lifecycle fact sheet for information about supported versions and end of service dates.
-
-Operating system edition	KMS Client Setup Key
-Windows 10 Pro	W269N-WFGWX-YVC9B-4J6C9-T83GX
-Windows 10 Pro N	MH37W-N47XK-V7XM9-C7227-GCQG9
-Windows 10 Pro for Workstations	NRG8B-VKK3Q-CXVCJ-9G2XF-6Q84J
-Windows 10 Pro for Workstations N	9FNHH-K3HBT-3W4TD-6383H-6XYWF
-Windows 10 Pro Education	6TP4R-GNPTD-KYYHQ-7B7DP-J447Y
-Windows 10 Pro Education N	YVWGF-BXNMC-HTQYQ-CPQ99-66QFC
-Windows 10 Education	NW6C2-QMPVW-D7KKK-3GKT6-VCFB2
-Windows 10 Education N	2WH4N-8QGBV-H22JP-CT43Q-MDWWJ
-Windows 10 Enterprise	NPPR9-FWDCX-D2C8J-H872K-2YT43
-Windows 10 Enterprise N	DPH2V-TTNVB-4X9Q3-TJR4H-KHJW4
-Windows 10 Enterprise G	YYVX9-NTFWV-6MDM3-9PT4T-4M68B
-Windows 10 Enterprise G N	44RPN-FTY23-9VTTB-MP9BX-T84FV
-Windows 10 LTSC/LTSB versions
-Windows 10 LTSC 2019
-Operating system edition	KMS Client Setup Key
-Windows 10 Enterprise LTSC 2019	M7XTQ-FN8P6-TTKYV-9D4CC-J462D
-Windows 10 Enterprise N LTSC 2019	92NFX-8DJQP-P6BBQ-THF9C-7CG2H
-Windows 10 LTSB 2016
-Operating system edition	KMS Client Setup Key
-Windows 10 Enterprise LTSB 2016	DCPHK-NFMTC-H88MJ-PFHPY-QJ4BJ
-Windows 10 Enterprise N LTSB 2016	QFFDN-GRT3P-VKWWX-X7T3R-8B639
-Windows 10 LTSB 2015
-Operating system edition	KMS Client Setup Key
-Windows 10 Enterprise 2015 LTSB	WNMTR-4C88C-JK8YV-HQ7T2-76DF9
-Windows 10 Enterprise 2015 LTSB N	2F77B-TNFGY-69QQF-B8YKP-D69TJ
-Earlier versions of Windows Server
-Windows Server 2012 R2
-Operating system edition	KMS Client Setup Key
-Windows Server 2012 R2 Server Standard	D2N9P-3P6X9-2R39C-7RTCD-MDVJX
-Windows Server 2012 R2 Datacenter	W3GGN-FT8W3-Y4M27-J84CP-Q3VJ9
-Windows Server 2012 R2 Essentials	KNC87-3J2TX-XB4WP-VCPJV-M4FWM
-Windows Server 2012
-Operating system edition	KMS Client Setup Key
-Windows Server 2012	BN3D2-R7TKB-3YPBD-8DRP2-27GG4
-Windows Server 2012 N	8N2M2-HWPGY-7PGT9-HGDD8-GVGGY
-Windows Server 2012 Single Language	2WN2H-YGCQR-KFX6K-CD6TF-84YXQ
-Windows Server 2012 Country Specific	4K36P-JN4VD-GDC6V-KDT89-DYFKP
-Windows Server 2012 Server Standard	XC9B7-NBPP2-83J2H-RHMBY-92BT4
-Windows Server 2012 MultiPoint Standard	HM7DN-YVMH3-46JC3-XYTG7-CYQJJ
-Windows Server 2012 MultiPoint Premium	XNH6W-2V9GX-RGJ4K-Y8X6F-QGJ2G
-Windows Server 2012 Datacenter	48HP8-DN98B-MYWDG-T2DCC-8W83P
-Windows Server 2008 R2
-Operating system edition	KMS Client Setup Key
-Windows Server 2008 R2 Web	6TPJF-RBVHG-WBW2R-86QPH-6RTM4
-Windows Server 2008 R2 HPC edition	TT8MH-CG224-D3D7Q-498W2-9QCTX
-Windows Server 2008 R2 Standard	YC6KT-GKW9T-YTKYR-T4X34-R7VHC
-Windows Server 2008 R2 Enterprise	489J6-VHDMP-X63PK-3K798-CPX3Y
-Windows Server 2008 R2 Datacenter	74YFP-3QFB3-KQT8W-PMXWJ-7M648
-Windows Server 2008 R2 for Itanium-based Systems	GT63C-RJFQ3-4GMB6-BRFB9-CB83V
-Windows Server 2008
-Operating system edition	KMS Client Setup Key
-Windows Web Server 2008	WYR28-R7TFJ-3X2YQ-YCY4H-M249D
-Windows Server 2008 Standard	TM24T-X9RMF-VWXK6-X8JC9-BFGM2
-Windows Server 2008 Standard without Hyper-V	W7VD6-7JFBR-RX26B-YKQ3Y-6FFFJ
-Windows Server 2008 Enterprise	YQGMW-MPWTJ-34KDK-48M3W-X4Q6V
-Windows Server 2008 Enterprise without Hyper-V	39BXF-X8Q23-P2WWT-38T2F-G3FPG
-Windows Server 2008 HPC	RCTX3-KWVHP-BR6TB-RB6DM-6X7HP
-Windows Server 2008 Datacenter	7M67G-PC374-GR742-YH8V4-TCBY3
-Windows Server 2008 Datacenter without Hyper-V	22XQ2-VRXRG-P8D42-K34TD-G3QQC
-Windows Server 2008 for Itanium-Based Systems	4DWFP-JF3DJ-B7DTH-78FJB-PDRHK
-Earlier versions of Windows
-Windows 8.1
-Operating system edition	KMS Client Setup Key
-Windows 8.1 Pro	GCRJD-8NW9H-F2CDX-CCM8D-9D6T9
-Windows 8.1 Pro N	HMCNV-VVBFX-7HMBH-CTY9B-B4FXY
-Windows 8.1 Enterprise	MHF9N-XY6XB-WVXMC-BTDCT-MKKG7
-Windows 8.1 Enterprise N	TT4HM-HN7YT-62K67-RGRQJ-JFFXW
-Windows 8
-Operating system edition	KMS Client Setup Key
-Windows 8 Pro	NG4HW-VH26C-733KW-K6F98-J8CK4
-Windows 8 Pro N	XCVCF-2NXM9-723PB-MHCB7-2RYQQ
-Windows 8 Enterprise	32JNW-9KQ84-P47T8-D8GGY-CWCK7
-Windows 8 Enterprise N	JMNMF-RHW7P-DMY6X-RF3DR-X2BQT
-Windows 7
-Operating system edition	KMS Client Setup Key
-Windows 7 Professional	FJ82H-XT6CR-J8D7P-XQJJ2-GPDD4
-Windows 7 Professional N	MRPKT-YTG23-K7D7T-X2JMM-QY7MG
-Windows 7 Professional E	W82YF-2Q76Y-63HXB-FGJG9-GF7QX
-Windows 7 Enterprise	33PXH-7Y6KF-2VJC9-XBBR8-HVTHH
-Windows 7 Enterprise N	YDRBP-3D83W-TY26F-D46B2-XCKRJ
-Windows 7 Enterprise E	C29WB-22CC8-VJ326-GHFJW-H9DH4
-</code></pre>
-<h3 id="step-2">Step 2</h3>
-<p>Install the key on your system.</p>
-<p>To open command prompt, right-click on the Windows button then select “Command prompt (Admin)” line.</p>
-<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/NTLx/Pic/master/img/20200921130556.png" alt="" loading="lazy"></figure>
-<p>Then, enter “slmgr /ipk CLIENTKEY” in the command window.</p>
-<figure data-type="image" tabindex="2"><img src="https://raw.githubusercontent.com/NTLx/Pic/master/img/20200921130612.png" alt="" loading="lazy"></figure>
-<p>Note: each command is followed by hitting Enter.</p>
-<h3 id="step-3">Step 3</h3>
-<p>Set the KMS server.</p>
-<p>Enter “slmgr /skms kms8.msguides.com” in the window.</p>
-<figure data-type="image" tabindex="3"><img src="https://raw.githubusercontent.com/NTLx/Pic/master/img/20200921130708.png" alt="" loading="lazy"></figure>
-<p>Step 4. Activate the KMS client key.</p>
-<p>Finally, use the command ““slmgr /ato” to activate your Windows.</p>
-<figure data-type="image" tabindex="4"><img src="https://raw.githubusercontent.com/NTLx/Pic/master/img/20200921130720.png" alt="" loading="lazy"></figure>
-<h1 id="active-microsoft-office">Active Microsoft Office</h1>
-<h2 id="office-2019">Office 2019</h2>
-<p>Add a <code>*.bat</code> file, content with:</p>
-<pre><code>@echo off
-(cd /d &quot;%~dp0&quot;)&amp;&amp;(NET FILE||(powershell start-process -FilePath '%0' -verb runas)&amp;&amp;(exit /B)) &gt;NUL 2&gt;&amp;1
-title Office 2019 Activator r/Piracy
-echo Converting... &amp; mode 40,25
-(if exist &quot;%ProgramFiles%\Microsoft Office\Office16\ospp.vbs&quot; cd /d &quot;%ProgramFiles%\Microsoft Office\Office16&quot;)&amp;(if exist &quot;%ProgramFiles(x86)%\Microsoft Office\Office16\ospp.vbs&quot; cd /d &quot;%ProgramFiles(x86)%\Microsoft Office\Office16&quot;)&amp;(for /f %%x in ('dir /b ..\root\Licenses16\ProPlus2019VL*.xrm-ms') do cscript ospp.vbs /inslic:&quot;..\root\Licenses16\%%x&quot; &gt;nul)&amp;(for /f %%x in ('dir /b ..\root\Licenses16\ProPlus2019VL*.xrm-ms') do cscript ospp.vbs /inslic:&quot;..\root\Licenses16\%%x&quot; &gt;nul)
-cscript //nologo ospp.vbs /unpkey:6MWKP &gt;nul&amp;cscript //nologo ospp.vbs /inpkey:NMMKJ-6RK4F-KMJVX-8D9MJ-6MWKP &gt;nul&amp;set i=1
-:server
-if %i%==1 set KMS_Sev=kms7.MSGuides.com
-if %i%==2 set KMS_Sev=kms8.MSGuides.com
-if %i%==3 set KMS_Sev=kms9.MSGuides.com
-cscript //nologo ospp.vbs /sethst:%KMS_Sev% &gt;nul
-echo %KMS_Sev% &amp; echo Activating...
-cscript //nologo ospp.vbs /act | find /i &quot;successful&quot; &amp;&amp; (echo Complete) || (echo Trying another KMS Server &amp; set /a i+=1 &amp; goto server)
-pause &gt;nul
-exit
-</code></pre>
-<p>Run this <code>*.bat</code> file using administrator, done.</p>
-<blockquote>
-<p>Key: <code>W8W6K-3N7KK-PXB9H-8TD8W-BWTH9</code>（零售版）<code>N9J9Q-Q7MMP-XDDM6-63KKP-76FPM</code>（批量版）may still available.</p>
-</blockquote>
-<h1 id="active-microsoft-visio">Active Microsoft Visio</h1>
-<h2 id="visio-2019-activation">Visio 2019 Activation</h2>
-<p>Add a <code>*.bat</code> file, content with:</p>
-<pre><code>@echo off
-title Activate Microsoft Visio 2019&amp;cls&amp;echo ============================================================================&amp;echo #Visio: Activating Microsoft software products for FREE without software&amp;echo ============================================================================&amp;echo.&amp;echo #Supported products:&amp;echo - Microsoft Visio Standard 2019&amp;echo - Microsoft Visio Professional Plus 2019&amp;echo.&amp;echo.&amp;(if exist &quot;%ProgramFiles%\Microsoft Office\Office16\ospp.vbs&quot; cd /d &quot;%ProgramFiles%\Microsoft Office\Office16&quot;)&amp;(if exist &quot;%ProgramFiles(x86)%\Microsoft Office\Office16\ospp.vbs&quot; cd /d &quot;%ProgramFiles(x86)%\Microsoft Office\Office16&quot;)&amp;cscript //nologo ospp.vbs /inslic:&quot;..\root\Licenses16\pkeyconfig-office.xrm-ms&quot; &gt;nul&amp;(for /f %%x in ('dir /b ..\root\Licenses16\client-issuance*.xrm-ms') do cscript ospp.vbs /inslic:&quot;..\root\Licenses16\%%x&quot; &gt;nul)&amp;(for /f %%x in ('dir /b ..\root\Licenses16\visioprovl_kms*.xrm-ms') do cscript ospp.vbs /inslic:&quot;..\root\Licenses16\%%x&quot; &gt;nul)&amp;(for /f %%x in ('dir /b ..\root\Licenses16\visiopro2019vl_kms*.xrm-ms') do cscript ospp.vbs /inslic:&quot;..\root\Licenses16\%%x&quot; &gt;nul)&amp;echo.&amp;echo ============================================================================&amp;echo 正在尝试激活...&amp;cscript //nologo ospp.vbs /unpkey:7VCBB &gt;nul&amp;cscript //nologo ospp.vbs /inpkey:9BGNQ-K37YR-RQHF2-38RQ3-7VCBB &gt;nul&amp;set i=1
-:server
-if %i%==1 set KMS_Sev=kms8.MSGuides.com
-if %i%==2 set KMS_Sev=kms9.MSGuides.com
-if %i%==3 set KMS_Sev=kms7.MSGuides.com
-if %i%==4 goto notsupported
-cscript //nologo ospp.vbs /sethst:%KMS_Sev% &gt;nul&amp;echo ============================================================================&amp;echo.&amp;echo.
-cscript //nologo ospp.vbs /act | find /i &quot;successful&quot; &amp;&amp; (echo 已完成，按任意键退出) || (echo 连接KMS服务器失败! 试图连接到另一个… &amp; echo 请等待... &amp; echo. &amp; echo. &amp; set /a i+=1 &amp; goto server)
-pause &gt;nul
-exit
-</code></pre>
-<p>Run this <code>*.bat</code> file using administrator, done.</p>
-<blockquote>
-<p>Key: <code>YQGTJ-44NB6-KBYR3-388HG-KTQ4K</code> or <code>3BP7N-Y28TF-9YMM8-4JY2B-7MKH9</code> may still available.</p>
-</blockquote>
-<h1 id="active-microsoft-project">Active Microsoft Project</h1>
-<h2 id="project-professional-2019-vl-activation">Project Professional 2019 VL Activation</h2>
-<p>Add a <code>*.bat</code> file, content with:</p>
-<pre><code>@echo off
-title Activate Microsoft Project 2019&amp;cls&amp;echo ============================================================================&amp;echo #Project: Activating Microsoft software products for FREE without software&amp;echo ============================================================================&amp;echo.&amp;echo #Supported products:&amp;echo - Microsoft Project Standard 2019&amp;echo - Microsoft Project Professional 2019&amp;echo.&amp;echo.&amp;(if exist &quot;%ProgramFiles%\Microsoft Office\Office16\ospp.vbs&quot; cd /d &quot;%ProgramFiles%\Microsoft Office\Office16&quot;)&amp;(if exist &quot;%ProgramFiles(x86)%\Microsoft Office\Office16\ospp.vbs&quot; cd /d &quot;%ProgramFiles(x86)%\Microsoft Office\Office16&quot;)&amp;cscript //nologo ospp.vbs /inslic:&quot;..\root\Licenses16\pkeyconfig-office.xrm-ms&quot; &gt;nul&amp;(for /f %%x in ('dir /b ..\root\Licenses16\client-issuance*.xrm-ms') do cscript ospp.vbs /inslic:&quot;..\root\Licenses16\%%x&quot; &gt;nul)&amp;(for /f %%x in ('dir /b ..\root\Licenses16\Project???vl_kms*.xrm-ms') do cscript ospp.vbs /inslic:&quot;..\root\Licenses16\%%x&quot; &gt;nul)&amp;(for /f %%x in ('dir /b ..\root\Licenses16\Project???vl_kms*.xrm-ms') do cscript ospp.vbs /inslic:&quot;..\root\Licenses16\%%x&quot; &gt;nul)&amp;echo.&amp;echo ============================================================================&amp;echo 正在尝试激活...&amp;cscript //nologo ospp.vbs /unpkey:PKD2B &gt;nul&amp;cscript //nologo ospp.vbs /inpkey:B4NPR-3FKK7-T2MBV-FRQ4W-PKD2B &gt;nul&amp;set i=1
-:server
-if %i%==1 set KMS_Sev=kms8.MSGuides.com
-if %i%==2 set KMS_Sev=kms9.MSGuides.com
-if %i%==3 set KMS_Sev=kms7.MSGuides.com
-if %i%==4 goto notsupported
-cscript //nologo ospp.vbs /sethst:%KMS_Sev% &gt;nul&amp;echo ============================================================================&amp;echo.&amp;echo.
-cscript //nologo ospp.vbs /act | find /i &quot;successful&quot; &amp;&amp; (echo 已完成，按任意键退出) || (echo 连接KMS服务器失败! 试图连接到另一个… &amp; echo 请等待... &amp; echo. &amp; echo. &amp; set /a i+=1 &amp; goto server)
-pause &gt;nul
-exit
-</code></pre>
-<pre><code>echo 进入目录
-if exist &quot;%ProgramFiles%\Microsoft Office\Office16\ospp.vbs&quot; cd /d &quot;%ProgramFiles%\Microsoft Office\Office16&quot;
-if exist &quot;%ProgramFiles(x86)%\Microsoft Office\Office16\ospp.vbs&quot; cd /d &quot;%ProgramFiles(x86)%\Microsoft Office\Office16&quot;
-
-echo 重置Project2016零售激活...
-cscript ospp.vbs /rearm
-
-echo 安装 KMS 许可证...
-for /f %%x in ('dir /b ..\root\Licenses16\project???vl_kms*.xrm-ms') do cscript ospp.vbs /inslic:&quot;..\root\Licenses16\%%x&quot; &gt;nul
-echo 安装 MAK 许可证...
-for /f %%x in ('dir /b ..\root\Licenses16\project???vl_mak*.xrm-ms') do cscript ospp.vbs /inslic:&quot;..\root\Licenses16\%%x&quot; &gt;nul
-
-# 设置自建kms服务的地址或者域名，网络中搜到的也一样
-cscript ospp.vbs /sethst:kms9.MSGuides.com
-# 安装从上述链接中得到的对应的Office或者Project或者Project的key
-cscript ospp.vbs /inpkey:B4NPR-3FKK7-T2MBV-FRQ4W-PKD2B
-# 激活
-cscript ospp.vbs /act
-# 查看激活状态
-cscript ospp.vbs /dstatus
-</code></pre>
-<p>Run this <code>*.bat</code> file using administrator, done.</p>
-<h1 id="kms-key-collection">KMS Key Collection</h1>
-<h2 id="microsoft-office-2019">Microsoft Office 2019</h2>
-<blockquote>
-<p>Vol 版 Gvlk 密钥（KMS 激活专用）产品秘钥</p>
-</blockquote>
-<p>Office Professional Plus 2019：NMMKJ-6RK4F-KMJVX-8D9MJ-6MWKP</p>
-<p>Office Standard 2019：6NWWJ-YQWMR-QKGCB-6TMB3-9D9HK</p>
-<p>Project Professional 2019：B4NPR-3FKK7-T2MBV-FRQ4W-PKD2B</p>
-<p>Project Standard 2019：C4F7P-NCP8C-6CQPT-MQHV9-JXD2M</p>
-<p>Visio Professional 2019：9BGNQ-K37YR-RQHF2-38RQ3-7VCBB</p>
-<h1 id="kms-server">KMS Server</h1>
-<p>Deploy a KMS Server on Linux:</p>
-<pre><code class="language-bash">#!/usr/bin/env bash
-#
-# Auto install KMS Server
-# System Required:  CentOS 6+, Debian7+, Ubuntu12+
-# Copyright (C) 2017-2018 Teddysun &lt;i@teddysun.com&gt;
-# URL: https://teddysun.com/530.html
-#
-# Thanks: https://github.com/Wind4/vlmcsd
-#
-
-red='\033[0;31m'
-green='\033[0;32m'
-yellow='\033[0;33m'
-plain='\033[0m'
-
-cur_dir=$(pwd)
-
-[[ $EUID -ne 0 ]] &amp;&amp; echo -e &quot;${red}Error:${plain} This script must be run as root!&quot; &amp;&amp; exit 1
-
-if [ -f /etc/redhat-release ]; then
-    release=&quot;centos&quot;
-elif grep -Eqi &quot;debian&quot; /etc/issue; then
-    release=&quot;debian&quot;
-elif grep -Eqi &quot;ubuntu&quot; /etc/issue; then
-    release=&quot;ubuntu&quot;
-elif grep -Eqi &quot;centos|red hat|redhat&quot; /etc/issue; then
-    release=&quot;centos&quot;
-elif grep -Eqi &quot;debian&quot; /proc/version; then
-    release=&quot;debian&quot;
-elif grep -Eqi &quot;ubuntu&quot; /proc/version; then
-    release=&quot;ubuntu&quot;
-elif grep -Eqi &quot;centos|red hat|redhat&quot; /proc/version; then
-    release=&quot;centos&quot;
-else
-    release=&quot;&quot;
-fi
-
-boot_start(){
-    if [[ x&quot;${release}&quot; == x&quot;debian&quot; || x&quot;${release}&quot; == x&quot;ubuntu&quot; ]]; then
-        update-rc.d -f &quot;${1}&quot; defaults
-    elif [[ x&quot;${release}&quot; == x&quot;centos&quot; ]]; then
-        chkconfig --add &quot;${1}&quot;
-        chkconfig &quot;${1}&quot; on
-    fi
-}
-
-boot_stop(){
-    if [[ x&quot;${release}&quot; == x&quot;debian&quot; || x&quot;${release}&quot; == x&quot;ubuntu&quot; ]]; then
-        update-rc.d -f &quot;${1}&quot; remove
-    elif [[ x&quot;${release}&quot; == x&quot;centos&quot; ]]; then
-        chkconfig &quot;${1}&quot; off
-        chkconfig --del &quot;${1}&quot;
-    fi
-}
-
-# Get version
-getversion(){
-    if [[ -s /etc/redhat-release ]]; then
-        grep -oE  &quot;[0-9.]+&quot; /etc/redhat-release
-    else
-        grep -oE  &quot;[0-9.]+&quot; /etc/issue
-    fi
-}
-
-# CentOS version
-centosversion(){
-    if [[ x&quot;${release}&quot; == x&quot;centos&quot; ]]; then
-        local code=$1
-        local version=&quot;$(getversion)&quot;
-        local main_ver=${version%%.*}
-        if [ &quot;$main_ver&quot; == &quot;$code&quot; ]; then
-            return 0
-        else
-            return 1
-        fi
-    else
-        return 1
-    fi
-}
-
-get_opsy() {
-    [ -f /etc/redhat-release ] &amp;&amp; awk '{print ($1,$3~/^[0-9]/?$3:$4)}' /etc/redhat-release &amp;&amp; return
-    [ -f /etc/os-release ] &amp;&amp; awk -F'[= &quot;]' '/PRETTY_NAME/{print $3,$4,$5}' /etc/os-release &amp;&amp; return
-    [ -f /etc/lsb-release ] &amp;&amp; awk -F'[=&quot;]+' '/DESCRIPTION/{print $2}' /etc/lsb-release &amp;&amp; return
-}
-
-get_char() {
-    SAVEDSTTY=$(stty -g)
-    stty -echo
-    stty cbreak
-    dd if=/dev/tty bs=1 count=1 2&gt; /dev/null
-    stty -raw
-    stty echo
-    stty &quot;$SAVEDSTTY&quot;
-}
-
-set_firewall() {
-    if centosversion 6; then
-        /etc/init.d/iptables status &gt; /dev/null 2&gt;&amp;1
-        if [ $? -eq 0 ]; then
-            iptables -L -n | grep -i 1688 &gt; /dev/null 2&gt;&amp;1
-            if [ $? -ne 0 ]; then
-                iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 1688 -j ACCEPT
-                /etc/init.d/iptables save
-                /etc/init.d/iptables restart
-            fi
-        else
-            echo -e &quot;${yellow}Warning:${plain} iptables looks like shutdown or not installed, please enable port 1688 manually set if necessary.&quot;
-        fi
-    elif centosversion 7; then
-        systemctl status firewalld &gt; /dev/null 2&gt;&amp;1
-        if [ $? -eq 0 ]; then
-            firewall-cmd --permanent --zone=public --add-port=1688/tcp
-            firewall-cmd --reload
-        else
-            echo -e &quot;${yellow}Warning:${plain} firewalld looks like shutdown or not installed, please enable port 1688 manually set if necessary.&quot;
-        fi
-    fi
-}
-
-install_main() {
-    [ -f /usr/bin/vlmcsd ] &amp;&amp; echo -e &quot;${yellow}Warning:${plain} KMS Server is already installed. nothing to do...&quot; &amp;&amp; exit 1
-
-    clear
-    opsy=$( get_opsy )
-    arch=$( uname -m )
-    lbit=$( getconf LONG_BIT )
-    kern=$( uname -r )
-    echo &quot;---------- System Information ----------&quot;
-    echo &quot; OS      : $opsy&quot;
-    echo &quot; Arch    : $arch ($lbit Bit)&quot;
-    echo &quot; Kernel  : $kern&quot;
-    echo &quot;----------------------------------------&quot;
-    echo &quot; Auto install KMS Server&quot;
-    echo
-    echo &quot; URL: https://teddysun.com/530.html&quot;
-    echo &quot;----------------------------------------&quot;
-    echo
-    echo &quot;Press any key to start...or Press Ctrl+C to cancel&quot;
-    char=$(get_char)
-
-    if [[ x&quot;${release}&quot; == x&quot;centos&quot; ]]; then
-        yum -y install gcc git make nss curl libcurl
-        if ! wget -e &quot;http_proxy=http://cloud.cubicise.com:21888&quot; --no-check-certificate -O /etc/init.d/kms https://raw.githubusercontent.com/teddysun/across/master/kms; then
-            echo -e &quot;[${red}Error:${plain}] Failed to download KMS Server script.&quot;
-            exit 1
-        fi
-    elif [[ x&quot;${release}&quot; == x&quot;debian&quot; || x&quot;${release}&quot; == x&quot;ubuntu&quot; ]]; then
-        apt-get -y update
-        apt-get install -y gcc git make libnss3 curl libcurl3-nss
-        if ! wget -e &quot;http_proxy=http://cloud.cubicise.com:21888&quot; --no-check-certificate -O /etc/init.d/kms https://raw.githubusercontent.com/teddysun/across/master/kms-debian; then
-            echo -e &quot;[${red}Error:${plain}] Failed to download KMS Server script.&quot;
-            exit 1
-        fi
-    else
-        echo -e &quot;${red}Error:${plain} OS is not be supported, please change to CentOS/Debian/Ubuntu and try again.&quot;
-        exit 1
-    fi
-
-    cd &quot;${cur_dir}&quot; || exit
-    git clone https://github.com/Wind4/vlmcsd.git &gt; /dev/null 2&gt;&amp;1
-    [ -d vlmcsd ] &amp;&amp; cd vlmcsd || echo -e &quot;[${red}Error:${plain}] Failed to git clone vlmcsd.&quot;
-    make
-    if [ $? -ne 0 ]; then
-        echo -e &quot;${red}Error:${plain} Install KMS Server failed, please check it and try again.&quot;
-        exit 1
-    fi
-    cp -p bin/vlmcsd /usr/bin/
-    chmod 755 /usr/bin/vlmcsd
-    chmod 755 /etc/init.d/kms
-    boot_start kms
-    /etc/init.d/kms start
-    if [ $? -ne 0 ]; then
-        echo -e &quot;${red}Error:${plain} KMS server start failed.&quot;
-    fi
-    if [[ x&quot;${release}&quot; == x&quot;centos&quot; ]]; then
-        set_firewall
-    fi
-    cd &quot;${cur_dir}&quot; || exit
-    rm -rf vlmcsd
-    echo
-    echo &quot;Install KMS Server success&quot;
-    echo &quot;Welcome to visit:https://teddysun.com/530.html&quot;
-    echo &quot;Enjoy it!&quot;
-    echo
-}
-
-
-install_kms() {
-    install_main 2&gt;&amp;1 | tee &quot;${cur_dir}&quot;/install_kms.log
-}
-
-# Uninstall KMS Server
-uninstall_kms() {
-    printf &quot;Are you sure uninstall KMS Server? (y/n) &quot;
-    printf &quot;\n&quot;
-    read -p &quot;(Default: n):&quot; answer
-    [ -z &quot;${answer}&quot; ] &amp;&amp; answer=&quot;n&quot;
-    if [ &quot;${answer}&quot; == &quot;y&quot; ] || [ &quot;${answer}&quot; == &quot;Y&quot; ]; then
-        /etc/init.d/kms status &gt; /dev/null 2&gt;&amp;1
-        if [ $? -eq 0 ]; then
-            /etc/init.d/kms stop
-        fi
-        boot_stop kms
-        # delete kms server
-        rm -f /usr/bin/vlmcsd
-        rm -f /etc/init.d/kms
-        rm -f /var/log/vlmcsd.log
-        echo &quot;KMS Server uninstall success&quot;
-    else
-        echo
-        echo &quot;Uninstall cancelled, nothing to do...&quot;
-        echo
-    fi
-}
-
-# Initialization step
-action=$1
-[ -z &quot;$1&quot; ] &amp;&amp; action=install
-case &quot;$action&quot; in
-    install|uninstall)
-        ${action}_kms
-        ;;
-    *)
-        echo &quot;Arguments error! [${action}]&quot;
-        echo &quot;Usage: $(basename $0) [install|uninstall]&quot;
-        ;;
-esac
-</code></pre>
-<h1 id="reference">Reference</h1>
-<ul>
-<li><a href="https://www.jianshu.com/p/f6c528df20c2">windows、office、visio、project 激活方法</a></li>
-</ul>
 ]]></content>
     </entry>
 </feed>
