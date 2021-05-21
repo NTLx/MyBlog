@@ -1,0 +1,443 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Git | NTLx&#39;s Blog</title>
+
+<link rel="shortcut icon" href="http://www.ntlx.top/favicon.ico?v=1621563292855">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="http://www.ntlx.top/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            NTLx&#39;s Blog
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1621563292855" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Git
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2021-05-21 ·
+                    </time>
+                    
+                        <a href="http://www.ntlx.top/tag/JuiCUKP_P/" class="post-tags">
+                            # Git
+                        </a>
+                    
+                        <a href="http://www.ntlx.top/tag/hbvpXyRe-/" class="post-tags">
+                            # setting
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>Usefull settings of Git.</p>
+<!-- more -->
+<h1 id="using-proxy">Using proxy</h1>
+<pre><code class="language-bash">ssh-keygen -t rsa -b 4096 -C &quot;lx3325360@gmail.com&quot;
+git config --global user.name &quot;NTLx&quot;
+git config --global user.email &quot;lx3325360@gmail.com&quot;
+git config --global http.proxy http://127.0.0.1:8888
+git config --global https.proxy http://127.0.0.1:8888
+</code></pre>
+<h1 id="modify-commit-info">Modify commit info</h1>
+<h2 id="change-author-info">Change Author Info</h2>
+<h3 id="all">All</h3>
+<pre><code class="language-bash">git filter-branch --env-filter 'export GIT_AUTHOR_EMAIL=new_author_email' --
+</code></pre>
+<blockquote>
+<p><code>GIT_AUTHOR_NAME</code>, <code>GIT_COMMITTER_EMAIL</code>, <code>GIT_COMMITTER_NAME</code> could also be modified</p>
+</blockquote>
+<h3 id="specific">Specific</h3>
+<pre><code class="language-bash">git filter-branch -f --env-filter '
+OLD_EMAIL=&quot;Old@Email&quot;
+CORRECT_NAME=&quot;Changed Name&quot;
+CORRECT_EMAIL=&quot;Changed@Email&quot;
+if [ &quot;$GIT_COMMITTER_EMAIL&quot; = &quot;$OLD_EMAIL&quot; ]
+then
+    export GIT_COMMITTER_NAME=&quot;$CORRECT_NAME&quot;
+    export GIT_COMMITTER_EMAIL=&quot;$CORRECT_EMAIL&quot;
+fi
+if [ &quot;$GIT_AUTHOR_EMAIL&quot; = &quot;$OLD_EMAIL&quot; ]
+then
+    export GIT_AUTHOR_NAME=&quot;$CORRECT_NAME&quot;
+    export GIT_AUTHOR_EMAIL=&quot;$CORRECT_EMAIL&quot;
+fi
+' --tag-name-filter cat -- --branches --tags
+</code></pre>
+<h1 id="log">Log</h1>
+<h2 id="see-specific-author">See Specific Author</h2>
+<pre><code class="language-bash">git log --author=&quot;Author Name&quot;
+</code></pre>
+<h1 id="notification-integration">Notification Integration</h1>
+<h2 id="gitlab-telegram-bot-通知集成">GitLab &amp; Telegram Bot 通知集成</h2>
+<p>Telegram 需科学上网使用</p>
+<blockquote>
+<p>在使用 GitLab 作为远程仓库时启用</p>
+</blockquote>
+<h3 id="telegram-bot通知集成">Telegram Bot通知集成</h3>
+<ol>
+<li>从 Telegram 搜索 <code>@gitlab_bot</code></li>
+<li>加入 Bot 后点击底部 <code>START</code> 按钮会提示：</li>
+</ol>
+<figure data-type="image" tabindex="1"><img src="http://p5o85qxhq.bkt.clouddn.com/18-7-4/15846833.jpg" alt="" loading="lazy"></figure>
+<blockquote>
+<p>将完整URL提供给管理员即可完成 Telegram Bot 推送通知的设置</p>
+</blockquote>
+<h3 id="telegram-bot-推送示例">Telegram Bot 推送示例：</h3>
+<figure data-type="image" tabindex="2"><img src="http://p5o85qxhq.bkt.clouddn.com/18-7-4/90816503.jpg" alt="" loading="lazy"></figure>
+<p><strong>git 仓库的一切修改以 GitLab 仓库内容为核心，请先设置好 Telegram Bot，确保能正常获取 GitLab 仓库更新推送，修改本地 git 仓库任何文件之前先查看最近修改的推送，推荐先 pull 一下再进行本地修改，防止出现较复杂的合并冲突</strong></p>
+<blockquote>
+<p>大家可以登录 GitLab 仓库进行操作，提起分支合并请求（修改提交操作默认会开一个新的分支），也可以 clone 到本地修改后 push 到新的分支，提起合并请求</p>
+</blockquote>
+<figure data-type="image" tabindex="3"><img src="http://p5o85qxhq.bkt.clouddn.com/18-8-15/68912866.jpg" alt="" loading="lazy"></figure>
+<p>Telegram Bot 的通知消息可以显示更多提交信息，推荐使用。</p>
+<p>类似的，还可以在 GitLab 仓库集成 Slack 通知机器人、钉钉机器人等来获取仓库更新消息。</p>
+<h1 id="tips">Tips</h1>
+<ul>
+<li>GitHub 上随便点开一个文件，把 url 的 <code>.com</code> 替换成 <code>.githistory.xyz</code> <a href="https://twitter.com/i/status/1265839242145460224">有惊喜</a></li>
+<li><a href="github.com/hoxu/gitstats">gitstats</a></li>
+</ul>
+<h1 id="documents-collection">Documents Collection</h1>
+<h2 id="cheat-sheet">Cheat Sheet</h2>
+<p><a href="http://rogerdudler.github.io/git-guide/files/git_cheat_sheet.pdf">Check PDF</a></p>
+<h2 id="the-simple-guide">The Simple Guide</h2>
+<ul>
+<li><a href="http://rogerdudler.github.io/git-guide/index.html">English Version</a></li>
+<li><a href="http://rogerdudler.github.io/git-guide/index.zh.html">Chinese Version</a></li>
+</ul>
+<h2 id="git-配置最佳实践">Git 配置最佳实践</h2>
+<p>原文链接： <a href="https://blog.scottnonnenberg.com/better-git-configuration/">blog.scottnonnenberg.com</a></p>
+<p>我喜欢 <a href="https://git-scm.com/">Git</a>，<a href="https://github.com/scottnonnenberg/thoughts-system#other-files">每天</a>都在使用它。正如我<a href="https://blog.scottnonnenberg.com/eslint-part-1-exploration/#making-it-my-own">最近所做的事情</a>，花了一些时间通篇阅读文档，并检查我的全局 Git 配置。欢迎阅读<a href="https://blog.scottnonnenberg.com/tags/stack-improvements/">stack improvements</a>系列第四篇文章。</p>
+<h3 id="一切都是git">一切都是Git</h3>
+<p>我开始写代码的<a href="https://blog.scottnonnenberg.com/2017-twenty-years-online/">时代</a>还非常古老，那时候使用文件复制和<a href="https://en.wikipedia.org/wiki/Microsoft_Visual_SourceSafe">Visual SourceSafe</a>的方式进行源码管理。即使如此，我对源代码管理的概念也是非常吃惊的，我居然可以坐在家里撸代码。</p>
+<p>后来，在加利福尼亚大学，在项目中我遇到 <a href="https://en.wikipedia.org/wiki/Concurrent_Versions_System">Concurrent Versions System (CVS)</a>，那时只有一些小项目，所以我当时并没有很好的理解它。</p>
+<p>在微软工作的几年里，我使用 <a href="https://en.wikipedia.org/wiki/Team_Foundation_Server">Team Foundation Server</a> 进行代码管理，当时有个新名词“App Week”，指的是新接触 Visual Studio 的人将花费一整个星期的时间熟悉该产品，以确保它能正确工作。而在那段时间里，我所有的个人项目都是使用 <a href="https://en.wikipedia.org/wiki/Apache_Subversion">SVN</a>。它是免费而且容易在本地运行。通过它可以跟踪我所有的本地代码变化。</p>
+<p>2010年秋天的时候，我在学习 <a href="http://rubyonrails.org/">Ruby on Rails</a> 来开发一个<a href="https://scottnonnenberg.com/work/#stark-raving-bits-2010-q-3-to-2011-q-2">项目</a>，通过查看教程，介绍了<a href="https://www.heroku.com/">Heroku</a> 和一个新的源代码管理系统：<strong>Git</strong>。这是令人吃惊的 - 我可以像它在本地托管一样对待它，同时也可以与他人互动。没有锁定，离线可用，智能合并。我爱上她了。</p>
+<p>从此 Git <a href="https://rhodecode.com/insights/version-control-systems-2016">火了</a>。它成为了开源的标准。它在各种开源托管平台中使用。有许多GUI工具支持 - 专用的源代码控制工具以及代码编辑器。</p>
+<p>所以，懂她非常重要。</p>
+<h3 id="全局配置">全局配置</h3>
+<p>不管你知不知道，其实你都已经有了一份 Git 全局配置。它是你 home 目录中的 <code>.gitconfig</code> 文件。大多数 <code>.gitconfig</code> 文件都包含你的用户名和电子邮件地址，是你在<a href="https://help.github.com/articles/set-up-git/">getting started with Git</a>过程中创建的。其实在这个文件中还有<a href="https://git-scm.com/docs/git-config#_variables">更多的配置项</a>。</p>
+<p>我的整个 .gitconfig 可以<a href="https://gist.github.com/scottnonnenberg/fefa3f65fdb3715d25882f3023b31c29">通过这里查看</a>。需要的话可以直接到那里查看，不过本文我们将更详细地讨论每个部分。(也可以查看本页面中的<a href="#.gitconfig">示例</a>)</p>
+<h4 id="alias">Alias</h4>
+<p>.gitconfig 中有趣的部分是 <a href="https://git-scm.com/docs/git-config#git-config-alias">alias 部分</a>，您可以在其中创建自己的命令。感觉默认命令满足不了需求？在这里添加。有什么你不习惯的？在这里添加自己的版本吧！</p>
+<ul>
+<li><code>prune = fetch --prune</code> - 当在其他人将分支推送到远程仓库时，我也会得到了大量的本地分支。<a href="https://git-scm.com/docs/git-fetch#git-fetch--p">Prune</a>可以删除远端已经删除的任何本地分支。配置在这里，因为我总是忘记它。</li>
+<li><code>undo = reset --soft HEAD ^</code> - 如果我在做出提交时犯了一个错误，这个命令会可以在提交之前撤销。通常我只是在这种情况下修改现有的提交，因为它保留了提交信息。</li>
+<li><code>stash-all = stash save --include-untracked</code> - 当你正在开发，有人频繁的要求你切换分支时，<a href="https://git-scm.com/docs/git-stash">stash</a> 是非常有用的。这个命令确保当你 stash 时，可以记录没有被 <code>git add</code> 的新文件。</li>
+<li><code>glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%Creset'</code> - 使用<a href="https://git-scm.com/docs/git-log">默认 git log</a> 查看提交历史记录有时是无效率的，并没有真正关注最重要的信息。这种彩色的图形展示更容易理解，特别是当分支复杂的时候。</li>
+</ul>
+<h4 id="merge">Merge</h4>
+<p>没有合并提交，没有合并两个历史记录，只是平滑的在两次提交之中。</p>
+<p>你可能会想知道如何完成这项工作。答案用 <a href="https://git-scm.com/docs/git-rebase">git rebase</a>，用于把一个分支的修改合并到当前分支，它<a href="https://nathanleclaire.com/blog/2014/09/14/dont-be-scared-of-git-rebase/">非常有用</a></p>
+<p>当我 pull 时与 <code>master</code> 有冲突的时候，我使用这种方式来处理。当你在本地分支上修改后，同时其他人在 <code>master</code> 上 做了修改，我想这样比你直接 merge 到你本地分支时的 commit 更好。</p>
+<p>这样你可以避免多出一个 merge 的 commit。如果我打算新建一个merge commit，我可以用明确的 git merge -ff 来创建。</p>
+<p>在发生合并冲突时，<code>conflictstyle = diff3</code> 会给您更多的信息。</p>
+<h4 id="commit">Commit</h4>
+<p><code>gpgSign = true</code> 确保您的所有 commit 都由你的 <a href="https://www.gnupg.org/">GPG</a> 密钥签名。这通常是一个好主意，因为 <code>.gitconfig</code> 文件中没有验证您的用户信息，这意味着看起来像您这样的提交可能会轻松显示在其他人的提交 信息中。</p>
+<p>事实上，我曾经用过别人的凭据，因为帐户和机器配置耗时太长。我的提交请求是通过别人的帐号提交的，但内部的所有提交都是我的真实账号。</p>
+<p><a href="https://help.github.com/articles/adding-a-new-gpg-key-to-your-github-account/">将你的 GPG key 添加到 Github</a> 并尝试一次提交，你可能就会解决你现在的疑问，您提交内容将会有<a href="https://github.com/scottnonnenberg/eslint-config-thehelp/pull/5/commits">一个“已验证”标记</a>。</p>
+<p>注意：</p>
+<ul>
+<li>如果您有多个 GPG 密钥，可以使用 <a href="https://git-scm.com/docs/git-config#git-config-usersigningKey">user.signingKey</a> 选项指定要使用的密钥。</li>
+<li>上述的配置在 GUI 工具里不会生效，你需要在工具里的设置里找配置项。</li>
+<li><code>gpg-agent</code>可以保存口令，让我们更方便。所以使用它吧！</li>
+</ul>
+<h4 id="push">Push</h4>
+<p><code>default = simple</code> 可能是你已经设置的<a href="https://git-scm.com/docs/git-config#git-config-pushdefault">配置项</a>。它可以更轻松地将您的本地分支推送到远程，当二者分支名一样的时候。</p>
+<p><code>followTags = true</code> 很简单。配置它以后，当你 <code>git push</code> 的时候可以直接将本地的 tags 提交到远程，而不用每次都加参数 <code>--follow-tags</code>。不知道你是不是和我一样，我如果创建了一个tag，我就基本上一定会将它推到远程的。</p>
+<h4 id="status">Status</h4>
+<p><code>showUntrackedFiles = all</code> 通常当您添加一个新目录，但是还没有使用 <code>git add</code> 时，你用 <code>git status</code> 将只显示目录名称。这困扰我很多次了，因为一个新的，很大的一个目录目录却只显示一行。<a href="https://git-scm.com/docs/git-config#git-config-statusshowUntrackedFiles">此选项</a>在 <code>git status</code> 的时候显示该新目录下的所有文件。</p>
+<p>注意：当仓库很大的时候，这可能会导致效率比较慢。</p>
+<h4 id="transfer">Transfer</h4>
+<p><code>fsckobjects = true</code> 告诉 Git，您希望在接收或发送修改时进行一些额外的检查。为什么要检查？毕竟发现错误赶早不赶晚！</p>
+<p>注意：这可以使速度慢一些。</p>
+<h4 id="diff-工具icdiff">Diff 工具：icdiff</h4>
+<p>除了内置的 git diff 命令之外，Git 还允许您指定一个<a href="https://git-scm.com/docs/git-difftool">外部工具</a>来显示您的文件差异。下面配置可以配置默认使用 <a href="http://192.168.10.133/wiki/doku.php?id=oe_server:tools_on_server#icdiff">icdiff</a> 显示存储库的两个文件之间的差异：</p>
+<pre><code class="language-ini">[diff]
+  tool = icdiff
+[difftool]
+  prompt = false
+[difftool &quot;icdiff&quot;]
+  cmd = /usr/local/bin/icdiff --line-numbers $LOCAL $REMOTE
+</code></pre>
+<p>你可以像正常情况那样使用它：git difftool master branch</p>
+<p><code>icdiff</code> 很有趣，因为它试图在控制台中生成多彩的 GitHub 风格的差异。比通常的基于块的差异样式<a href="https://blog.scottnonnenberg.com/top-ten-pull-request-review-mistakes/#3-unified-diffs">更容易阅读</a>。</p>
+<p>注意：</p>
+<ul>
+<li>你可能安装 icdiff 有遇到一些问题。令人高兴的是，有一个简单的<a href="https://github.com/jeffkaufman/icdiff/issues/72">解决方法</a>。</li>
+<li>将 <code>git diff</code> 当做备胎， <code>- icdiff</code> 似乎不会处理与<code>/dev/null</code>的比较。例如，在你添加一个新文件之后尝试 <code>git difftool --cached</code>。</li>
+</ul>
+<h3 id="bonus-more-revisions">Bonus: More revisions!</h3>
+<p>你经常会用 git checkout master，对吧？在该命令中，<code>master</code> 是 <a href="https://git-scm.com/docs/gitrevisions">revisions</a> 的示例，是引用 master 分支中最新提交的简写。这些是常见的 revision 格式：</p>
+<pre><code class="language-bash"># Check out a branch
+git checkout branchname
+
+# Check out a remote branch
+git checkout remotes/origin/branchname
+
+# Check out a specific commit
+git checkout 158e4ef8409a7f115250309e1234567a44341404
+
+# Check out most recent commit for current branch
+git checkout HEAD
+</code></pre>
+<p>但事实证明，有一种语言来指定revisions。所有这些操作都适用于以上使用的任何名词：</p>
+<pre><code class="language-bash"># ^ means 'first parent commit,' therefore the second-most recent commit in the master branch
+git checkout master^
+
+# If it's a merge commit, with more than one parent, this gets the second parent
+git checkout master^2
+
+# Same thing as three ^ characters - three 'first-parent' steps up the tree
+git checkout master~3
+
+# The first commit prior to a day ago
+git checkout master@{yesterday}
+
+# The first commit prior to 5 minutes ago
+git checkout master@{5.minutes.ago}
+</code></pre>
+<p>您可以在<a href="https://git-scm.com/docs/gitrevisions">这里</a>找到所有支持的 revision 格式，我很惊讶它是多么全面！</p>
+<p>记住，在一个 revision 中你可以使用大多数的 git 命令，比如：<code>git glog master@{10.days.ago}..master</code></p>
+<h3 id="动起来吧">动起来吧！</h3>
+<p>可以从我的 <code>.gitconfig</code> 开始，或者定制你自己的风格。你甚至可以像我一样更加深入了解命令列表和选项列表，更多的分享出去。</p>
+<p>使 Git 对你最有用。Git 为减少 bug 以及解决代码重提提供了非常大的舒适性。动起来吧！</p>
+<p>一些很好的资源：</p>
+<ul>
+<li><a href="https://git-scm.com/docs/git-config#_variables">这里</a>的配置需要具体项目具体分析。在项目配置文件中使用相同的格式：<code>project-dir / .git / config</code></li>
+<li>获取所有 <code>git log</code> 配置的<a href="https://git-scm.com/docs/git-log#_options">最新信息</a></li>
+<li><a href="https://git-scm.com/docs/gitrevisions">各个版本 Git</a></li>
+<li><a href="https://mikegerwitz.com/papers/git-horror-story">了解签名</a></li>
+<li><a href="http://https://hackernoon.com/lesser-known-git-commands-151a1918a60">自定义别名</a></li>
+<li>有关 git 仓库损坏：
+<ul>
+<li><a href="https://groups.google.com/forum/#!topic/binary-transparency/f-BI4o8HZW0">https://groups.google.com/forum/#!topic/binary-transparency/f-BI4o8HZW0</a></li>
+<li><a href="http://git.661346.n2.nabble.com/propagating-repo-corruption-across-clone-td7580504i40.html">http://git.661346.n2.nabble.com/propagating-repo-corruption-across-clone-td7580504i40.html</a></li>
+</ul>
+</li>
+<li>对 Git 的复杂性感到沮丧？<a href="https://stevebennett.me/2012/02/24/10-things-i-hate-about-git/">猛击这里</a></li>
+</ul>
+<h3 id="gitconfig">.gitconfig</h3>
+<pre><code class="language-ini">[user]
+  email = scott@nonnenberg.com
+  name = Scott Nonnenberg
+
+[alias]
+  prune = fetch --prune
+  # Because I constantly forget how to do this
+  # https://git-scm.com/docs/git-fetch#git-fetch--p
+
+  undo = reset --soft HEAD^
+  # Not quite as common as an amend, but still common
+  # https://git-scm.com/docs/git-reset#git-reset-emgitresetemltmodegtltcommitgt
+
+  stash-all = stash save --include-untracked
+  # We wanna grab those pesky un-added files!
+  # https://git-scm.com/docs/git-stash
+
+  glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset'
+  # No need for a GUI - a nice, colorful, graphical representation
+  # https://git-scm.com/docs/git-log
+  # via https://medium.com/@payload.dd/thanks-for-the-git-st-i-will-use-this-4da5839a21a4
+
+[merge]
+  ff = only
+  # I pretty much never mean to do a real merge, since I use a rebase workflow.
+  # Note: this global option applies to all merges, including those done during a git pull
+  # https://git-scm.com/docs/git-config#git-config-mergeff
+
+  conflictstyle = diff3
+  # Standard diff is two sets of final changes. This introduces the original text before each side's changes.
+  # https://git-scm.com/docs/git-config#git-config-mergeconflictStyle
+
+[commit]
+  gpgSign = true
+  # &quot;other people can trust that the changes you've made really were made by you&quot;
+  # https://help.github.com/articles/about-gpg/
+  # https://git-scm.com/docs/git-config#git-config-commitgpgSign
+
+[push]
+  default = simple
+  # &quot;push the current branch back to the branch whose changes are usually integrated into the current branch&quot;
+  # &quot;refuse to push if the upstream branch’s name is different from the local one&quot;
+  # https://git-scm.com/docs/git-config#git-config-pushdefault
+
+  followTags = true
+  # Because I get sick of telling git to do it manually
+  # https://git-scm.com/docs/git-config#git-config-pushfollowTags
+
+[status]
+  showUntrackedFiles = all
+  # Sometimes a newly-added folder, since it's only one line in git status, can slip under the radar.
+  # https://git-scm.com/docs/git-config#git-config-statusshowUntrackedFiles
+
+[transfer]
+  fsckobjects = true
+  # To combat repository corruption!
+  # Note: this global option applies during receive and transmit
+  # https://git-scm.com/docs/git-config#git-config-transferfsckObjects
+  # via https://groups.google.com/forum/#!topic/binary-transparency/f-BI4o8HZW0
+
+
+# A nice little github-like colorful, split diff right in the console.
+# via http://owen.cymru/github-style-diff-in-terminal-with-icdiff/
+[diff]
+  tool = icdiff
+[difftool]
+  prompt = false
+[difftool &quot;icdiff&quot;]
+  cmd = /usr/local/bin/icdiff --line-numbers $LOCAL $REMOTE
+</code></pre>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="http://www.ntlx.top/post/editor-config/" class="post-title gt-a-link">
+                    Editor Config
+                </a>
+            </div>
+        
+
+        
+
+        
+            
+
+            
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqusjs.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: 'ntlxtop',
+  apikey: 'qkYOLyDMvFLlG9amD55l4ALA8O4r3VLrYuycPz9GvCEkhk0FjnoobeFo2KKQKZdD',
+}
+if ('') {
+  options.api = ''
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+            
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">My Tech Notes & Thoughts</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Feel free to share & use
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="http://www.ntlx.top/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>
