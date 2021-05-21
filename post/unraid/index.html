@@ -1,0 +1,408 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>UNRAID | NTLx&#39;s Blog</title>
+
+<link rel="shortcut icon" href="http://www.ntlx.top/favicon.ico?v=1621562133442">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="http://www.ntlx.top/styles/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            NTLx&#39;s Blog
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1621562133442" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    UNRAID
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2021-05-21 ·
+                    </time>
+                    
+                        <a href="http://www.ntlx.top/tag/--y3CL9Vk/" class="post-tags">
+                            # UNRAID
+                        </a>
+                    
+                        <a href="http://www.ntlx.top/tag/hbvpXyRe-/" class="post-tags">
+                            # setting
+                        </a>
+                    
+                        <a href="http://www.ntlx.top/tag/WJQpj0dJWf/" class="post-tags">
+                            # server
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p><strong><a href="https://unraid.net/">Unleash Your Hardware</a></strong></p>
+<p>Unraid is an operating system for personal and small business use that brings enterprise-class features letting you configure your computer systems to maximize performance and capacity using any combination of applications, VMs, storage devices, and hardware.</p>
+<!-- more -->
+<h1 id="unraid-installation">UNRAID Installation</h1>
+<ol>
+<li>Download files from <a href="https://softoroom.net/topic89043.html">softoroom</a> web site and extract by password: <code>softoroom</code>, <a href="http://lx.ntlx.xyz:10080/share/ikO_a7mu">here</a> is a mirror</li>
+<li>Get a USB drive, format to FAT32, then copy all content in UNRAID image to USB drive</li>
+<li>Run <code>make_bootable.bat</code> (on windows) with admin privilege</li>
+<li>Plug in the USB drive to target machine, then power on (set <code>legacy boot</code> in BIOS if cannot boot from the USB drive)</li>
+<li>Visit the ip shows in target machine, recored the UUID, and choose <code>Trail</code>, then power off the UNRAID</li>
+<li>Plug in the USB drive to a windows PC (for example), run <code>keymaker.exe UUID</code>, you will get a <code>UUID.key</code> file in the same dir of <code>keymaker.exe</code>, put the <code>UUID.key</code> file to <code>config</code> dir in USB drive, and delete <code>trail.key</code></li>
+<li>Plug in the USB drive to traget machine and power on, enjoy it</li>
+</ol>
+<h1 id="unraid-settings">UNRAID Settings</h1>
+<h2 id="time">Time</h2>
+<blockquote>
+<p>NTP server settings.</p>
+</blockquote>
+<pre><code>time.asia.apple.com
+ntp1.aliyun.com
+s1b.time.edu.cn
+s1c.time.edu.cn
+</code></pre>
+<h2 id="storage">Storage</h2>
+<p>Every mounted disk inside UNRAID disk array will link to <code>/mnt/usr/</code> dir, so if you need to manipulate file(s) or dir(s) manually, operate inside <code>/mnt/usr/</code> dir was recommanded, it's also recommanded to docker path link settings.</p>
+<blockquote>
+<p>You can modify this disk management strategy in <code>SETTINGS</code> menu's <code>Global Share Settings</code>.</p>
+</blockquote>
+<h2 id="plugin">Plugin</h2>
+<pre><code>http://github.com/dlandon/unassigned.devices/raw/master/unassigned.devices.plg
+</code></pre>
+<h1 id="unraid-docker">UNRAID Docker</h1>
+<p>The Docker GUI in UNRAID was recommanded, but the Command Line was also convenient.</p>
+<blockquote>
+<p>You can set <code>Web UI</code> like this format in UNRAID docker GUI: <code>http://[IP]:[PORT:8080]</code></p>
+</blockquote>
+<h2 id="jellyfin">Jellyfin</h2>
+<pre><code class="language-bash">docker run -d --name='Jellyfin' --net='bridge' --privileged=true --log-opt max-size=1m -e TZ=&quot;Asia/Shanghai&quot; -e HOST_OS=&quot;Unraid&quot; -p '3006:8096/tcp' -v '/mnt/disk1/appdata/jellyfin/cache':'/cache':'rw' -v '/mnt/disk1/appdata/jellyfin/config':'/config':'rw' -v '/mnt/disks/Seagate_Expansion_Drive':'/media/video':'rw' -v '/mnt/disk1/Music':'/media/music':'rw' --device='/dev/dri' 'jellyfin/jellyfin'
+</code></pre>
+<h2 id="freshrss">FreshRSS</h2>
+<pre><code class="language-bash">docker run -d --name='FreshRSS' --net='bridge' --log-opt max-size=1m -e TZ=&quot;Asia/Shanghai&quot; -e HOST_OS=&quot;Unraid&quot; -e 'TZ'='Asia/Shanghai' -e 'PUID'='100' -e 'PGID'='1000' -p '9292:80/tcp' -v '/mnt/disk1/appdata/FreshRSS':'/config':'rw' 'linuxserver/freshrss'
+</code></pre>
+<h2 id="pptp">PPTP</h2>
+<pre><code class="language-bash">docker run -d --name='PPTP' --net='bridge' --privileged=true --log-opt max-size=1m -e TZ=&quot;Asia/Shanghai&quot; -e HOST_OS=&quot;Unraid&quot; -p '1723:1723/tcp' -p '1723:1723/udp' -v '/mnt/disk1/appdata/PPTP/chap-secrets':'/etc/ppp/chap-secrets':'rw' 'mobtitude/vpn-pptp'
+</code></pre>
+<h2 id="l2tp">L2TP</h2>
+<pre><code class="language-bash">modprobe af_key
+docker run -d --name='L2TP' --net='bridge' --privileged=true -e TZ=&quot;Asia/Shanghai&quot; -e HOST_OS=&quot;Unraid&quot; -p '500:500/tcp' -p '500:500/udp' -p '4500:4500/tcp' -p '4500:4500/udp' -p '1701:1701/tcp' -p '1701:1701/udp' -v '/lib/modules':'/lib/modules':'ro' --env-file /mnt/disk1/appdata/L2TP/L2TP.env --log-opt max-size=1m 'fcojean/l2tp-ipsec-vpn-server'
+</code></pre>
+<h2 id="open-vpn">Open VPN</h2>
+<pre><code class="language-bash">cd /mnt/disk1/appdata
+git clone https://github.com/kylemanna/docker-openvpn.git
+cd docker-openvpn/
+docker build -t myownvpn .
+cd ..
+mkdir vpn-data
+#docker run -v /mnt/disk1/appdata/vpn-data:/etc/openvpn --rm myownvpn ovpn_genconfig -u udp://IP_ADDRESS:3333
+docker run -v /mnt/disk1/appdata/vpn-data:/etc/openvpn --rm -it myownvpn ovpn_initpki
+docker run -v /mnt/disk1/appdata/vpn-data:/etc/openvpn -d -p 3333:1194/udp --cap-add=NET_ADMIN myownvpn
+docker run -v /mnt/disk1/appdata/vpn-data:/etc/openvpn --rm -it myownvpn easyrsa build-client-full lx nopass
+docker run -v /mnt/disk1/appdata/vpn-data:/etc/openvpn --rm myownvpn ovpn_getclient lx &gt; lx.ovpn
+</code></pre>
+<h2 id="filebrowser">FileBrowser</h2>
+<pre><code class="language-bash">docker run -d --name='FileBrowser' --net='bridge' --log-opt max-size=1m -e TZ=&quot;Asia/Shanghai&quot; -e HOST_OS=&quot;Unraid&quot; -e 'WEB_PORT'='10080' -p '10080:10080/tcp' -v '/mnt/disk1/appdata/FileBrowser':'/config':'rw' -v '/mnt':'/myfiles':'rw' '80x86/filebrowser'
+</code></pre>
+<h2 id="aria2-ng">Aria2 &amp; NG</h2>
+<pre><code class="language-bash">docker run -d --name='aria2' --net='bridge' -e TZ=&quot;Asia/Shanghai&quot; -e HOST_OS=&quot;Unraid&quot; -e 'PUID'='100' -e 'PGID'='100' -p '6800:6800/tcp' -p '6800:6800/udp' -p '8888:80/tcp' -p '8888:80/udp' -v '/mnt/disk1/Download':'/data':'rw' --log-opt max-size=1m 'wjg1101766085/aira2-ng:0.0.1'
+</code></pre>
+<h2 id="aria2-webui">Aria2 &amp; WebUI</h2>
+<pre><code class="language-bash">docker run -d --name='Aria2WebUI' --net='bridge' --log-opt max-size=1m -e TZ=&quot;Asia/Shanghai&quot; -e HOST_OS=&quot;Unraid&quot; -p '6800:6800/tcp' -p '6880:6880/tcp' -p '6800:6800/udp' -p '6880:6880/udp' -v '/mnt/disk1/appdata/Aria2WebUI':'/conf':'rw' -v '/mnt/disk1/Download':'/data':'rw' 'xujinkai/aria2-with-webui'
+</code></pre>
+<h3 id="build-aria2webui">Build Aria2WebUI</h3>
+<pre><code class="language-bash">docker run -it alpine
+apk update
+apk add aria2 git nodejs
+git clone https://github.com/ziahamza/webui-aria2.git
+exit
+docker commit -m=&quot;Aria2WebUI Basic Image&quot; -a='NTLx' 68b9f57b0d29 aria2webui:0.1
+docker run -d --name &quot;Aria2WebUI&quot; -p 6800:6800 -p 8888:8888 -v /home/pi/Download:/home aria2webui:0.1
+
+#aria2c --enable-rpc --rpc-listen-all
+#cd webui-aria2
+#node node-server.js
+</code></pre>
+<h2 id="rrshare">rrshare</h2>
+<pre><code class="language-bash">docker run -d --name='rrshare' --net='bridge' --log-opt max-size=1m -e TZ=&quot;Asia/Shanghai&quot; -e HOST_OS=&quot;Unraid&quot; -e 'PUID'='100' -e 'PGID'='99' -p '3001:3001/tcp' -v '/mnt/disk1/Download':'/opt/work/store':'rw' 'oldiy/rrshare64'
+</code></pre>
+<h2 id="airsonic">AirSonic</h2>
+<pre><code class="language-bash">docker run -d --name='AirSonic' --net='bridge' --log-opt max-size=1m -e TZ=&quot;Asia/Shanghai&quot; -e HOST_OS=&quot;Unraid&quot; -p '4040:4040/tcp' -p '4040:4040/udp' -v '/mnt/disk1/appdata/AirSonic':'/config':'rw' -v '/mnt/disk1/Music':'/music':'rw' -v '/mnt/disk1/Music/playlists':'/playlists':'rw' -v '/mnt/disk1/Music/podcasts':'/podcasts':'rw' 'linuxserver/airsonic'
+</code></pre>
+<blockquote>
+<p>There are many <a href="https://airsonic.github.io/docs/apps/">Apps</a> could connect to AirSonic Music Library as an easy to use music player.</p>
+</blockquote>
+<h2 id="calibre-web">Calibre WEB</h2>
+<pre><code class="language-bash">docker run -d --name='Calibre' --net='bridge' --log-opt max-size=1m -e TZ=&quot;Asia/Shanghai&quot; -e HOST_OS=&quot;Unraid&quot; -p '8080:8080/tcp' -p '8081:8081/tcp' -v '/mnt/disk1/Book/Calibre_Books':'/config':'rw' 'linuxserver/calibre'
+cp /mnt/disk1/Book/Calibre_Books/Calibre\ Library/metadata.db /mnt/disk1/Book/
+docker run -d --name='CalibreWeb' --net='bridge' --log-opt max-size=1m -e TZ=&quot;Asia/Shanghai&quot; -e HOST_OS=&quot;Unraid&quot; -p '10082:8082/tcp' -p '10083:8083/tcp' -v '/mnt/disk1/appdata/CalibreWeb':'/config':'rw' -v '/mnt/disk1/Book/Calibre_Books/CalibreLibrary':'/books':'rw' 'linuxserver/calibre-web'
+</code></pre>
+<p>If you get error &quot;<code>DB location is not valid, please enter correct path</code>&quot;, you could just put an <a href="http://ntlx.tpddns.cn:10080/share/5biuC9Ch">empty database</a> to where <code>/books</code> links to.</p>
+<h2 id="leanote">LeaNote</h2>
+<p>First, run CMD:</p>
+<pre><code class="language-bash">docker run -d --name='LeaNote' --net='bridge' --log-opt max-size=1m -e TZ=&quot;Asia/Shanghai&quot; -e HOST_OS=&quot;Unraid&quot; -p '9000:9000/tcp' -p '9000:9000/udp' -v '/mnt/disk1/appdata/leanote/mongo':'/usr/local/bin/leanote/db_data':'rw' 'idealclover/leanote'
+</code></pre>
+<p>Then, copy <code>conf</code> and <code>public</code> for docker path link:</p>
+<pre><code class="language-bash">docker cp LeaNote:/usr/local/bin/leanote/conf /mnt/disk1/appdata/leanote/conf
+docker cp LeaNote:/usr/local/bin/leanote/public /mnt/disk1/appdata/leanote/public
+</code></pre>
+<p>At last, stop this container and re-run with CMD:</p>
+<pre><code class="language-bash">docker run -d --name='LeaNote' --net='bridge' --log-opt max-size=1m -e TZ=&quot;Asia/Shanghai&quot; -e HOST_OS=&quot;Unraid&quot; -p '9000:9000/tcp' -p '9000:9000/udp' -v '/mnt/disk1/appdata/leanote/conf':'/usr/local/bin/leanote/conf':'rw' -v '/mnt/disk1/appdata/leanote/public':'/usr/local/bin/leanote/public':'rw' -v '/mnt/disk1/appdata/leanote/mongo':'/usr/local/bin/leanote/db_data':'rw' 'idealclover/leanote'
+</code></pre>
+<blockquote>
+<p>Default Administrator Account: admin</p>
+<p>Password: abc123</p>
+</blockquote>
+<h2 id="leanote-new">LeaNote (New)</h2>
+<pre><code class="language-bash"># docker run -d --name leanote --restart=always --log-opt max-size=1m -m 512M --cpus=1 -e SITEURL=&quot;[访问网址/IP+端口]&quot; -e LANG=&quot;zh-cn&quot; -e DAYS=&quot;3&quot; -p 8080:9000 -v [宿主机储存路径]/leanotedata:/data hjh142857/leanote
+docker run -d --name='leanote' --net='bridge' --log-opt max-size=1m -e TZ=&quot;Asia/Shanghai&quot; -e HOST_OS=&quot;Unraid&quot; -e 'SITEURL'='http://ntlx.tpddns.cn:9000' -e 'LANG'='zh-cn' -e 'DAYS'='3' -p '20000:9000/tcp' -v '/mnt/disk1/appdata/leanotedata':'/data':'rw' 'hjh142857/leanote'
+</code></pre>
+<p><strong>Do not change default administrator account's username !</strong></p>
+<blockquote>
+<p>Default administrator account: admin / abc123</p>
+<p>Default demo account: demo@leanote.com / demo@leanote.com</p>
+<p>Default backup files will be under <code>/mnt/disk1/appdata/leanotedata/backup</code> dir</p>
+<p>Copy backup files (<code>tar.gz</code> files named <code>mongodb</code> and <code>leanote</code>) to <code>/mnt/disk1/appdata/leanotedata/restore</code> dir to restore data</p>
+</blockquote>
+<h2 id="wiznote">WizNote</h2>
+<pre><code class="language-bash">docker run -d --name='WizNote' --net='bridge' --log-opt max-size=1m -e TZ=&quot;Asia/Shanghai&quot; -e HOST_OS=&quot;Unraid&quot; -p '9000:80/tcp' -p '9000:80/udp' -p '9269:9269/udp' -v '/mnt/disk1/appdata/wiz':'/wiz/storage':'rw' 'wiznote/wizserver'
+</code></pre>
+<blockquote>
+<p>Default Administrator account: admin@wiz.cn</p>
+<p>Password: 123456</p>
+<p>If you need <code>web clip</code> function, you need pay for it.</p>
+</blockquote>
+<h2 id="postgresql">PostgreSQL</h2>
+<pre><code class="language-bash">docker run -d --name='postgresql' --net='bridge' --log-opt max-size=1m -e TZ=&quot;Asia/Shanghai&quot; -e HOST_OS=&quot;Unraid&quot; -e 'POSTGRES_PASSWORD'='password' -p '5432:5432/tcp' -v '/mnt/disk1/appdata/wikijs/postgresql':'/var/lib/postgresql/data':'rw' 'postgres'
+</code></pre>
+<h2 id="wikijs">wikijs</h2>
+<pre><code class="language-bash">docker run -d --name='wikijs' --net='bridge' --log-opt max-size=1m -e TZ=&quot;Asia/Shanghai&quot; -e HOST_OS=&quot;Unraid&quot; -e 'DB_TYPE'='postgres' -e 'DB_HOST'='192.168.0.100' -e 'DB_PORT'='5432' -e 'DB_USER'='postgres' -e 'DB_PASS'='password' -e 'DB_NAME'='postgres' -p '3000:3000/tcp' 'requarks/wiki:beta'
+</code></pre>
+<h2 id="elasticsearch">ElasticSearch</h2>
+<pre><code class="language-bash">docker run -d --name='ElasticSearch' --net='bridge' --log-opt max-size=1m -e TZ=&quot;Asia/Shanghai&quot; -e HOST_OS=&quot;Unraid&quot; -e 'discovery.type'='single-node' -p '9300:9300/tcp' -p '9200:9200/tcp' -p '9200:9200/udp' -p '9300:9300/udp' 'elasticsearch:7.7.1'
+docker exec -it ElasticSearch bash
+./bin/elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v7.7.1/elasticsearch-analysis-ik-7.7.1.zip
+docker restart ElasticSearch
+</code></pre>
+<blockquote>
+<p>Chinese word cut plugin: <a href="https://github.com/medcl/elasticsearch-analysis-ik">es-ik</a></p>
+</blockquote>
+<h2 id="nextcloud">NextCloud</h2>
+<blockquote>
+<p>Using PostgreSQL deployed along with wikijs</p>
+</blockquote>
+<pre><code class="language-bash">docker run -d --name='NextCloud' --net='bridge' --log-opt max-size=1m -e TZ=&quot;Asia/Shanghai&quot; -e HOST_OS=&quot;Unraid&quot; -e 'POSTGRES_DB'='nextcloud' -e 'POSTGRES_USER'='postgres' -e 'POSTGRES_PASSWORD'='password' -e 'POSTGRES_HOST'='192.168.0.100'  -e 'NEXTCLOUD_TRUSTED_DOMAINS'='lx.ntlx.xyz:82' -e 'NEXTCLOUD_TRUSTED_DOMAINS'='192.168.0.100:82' -p '82:80/tcp' -p '82:80/udp' -v '/mnt/disk1/appdata/NextCloud':'/var/www/html/':'rw' 'nextcloud'
+</code></pre>
+<h2 id="onlyoffice">OnlyOffice</h2>
+<blockquote>
+<p>Could connect to NextCloud and provide online document editing</p>
+</blockquote>
+<pre><code class="language-bash">docker run -d --name='OnlyOffice' --net='bridge' --log-opt max-size=1m -e TZ=&quot;Asia/Shanghai&quot; -e HOST_OS=&quot;Unraid&quot; -p '83:80/tcp' -p '83:80/udp' -v '/mnt/disk1/appdata/OnlyOffice/logs':'/var/log/onlyoffice':'rw' -v '/mnt/disk1/appdata/OnlyOffice/data':'/var/www/onlyoffice/Data':'rw' 'onlyoffice/documentserver'
+</code></pre>
+<h2 id="wallabag">Wallabag</h2>
+<pre><code class="language-bash">docker run --name wallabag --log-opt max-size=1m -d --link postgresql:postgresql -e TZ=&quot;Asia/Shanghai&quot; -e HOST_OS=&quot;Unraid&quot; -e &quot;POSTGRES_PASSWORD=password&quot; -e &quot;POSTGRES_USER=postgres&quot; -e &quot;SYMFONY__ENV__DATABASE_DRIVER=pdo_pgsql&quot; -e 'SYMFONY__ENV__DATABASE_DRIVER_CLASS=Wallabag\CoreBundle\Doctrine\DBAL\Driver\CustomPostgreSQLDriver' -e &quot;SYMFONY__ENV__DATABASE_HOST=postgresql&quot; -e &quot;SYMFONY__ENV__DATABASE_PORT=5432&quot; -e &quot;SYMFONY__ENV__DATABASE_NAME=wallabag&quot; -e &quot;SYMFONY__ENV__DATABASE_USER=NTLx&quot; -e &quot;SYMFONY__ENV__DATABASE_PASSWORD=password&quot; -p 20000:80 wallabag/wallabag
+</code></pre>
+<h2 id="matterwiki">MatterWiKi</h2>
+<pre><code class="language-bash">git clone http://github.com/matterwiki/matterwiki
+cd matterwiki
+docker build -t matterwiki .
+docker run -d --name='MatterWiKi' --net='bridge' --log-opt max-size=1m -e TZ=&quot;Asia/Shanghai&quot; -e HOST_OS=&quot;Unraid&quot; -p '5000:5000/tcp' -v '/mnt/disk1/appdata/MatterWiKi/db':'/server/db':'rw' 'matterwiki'
+</code></pre>
+<blockquote>
+<p>Visit <code>http://ip:5000/#/setup</code> to set up administrator account.</p>
+</blockquote>
+<h2 id="open-project">Open Project</h2>
+<pre><code class="language-bash">docker run -d --name='OpenProject' --net='bridge' --log-opt max-size=1m -e TZ=&quot;Asia/Shanghai&quot; -e HOST_OS=&quot;Unraid&quot; -e 'SECRET_KEY_BASE'='secret' -p '10008:80/tcp' -v '/mnt/disk1/appdata/openproject/pgdata':'/var/openproject/pgdata':'rw' -v '/mnt/disk1/appdata/openproject/assets':'/var/openproject/assets':'rw' 'openproject/community:latest'
+</code></pre>
+<h2 id="erpnext">ERPNext</h2>
+<pre><code class="language-bash"># docker run -d --name='ERPNext' --net='bridge' --log-opt max-size=1m -e TZ=&quot;Asia/Shanghai&quot; -e HOST_OS=&quot;Unraid&quot; -p '16000:80/tcp' -v '/mnt/disk1/appdata/ERPNext/frappe/site1.local':'/home/frappe/frappe-bench/sites/site1.local':'rw' -v '/mnt/disk1/appdata/ERPNext/logs':'/home/frappe/frappe-bench/logs':'rw' -v '/mnt/disk1/appdata/ERPNext/mysql':'/var/lib/mysql':'rw' 'lukptr/erpnext7'
+docker run -d --name='ERPNext' --net='bridge' --log-opt max-size=1m -e TZ=&quot;Asia/Shanghai&quot; -e HOST_OS=&quot;Unraid&quot; -p '16000:80/tcp' 'lukptr/erpnext7'
+</code></pre>
+<blockquote>
+<p>Default Admin User Account: Administrator</p>
+<p>Password: 12345678</p>
+</blockquote>
+<p>Usefull CMD:</p>
+<pre><code class="language-bash"># Copy files from Docker Container to outside
+docker cp ERPNext:/home/frappe/frappe-bench/sites/site1.local /mnt/disk1/appdata/ERPNext/frappe/
+docker cp ERPNext:/home/frappe/frappe-bench/logs /mnt/disk1/appdata/ERPNext/
+docker cp ERPNext:/var/lib/mysql /mnt/disk1/appdata/ERPNext/
+# Enter Docker Container
+docker exec -it ERPNext bash
+# Run CMD inside Docker Container
+bench update
+bench migrate
+bench backup
+</code></pre>
+<p>Data backup:</p>
+<pre><code class="language-bash">docker exec -it ERPNext bash ## run this CMD inside docker container
+bench backup # backup ## run this CMD inside docker container
+docker cp ERPNext:/home/frappe/frappe-bench/sites/site1.local/private/backups /mnt/disk1/appdata/ERPNext/ # copy backup files ## run this CMD inside docker container
+</code></pre>
+<p>Data restore:</p>
+<pre><code class="language-bash">docker cp /mnt/disk1/appdata/ERPNext/backups/database.sql.gz ERPNext:/home/frappe/
+docker exec -it ERPNext bash
+bench --force restore /home/frappe/database.sql.gz
+</code></pre>
+<h2 id="netdata">netdata</h2>
+<pre><code class="language-bash">docker run -d --name='netdata' --net='bridge' --log-opt max-size=1m -e TZ=&quot;Asia/Shanghai&quot; -e HOST_OS=&quot;Unraid&quot; --security-opt 'apparmor'='unconfined' --cap-add SYS_PTRACE -p '19999:19999/tcp' -v '/etc/passwd':'/host/etc/passwd':'ro' -v '/etc/group':'/host/etc/group':'ro' -v '/proc':'/host/proc':'ro' -v '/sys':'/host/sys':'ro' -v '/var/run/docker.sock':'/var/run/docker.sock':'ro' 'netdata/netdata'
+</code></pre>
+<h2 id="watchtower">Watchtower</h2>
+<blockquote>
+<p>Docker container auto update.</p>
+</blockquote>
+<pre><code class="language-bash">docker run -d --name='Watchtower' --net='bridge' --log-opt max-size=1m -e TZ=&quot;Asia/Shanghai&quot; -e HOST_OS=&quot;Unraid&quot; -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower AirSonic CalibreWeb FileBrowser wikijs WizNote
+</code></pre>
+<h1 id="unraid-virtual-machine">UNRAID Virtual Machine</h1>
+<h2 id="black-synology-dsm">Black Synology DSM</h2>
+<p>Mount NFS folder to DSM:</p>
+<pre><code class="language-bash">/bin/mount -t nfs -o hard 192.168.0.100:/mnt/disk2/Photo /volume1/photo
+</code></pre>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="http://www.ntlx.top/post/vmware/" class="post-title gt-a-link">
+                    VMWare
+                </a>
+            </div>
+        
+
+        
+
+        
+            
+
+            
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqusjs.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: 'ntlxtop',
+  apikey: 'qkYOLyDMvFLlG9amD55l4ALA8O4r3VLrYuycPz9GvCEkhk0FjnoobeFo2KKQKZdD',
+}
+if ('') {
+  options.api = ''
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+            
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">My Tech Notes & Thoughts</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Feel free to share & use
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="http://www.ntlx.top/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>
