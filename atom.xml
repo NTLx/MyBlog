@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://www.ntlx.top</id>
     <title>NTLx&apos;s Blog</title>
-    <updated>2021-05-25T11:25:41.412Z</updated>
+    <updated>2021-05-25T11:32:06.765Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://www.ntlx.top"/>
     <link rel="self" href="http://www.ntlx.top/atom.xml"/>
@@ -44,6 +44,9 @@ services:
      # for redirect port
      - 9000-9100:9000-9100
     restart: always
+    logging:
+      options:
+        max-size: &quot;1m&quot;
 </code></pre>
 <h2 id="self-build">Self-build</h2>
 <p><code>Dockerfile</code>:</p>
@@ -100,6 +103,25 @@ services:
         max-size: &quot;1m&quot;
 </code></pre>
 <h1 id="client">Client</h1>
+<blockquote>
+<p><code>network_mode</code> is optional</p>
+</blockquote>
+<h2 id="one-click-run-2">One-click run</h2>
+<p><code>docker-compose.yml</code>:</p>
+<pre><code class="language-yaml">version: '3.1'
+services:
+  lanproxy-client:
+    image: franklin5/lanproxy-client
+    container_name: lanproxy-client
+    environment:
+     - LANPROXY_KEY=input_your_key
+     - LANPROXY_HOST=input_your_host
+    restart: always
+    logging:
+      options:
+        max-size: &quot;1m&quot;
+</code></pre>
+<h2 id="self-build-2">Self-build</h2>
 <p><code>Dockerfile</code> :</p>
 <pre><code class="language-Dockerfile">FROM ubuntu
 
@@ -125,8 +147,8 @@ services:
     image: lan:v1
     container_name: lanproxy-client
     environment:
-     - LANPROXY_KEY=
-     - LANPROXY_HOST=
+     - LANPROXY_KEY=input_your_key
+     - LANPROXY_HOST=input_your_host
     restart: always
     network_mode: &quot;host&quot;
     logging:

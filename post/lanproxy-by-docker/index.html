@@ -6,7 +6,7 @@
 
 <title>LanProxy by Docker | NTLx&#39;s Blog</title>
 
-<link rel="shortcut icon" href="http://www.ntlx.top/favicon.ico?v=1621941938993">
+<link rel="shortcut icon" href="http://www.ntlx.top/favicon.ico?v=1621942281213">
 
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="http://www.ntlx.top/styles/main.css">
@@ -77,7 +77,7 @@
             
         </div>
         <div style="text-align: center">
-            <form id="gridea-search-form" style="position: relative" data-update="1621941938993" action="/search/index.html">
+            <form id="gridea-search-form" style="position: relative" data-update="1621942281213" action="/search/index.html">
                 <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
                 <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
             </form>
@@ -135,6 +135,9 @@ services:
      # for redirect port
      - 9000-9100:9000-9100
     restart: always
+    logging:
+      options:
+        max-size: &quot;1m&quot;
 </code></pre>
 <h2 id="self-build">Self-build</h2>
 <p><code>Dockerfile</code>:</p>
@@ -191,6 +194,25 @@ services:
         max-size: &quot;1m&quot;
 </code></pre>
 <h1 id="client">Client</h1>
+<blockquote>
+<p><code>network_mode</code> is optional</p>
+</blockquote>
+<h2 id="one-click-run-2">One-click run</h2>
+<p><code>docker-compose.yml</code>:</p>
+<pre><code class="language-yaml">version: '3.1'
+services:
+  lanproxy-client:
+    image: franklin5/lanproxy-client
+    container_name: lanproxy-client
+    environment:
+     - LANPROXY_KEY=input_your_key
+     - LANPROXY_HOST=input_your_host
+    restart: always
+    logging:
+      options:
+        max-size: &quot;1m&quot;
+</code></pre>
+<h2 id="self-build-2">Self-build</h2>
 <p><code>Dockerfile</code> :</p>
 <pre><code class="language-Dockerfile">FROM ubuntu
 
@@ -216,8 +238,8 @@ services:
     image: lan:v1
     container_name: lanproxy-client
     environment:
-     - LANPROXY_KEY=
-     - LANPROXY_HOST=
+     - LANPROXY_KEY=input_your_key
+     - LANPROXY_HOST=input_your_host
     restart: always
     network_mode: &quot;host&quot;
     logging:
