@@ -4,7 +4,7 @@
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-<title>R | NTLx&#39;s Blog</title>
+<title>LanProxy by Docker | NTLx&#39;s Blog</title>
 
 <link rel="shortcut icon" href="http://www.ntlx.top/favicon.ico?v=1621939044106">
 
@@ -25,11 +25,11 @@
 
 
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
 </head>
 <body>
 <div class="main gt-bg-theme-color-first">
-    <div class="main-content">
-        <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg">
     <div class="navbar-brand">
         <img class="user-avatar" src="/images/avatar.png" alt="头像">
         <div class="site-name gt-c-content-color-first">
@@ -85,58 +85,161 @@
     </div>
 </nav>
 
-        <div class="current-tag-container">
-            <h2 class="title gt-c-content-color-first">
-                #R
-            </h2>
-        </div>
-        <div class="post-list-container">
-    <div class="post-inner">
-        
-            <div class="post gt-bg-theme-color-second">
-                <div class="post-left">
-                    <div>
-                        
-                        <a href="http://www.ntlx.top/post/r/">
-                            <span class="post-title gt-c-content-color-first">R</span>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    LanProxy by Docker
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2021-05-25 ·
+                    </time>
+                    
+                        <a href="http://www.ntlx.top/tag/IT9r4N9Uo/" class="post-tags">
+                            # NAT
                         </a>
-                    </div>
-                    <div class="gt-post-content post-abstract gt-c-content-color-second">
-                        <p>R study notes.</p>
-
-                    </div>
-                    <div class="post-info">
-                        <time class="post-time gt-c-content-color-first">
-                            发布于 · 2021-05-21 ·
-                        </time>
-                        
-                            <a href="http://www.ntlx.top/tag/fcZfrFpFu/" class="post-tag">
-                                # R
-                            </a>
-                        
-                            <a href="http://www.ntlx.top/tag/Yha1xK6TdG/" class="post-tag">
-                                # Grammar
-                            </a>
-                        
-                            <a href="http://www.ntlx.top/tag/WvgCPnnFsS/" class="post-tag">
-                                # Code
-                            </a>
-                        
-                    </div>
+                    
+                        <a href="http://www.ntlx.top/tag/hbvpXyRe-/" class="post-tags">
+                            # setting
+                        </a>
+                    
+                        <a href="http://www.ntlx.top/tag/WJQpj0dJWf/" class="post-tags">
+                            # server
+                        </a>
+                    
                 </div>
-                
-                    <a href="http://www.ntlx.top/post/r/" class="post-feature-image"
-                       style="background-image: url('http://www.ntlx.top/post-images/r.png')">
-                    </a>
-                
+                <div class="post-content">
+                    <p>For NAT traversal.<br>
+Need a server which already had a public ip.</p>
+<!-- more -->
+<h1 id="server-端">Server 端</h1>
+<p><code>Dockerfile</code>:</p>
+<pre><code class="language-Dockerfile">FROM alpine as git
+
+WORKDIR /lanproxy
+
+RUN apk update
+RUN apk add git
+RUN git clone https://github.com/ffay/lanproxy.git ./
+
+FROM maven as maven
+
+WORKDIR /lanproxy
+
+COPY --from=git /lanproxy ./
+
+RUN mvn compile package -pl proxy-server -am 
+
+RUN cd distribution &amp;&amp; DIR_NAME=$(echo `ls` | awk '{print $NF}') &amp;&amp; mv $DIR_NAME /lanproxy/lanproxy-server
+
+FROM openjdk:8-jdk-alpine
+
+WORKDIR /lanproxy-server
+
+COPY --from=maven /lanproxy/lanproxy-server ./
+
+EXPOSE 8090 4900 4993
+
+CMD [&quot;sh&quot;, &quot;-c&quot;, &quot;sh bin/startup.sh &amp;&amp; tail -f logs/server.log&quot;]
+</code></pre>
+<p>Docker build CMD:</p>
+<pre><code class="language-bash">docker build -t lanserver:v1 .
+</code></pre>
+<p><code>docker-compose.yml</code>:</p>
+<pre><code class="language-yaml">version: '3.1'
+services:
+  lanproxy-client:
+    image: lanserver:v1
+    container_name: lanproxy-server
+    environment:
+     - LANPROXY_USERNAME=your_username
+     - LANPROXY_PASSWORD=your_password
+    ports:
+     # for web config UI
+     - 8090:8090
+     - 4900:4900
+     - 4993:4993
+     # for redirect port
+     - 9000-9100:9000-9100
+    restart: always
+</code></pre>
+<h1 id="client-端">Client 端</h1>
+<p><code>Dockerfile</code> :</p>
+<pre><code class="language-Dockerfile">FROM ubuntu
+
+RUN apt update -y
+RUN apt install openjdk-8-jdk -y
+RUN apt install git -y
+
+WORKDIR /
+RUN git clone https://github.com/NTLx/lanproxy-client.git
+
+ENTRYPOINT [&quot;/lanproxy-client/init.sh&quot;]
+WORKDIR /lanproxy-client
+# EXPOSE 8888
+CMD [&quot;/bin/bash&quot;]
+</code></pre>
+<p>Docker build CMD:</p>
+<pre><code class="language-bash">docker build -t lan:v1 .
+</code></pre>
+<p><code>docker-compose.yml</code>:</p>
+<pre><code class="language-yaml">version: '3.1'
+services:
+  lanproxy-client:
+    image: lan:v1
+    container_name: lanproxy-client
+    environment:
+     - LANPROXY_KEY=
+     - LANPROXY_HOST=
+    restart: always
+    network_mode: &quot;host&quot;
+    logging:
+      options:
+        max-size: &quot;1m&quot;
+</code></pre>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="http://www.ntlx.top/post/how-to-write/" class="post-title gt-a-link">
+                    How To Write
+                </a>
             </div>
         
-    </div>
-</div>
-        <div class="pagination-container">
-    
-    
-</div>
+
+        
+
+        
+            
+
+            
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqusjs.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: 'ntlxtop',
+  apikey: 'qkYOLyDMvFLlG9amD55l4ALA8O4r3VLrYuycPz9GvCEkhk0FjnoobeFo2KKQKZdD',
+}
+if ('') {
+  options.api = ''
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+            
+        
+
+        
 
         <div class="site-footer gt-c-content-color-first">
     <div class="slogan gt-c-content-color-first">My Tech Notes & Thoughts</div>

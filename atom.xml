@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://www.ntlx.top</id>
     <title>NTLx&apos;s Blog</title>
-    <updated>2021-05-21T02:15:58.111Z</updated>
+    <updated>2021-05-25T10:37:37.567Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://www.ntlx.top"/>
     <link rel="self" href="http://www.ntlx.top/atom.xml"/>
@@ -10,6 +10,105 @@
     <logo>http://www.ntlx.top/images/avatar.png</logo>
     <icon>http://www.ntlx.top/favicon.ico</icon>
     <rights>All rights reserved 2021, NTLx&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[LanProxy by Docker]]></title>
+        <id>http://www.ntlx.top/post/lanproxy-by-docker/</id>
+        <link href="http://www.ntlx.top/post/lanproxy-by-docker/">
+        </link>
+        <updated>2021-05-25T10:19:31.000Z</updated>
+        <summary type="html"><![CDATA[<p>For NAT traversal.<br>
+Need a server which already had a public ip.</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>For NAT traversal.<br>
+Need a server which already had a public ip.</p>
+<!-- more -->
+<h1 id="server-端">Server 端</h1>
+<p><code>Dockerfile</code>:</p>
+<pre><code class="language-Dockerfile">FROM alpine as git
+
+WORKDIR /lanproxy
+
+RUN apk update
+RUN apk add git
+RUN git clone https://github.com/ffay/lanproxy.git ./
+
+FROM maven as maven
+
+WORKDIR /lanproxy
+
+COPY --from=git /lanproxy ./
+
+RUN mvn compile package -pl proxy-server -am 
+
+RUN cd distribution &amp;&amp; DIR_NAME=$(echo `ls` | awk '{print $NF}') &amp;&amp; mv $DIR_NAME /lanproxy/lanproxy-server
+
+FROM openjdk:8-jdk-alpine
+
+WORKDIR /lanproxy-server
+
+COPY --from=maven /lanproxy/lanproxy-server ./
+
+EXPOSE 8090 4900 4993
+
+CMD [&quot;sh&quot;, &quot;-c&quot;, &quot;sh bin/startup.sh &amp;&amp; tail -f logs/server.log&quot;]
+</code></pre>
+<p>Docker build CMD:</p>
+<pre><code class="language-bash">docker build -t lanserver:v1 .
+</code></pre>
+<p><code>docker-compose.yml</code>:</p>
+<pre><code class="language-yaml">version: '3.1'
+services:
+  lanproxy-client:
+    image: lanserver:v1
+    container_name: lanproxy-server
+    environment:
+     - LANPROXY_USERNAME=your_username
+     - LANPROXY_PASSWORD=your_password
+    ports:
+     # for web config UI
+     - 8090:8090
+     - 4900:4900
+     - 4993:4993
+     # for redirect port
+     - 9000-9100:9000-9100
+    restart: always
+</code></pre>
+<h1 id="client-端">Client 端</h1>
+<p><code>Dockerfile</code> :</p>
+<pre><code class="language-Dockerfile">FROM ubuntu
+
+RUN apt update -y
+RUN apt install openjdk-8-jdk -y
+RUN apt install git -y
+
+WORKDIR /
+RUN git clone https://github.com/NTLx/lanproxy-client.git
+
+ENTRYPOINT [&quot;/lanproxy-client/init.sh&quot;]
+WORKDIR /lanproxy-client
+# EXPOSE 8888
+CMD [&quot;/bin/bash&quot;]
+</code></pre>
+<p>Docker build CMD:</p>
+<pre><code class="language-bash">docker build -t lan:v1 .
+</code></pre>
+<p><code>docker-compose.yml</code>:</p>
+<pre><code class="language-yaml">version: '3.1'
+services:
+  lanproxy-client:
+    image: lan:v1
+    container_name: lanproxy-client
+    environment:
+     - LANPROXY_KEY=
+     - LANPROXY_HOST=
+    restart: always
+    network_mode: &quot;host&quot;
+    logging:
+      options:
+        max-size: &quot;1m&quot;
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[How To Write]]></title>
         <id>http://www.ntlx.top/post/how-to-write/</id>
@@ -806,112 +905,6 @@ bench --force restore /home/frappe/database.sql.gz
 <h2 id="black-synology-dsm">Black Synology DSM</h2>
 <p>Mount NFS folder to DSM:</p>
 <pre><code class="language-bash">/bin/mount -t nfs -o hard 192.168.0.100:/mnt/disk2/Photo /volume1/photo
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[VMWare]]></title>
-        <id>http://www.ntlx.top/post/vmware/</id>
-        <link href="http://www.ntlx.top/post/vmware/">
-        </link>
-        <updated>2021-05-21T01:51:51.000Z</updated>
-        <summary type="html"><![CDATA[<p>Most of this artical was written for v6.7u3, and the lastest is v7.0U2a</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>Most of this artical was written for v6.7u3, and the lastest is v7.0U2a</p>
-<!-- more -->
-<h1 id="get-esxi">Get ESXi</h1>
-<blockquote>
-<p>Use <a href="https://blog.whsir.com/post-3377.html">Online protocal</a> or <a href="https://blog.whsir.com/post-4462.html">Offline protocal</a></p>
-</blockquote>
-<h2 id="install-vmware-powercli">Install VMware PowerCLI</h2>
-<p>To install PowerCLI just open a PowerShell console and run the command below:</p>
-<pre><code class="language-powershell">Install-Module VMware.PowerCLI -Scope CurrentUser
-</code></pre>
-<h2 id="get-exsi-iso">Get EXSi iso</h2>
-<p>Get latest ESXi-Customizer-PS <a href="https://github.com/VFrontDe/ESXi-Customizer-PS/releases">Release</a></p>
-<p>After extraction, run <code>ESXi-Customizer-PS.ps1</code> in PowerShell, like below:</p>
-<pre><code class="language-powershell">.\ESXi-Customizer-PS.ps1 -v70 -vft -load sata-xahci,net55-r8168
-</code></pre>
-<blockquote>
-<p>If you cannot run this powershell script, just run <code>Set-ExecutionPolicy Unrestricted</code> and enter <code>Y</code></p>
-</blockquote>
-<h1 id="install-esxi">Install ESXi</h1>
-<blockquote>
-<p>Using <code>VMware-VMvisor-Installer-6.7.0.update03-14320388.x86_64.iso</code></p>
-</blockquote>
-<p>Flash iso file to USB drive, then install to server.</p>
-<blockquote>
-<p>when setting root password, use <code>tab</code> or <code>direction key</code> to switch input lines.</p>
-</blockquote>
-<p>After the installation, use web interface to manage.</p>
-<h1 id="set-esxi">Set ESXi</h1>
-<h2 id="key">Key</h2>
-<blockquote>
-<p>Just a free key for test, limits: up to 8 vCPUs per virtual machine.</p>
-</blockquote>
-<pre><code>HY0XH-D508H-081U8-JA2GH-CCUM2
-# Or VMware vSphere 6 Enterprise Plus
-0A65P-00HD0-3Z5M1-M097M-22P7H
-</code></pre>
-<h2 id="add-storage">Add storage</h2>
-<p>Do this if you have more disks.</p>
-<h3 id="rdm">RDM</h3>
-<p>Choose <a href="https://www.jianshu.com/p/9606c9cdfc56">online method</a> or <a href="https://blog.whsir.com/post-4462.html">offline method</a>.</p>
-<h2 id="install-virtual-systems">Install virtual systems</h2>
-<h3 id="mac-os">Mac OS</h3>
-<blockquote>
-<p>Need to &quot;crack&quot; first.</p>
-</blockquote>
-<p>Download <a href="https://github.com/DrDonk/esxi-unlocker">esxi-unlocker</a>, extract, then run the script <code>./esxi-install.sh</code>.</p>
-<p>Reboot ESXi after above.</p>
-<blockquote>
-<p>For VMware Fusion or WorkStation, download <a href="https://github.com/DrDonk/unlocker">unlocker</a></p>
-</blockquote>
-<h4 id="setting-in-virtual-mac">Setting in virtual Mac</h4>
-<h5 id="activate-hidpi">Activate HiDPI</h5>
-<pre><code class="language-bash">sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool YES
-sudo defaults delete /Library/Preferences/com.apple.windowserver DisplayResolutionDisabled
-</code></pre>
-<p>then reboot.</p>
-<h5 id="change-screen-resolution">Change screen resolution</h5>
-<pre><code class="language-bash">/Library/Application\ Support/VMware\ Tools/vmware-resolutionSet 3416 1920
-</code></pre>
-<h1 id="about-backup">About Backup</h1>
-<h2 id="virtual-machine">Virtual Machine</h2>
-<p>Enable VMware Changed Block Tracking (CBT) to only back up blocks that have changed since last backup time and greatly reduce the transferred data size and time for backup.</p>
-<p>This part of content will guide you through the process of enabling CBT manually in VMware vSphere. Please follow the instructions of VMware and perform the following steps.</p>
-<blockquote>
-<p>Here is the <a href="https://www.synology.com/en-global/knowledgebase/DSM/tutorial/Backup/How_to_enable_CBT_manually_for_a_virtual_machine">setting example</a> for backing up a virtual machine in ESXi to a Synology NAS</p>
-</blockquote>
-<ol>
-<li><strong>Power off</strong> the virtual machine. You will not be able to successfully complete the setting without powering off the virtual machine.</li>
-<li>Right-click the virtual machine and click Edit Settings.</li>
-<li>Click VM Options tab.</li>
-<li>Click Advanced and then click Edit Configuration next to Configuration Parameters. It will open the Configuration Parameters dialog.</li>
-<li>Click Add parameters, add the ctkEnabled parameter, and set its value to true.</li>
-<li>Click Add parameters, add scsi0:0.ctkEnabled, and set its value to true.</li>
-</ol>
-<blockquote>
-<ul>
-<li>Whenever a hard drive is added to the virtual machine, a SCSI device will be assigned to the hard drive. scsi0:0 in scsi0:0.ctkEnabled represents the SCSI device, while the others display similar to scsi0:1, or scsi 1:1.</li>
-<li>You can enable or disable CBT individually on each hard drive.</li>
-</ul>
-</blockquote>
-<p>Then, power on the virtual machine, in the home directory of the virtual machine, verify that each drive having CBT enabled has also a vmname-ctk.vmdk file.</p>
-<p>The instruction above is referring to this website: <a href="https://kb.vmware.com/s/article/1031873">VMware KB 1031873</a>. It might be subject to change in different versions of VMware vSphere. You may find more up-to-date details regarding enabling CBT in VMware VMs on <a href="https://kb.vmware.com/s/article/1031873">VMware KB 1031873</a>.</p>
-<p>After CBT is enabled, the first backup will still be full backup, and the subsequent backups will be incremental backup.</p>
-<h1 id="about-client">About Client</h1>
-<h2 id="vmware-workstation">VMWare WorkStation</h2>
-<blockquote>
-<p>Version 15</p>
-</blockquote>
-<p>Use any key below for test:</p>
-<pre><code class="language-bash">ZC10K-8EF57-084QZ-VXYXE-ZF2XF
-UF71K-2TW5J-M88QZ-8WMNT-WKUY4
-AZ7MK-44Y1J-H819Z-WMYNC-N7ATF
-CU702-DRD1M-H89GP-JFW5E-YL8X6
-YY5EA-00XDJ-480RP-35QQV-XY8F6
-VA510-23F57-M85PY-7FN7C-MCRG0
 </code></pre>
 ]]></content>
     </entry>
