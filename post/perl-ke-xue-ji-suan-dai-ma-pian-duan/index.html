@@ -6,7 +6,7 @@
 
 <title>Perl 科学计算代码片段 | NTLx&#39;s Blog</title>
 
-<link rel="shortcut icon" href="http://www.ntlx.top/favicon.ico?v=1623199737828">
+<link rel="shortcut icon" href="http://www.ntlx.top/favicon.ico?v=1623214121726">
 
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="http://www.ntlx.top/styles/main.css">
@@ -77,7 +77,7 @@
             
         </div>
         <div style="text-align: center">
-            <form id="gridea-search-form" style="position: relative" data-update="1623199737828" action="/search/index.html">
+            <form id="gridea-search-form" style="position: relative" data-update="1623214121726" action="/search/index.html">
                 <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
                 <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
             </form>
@@ -112,7 +112,7 @@
                 <div class="post-content">
                     <p>Snippets collect.</p>
 <!-- more -->
-<p>#分布函数</p>
+<h1 id="分布函数">分布函数</h1>
 <pre><code class="language-perl">my @ex8=(1,9,4,9,10,12,13,15,12,13);
 my %hash=&amp;frequency(\@ex8);
 print join(&quot;,&quot;,values %hash);
@@ -127,7 +127,7 @@ sub frequency{
     return %hash;
 }
 </code></pre>
-<p>#排序函数</p>
+<h1 id="排序函数">排序函数</h1>
 <pre><code class="language-perl">my @ex9=(1,9,4,9,10,12,13,15,12,13);
 print join(',',&amp;sortf(&quot;numeric&quot;,&quot;asc&quot;,\@ex9));
 
@@ -149,7 +149,7 @@ sub sortf{
     return @vec_sort;
 }
 </code></pre>
-<p>#众数</p>
+<h1 id="众数">众数</h1>
 <pre><code class="language-perl">my @ex10=(1,9,4,9,10,12,13,15,12,13);
 print join(',',&amp;mode(\@ex10));
 
@@ -164,7 +164,7 @@ sub mode{
     return @result;
 }
 </code></pre>
-<p>#中位数</p>
+<h1 id="中位数">中位数</h1>
 <pre><code class="language-perl">my @ex111=(1,9,4,5);
 print &amp;median(\@ex11);
 my @ex112=(1,9,4,5,5);
@@ -182,7 +182,7 @@ sub median{
     return $result;
 }
 </code></pre>
-<p>#四分之一分位数</p>
+<h1 id="四分之一分位数">四分之一分位数</h1>
 <pre><code class="language-perl">my @ex12=( 7, 15, 36, 39, 40, 41);
 print join(',',&amp;quantile(\@ex12));
 
@@ -204,7 +204,7 @@ sub quantile{
     return @result;
 }
 </code></pre>
-<p>#最大值</p>
+<h1 id="最大值">最大值</h1>
 <pre><code class="language-perl">my @ex13=( 7, 15, 36, 39, 40, 41);
 print &amp;max(\@ex13);
 
@@ -214,7 +214,7 @@ sub max{
     return $result[0];
 }
 </code></pre>
-<p>#最小值</p>
+<h1 id="最小值">最小值</h1>
 <pre><code class="language-perl">my @ex14=( 7, 15, 36, 39, 40, 41);
 print &amp;min(\@ex14);
 
@@ -224,7 +224,7 @@ sub min{
     return $result[0];
 }
 </code></pre>
-<p>#标准化，共2种方法</p>
+<h1 id="标准化共2种方法">标准化，共2种方法</h1>
 <pre><code class="language-perl">my @ex15=( 7, 15, 36, 39, 40, 41);
 print join(',',&amp;scale(\@ex15,2));
 
