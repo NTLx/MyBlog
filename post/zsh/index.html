@@ -6,7 +6,7 @@
 
 <title>ZSH | NTLx&#39;s Blog</title>
 
-<link rel="shortcut icon" href="http://www.ntlx.top/favicon.ico?v=1623197640474">
+<link rel="shortcut icon" href="http://www.ntlx.top/favicon.ico?v=1623199737828">
 
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="http://www.ntlx.top/styles/main.css">
@@ -77,7 +77,7 @@
             
         </div>
         <div style="text-align: center">
-            <form id="gridea-search-form" style="position: relative" data-update="1623197640474" action="/search/index.html">
+            <form id="gridea-search-form" style="position: relative" data-update="1623199737828" action="/search/index.html">
                 <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
                 <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
             </form>
@@ -118,6 +118,7 @@
 <!-- more -->
 <h1 id="configure-based-on-oh-my-zsh">Configure based on Oh my Zsh</h1>
 <pre><code class="language-bash">sh -c &quot;$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;
+git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 cd ~/.oh-my-zsh/custom/plugins
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
 cd ~/.oh-my-zsh/custom/themes
