@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://www.ntlx.top</id>
     <title>NTLx&apos;s Blog</title>
-    <updated>2021-06-10T02:51:48.795Z</updated>
+    <updated>2021-06-10T05:00:30.993Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://www.ntlx.top"/>
     <link rel="self" href="http://www.ntlx.top/atom.xml"/>
@@ -10,6 +10,139 @@
     <logo>http://www.ntlx.top/images/avatar.png</logo>
     <icon>http://www.ntlx.top/favicon.ico</icon>
     <rights>All rights reserved 2021, NTLx&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[Proxy]]></title>
+        <id>http://www.ntlx.top/post/proxy/</id>
+        <link href="http://www.ntlx.top/post/proxy/">
+        </link>
+        <updated>2021-06-10T04:55:14.000Z</updated>
+        <summary type="html"><![CDATA[<p><code>网络代理</code> 可以简单理解为更改特定或所有网络传输的数据通道（或线路），以达到绕过监测、提高数据传输安全性的目的。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p><code>网络代理</code> 可以简单理解为更改特定或所有网络传输的数据通道（或线路），以达到绕过监测、提高数据传输安全性的目的。</p>
+<!-- more -->
+<h1 id="说明">说明</h1>
+<p><code>网络代理</code> 有两种策略：</p>
+<ul>
+<li>智能代理：智能代理根据预先设定的地址列表决定是否对某个互联网连接进行代理，因此并不能保证所有需要代理的连接全部都会进行代理，但一般能够保证大部分连接的使用，且不会影响不需要代理的连接，推荐日常使用</li>
+<li>全局代理：全局代理即让 <code>网络代理</code> 接管所有的网络数据传输，可以保证所有需要代理的连接全部都会进行代理，但不需要代理的连接也会强制进行代理，会造成部分国内网络访问的困难，故一般在智能代理无法满足需求时使用</li>
+</ul>
+<blockquote>
+<p>一般先让系统所有流量走代理，把浏览器的代理工具配置好，然后关掉系统代理，仅让浏览器或其它需要代理的软件单独代理流量</p>
+</blockquote>
+<h1 id="系统代理">系统代理</h1>
+<h2 id="windows-10">Windows 10</h2>
+<blockquote>
+<p>若系统代理配置不生效，请注销后再次登录即可</p>
+</blockquote>
+<h3 id="进入系统代理设置">进入系统代理设置</h3>
+<ol>
+<li>点击任务栏上的网络状态图标，位置如图所示：<br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223095853.png" alt="" loading="lazy"></li>
+<li>在弹出的界面中点击 <code>网络和 Internet 设置</code><br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223095902.png" alt="" loading="lazy"></li>
+<li>在弹出的界面中点击左侧导航栏里的 <code>代理</code><br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223095910.png" alt="" loading="lazy"></li>
+<li>如果 <code>自动检测设置</code> 的状态为 <code>开</code>（如下图所示），请将其切换为 <code>关</code> 的状态<br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223095918.png" alt="" loading="lazy"></li>
+</ol>
+<h3 id="设置全局代理">设置全局代理</h3>
+<ol>
+<li>在 <code>手动设置代理</code> 设置区域内，将 <code>使用代理服务器</code> 的状态切换为 <code>开</code><br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223100001.png" alt="" loading="lazy"></li>
+<li>在 <code>地址</code> 一栏填写 <code>http://winservice.cm.com</code>，在 <code>端口</code> 一栏填写 <code>10809</code>，在 <code>请勿对以下列条目开头的地址使用代理服务器</code> 一栏填写 <code>127.0.*;192.168.*;localhost</code>，将 <code>请勿将代理服务器用于本地(Intranet)地址</code> 前的复选框选中，如下图所示：<br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223100007.png" alt="" loading="lazy"></li>
+<li>点击 <code>保存</code> 按钮即可</li>
+</ol>
+<h2 id="mac-os">Mac OS</h2>
+<h3 id="进入系统代理设置-2">进入系统代理设置</h3>
+<ol>
+<li>进入设置：点击 Dock 上的 <code>系统偏好设置</code> 图标，或者点击屏幕左上角的 Apple 徽标，单击 <code>系统偏好设置...</code></li>
+<li>单击 <code>网络</code><br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223100437.png" alt="" loading="lazy"></li>
+<li>选中需要进行代理设置的网络连接（或当前网络连接，例如此处示例的 <code>以太网</code>），然后点击 <code>高级...</code> 按钮<br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223100449.png" alt="" loading="lazy"></li>
+<li>单击 <code>代理</code> 选项卡<br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223100458.png" alt="" loading="lazy"></li>
+</ol>
+<h3 id="设置全局代理-2">设置全局代理</h3>
+<ol>
+<li>取消勾选 <code>自动代理配置</code></li>
+<li>勾选 <code>SOCKS 代理</code>，并按下图配置（需填写上文提供的 Socks 代理服务器地址）<br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223100544.png" alt="" loading="lazy"></li>
+<li>勾选 <code>FTP 代理</code>，并按下图配置（需填写上文提供的 Http 代理服务器地址）<br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223100552.png" alt="" loading="lazy"></li>
+<li>勾选 <code>网页代理</code>，并按下图配置（需填写上文提供的 Http 代理服务器地址）<br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223100601.png" alt="" loading="lazy"></li>
+<li>勾选 <code>安全网页代理</code>，并按下图配置（需填写上文提供的 Http 代理服务器地址）<br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223100609.png" alt="" loading="lazy"></li>
+<li>点击 <code>好</code> 按钮，然后点击 <code>应用</code> 按钮即可</li>
+</ol>
+<h1 id="浏览器代理">浏览器代理</h1>
+<p>顾名思义，仅让浏览器使用代理进行网络访问</p>
+<blockquote>
+<p>若已开启系统代理，请先关闭，不建议与浏览器代理一同开启</p>
+</blockquote>
+<h2 id="chrome">Chrome</h2>
+<h3 id="下载代理切换插件">下载代理切换插件</h3>
+<ol>
+<li>第一次配置前，请先配置并开启系统全局代理</li>
+<li>访问 <a href="https://chrome.google.com/webstore">Chrome 网上应用商店</a></li>
+<li>找到页面左上角的 <code>搜索店内应用</code> 输入框（确保图中蓝色色块选中的是 <code>扩展程序</code>），并输入 <code>Proxy SwitchyOmega</code>（如下图所示），然后点击键盘 <code>Enter</code> 键<br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223100649.png" alt="" loading="lazy"></li>
+<li>点击 Chrome 扩展程序 <code>Proxy SwitchyOmega</code> 的 <code>添加至 Chrome</code> 按钮<br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223100754.png" alt="" loading="lazy"></li>
+<li>在弹出的对话框中选择 <code>添加扩展程序</code><br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223100712.png" alt="" loading="lazy"></li>
+<li>安装成功后，会跳出设置界面，并自动开始自带的介绍流程，请不要跳过<br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223100812.png" alt="" loading="lazy"></li>
+<li>关闭系统全局代理</li>
+</ol>
+<h3 id="一般配置">一般配置</h3>
+<ol>
+<li>在 <code>SwithyOmega</code> 设置界面左侧导航栏中点击<code>界面</code><br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223100822.png" alt="" loading="lazy"></li>
+<li>在 <code>切换选项</code> 中的 <code>初始情景模式</code> 中选择 <code>auto switch</code><br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223100831.png" alt="" loading="lazy"></li>
+<li>然后点击左侧导航栏底部的 <code>应用选项</code><br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223100846.png" alt="" loading="lazy"></li>
+<li>在 <code>SwithyOmega</code> 设置界面左侧导航栏中点击 <code>proxy</code><br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223101244.png" alt="" loading="lazy"></li>
+<li>按照下图进行设置：<br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223101252.png" alt="" loading="lazy"></li>
+<li>然后点击左侧导航栏底部的 <code>应用选项</code></li>
+<li>在 <code>SwithyOmega</code> 设置界面左侧导航栏中点击 <code>auto switch</code><br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223101301.png" alt="" loading="lazy"></li>
+<li>在 <code>规则设置列表</code> 区域中，点击选中 <code>规则列表格式</code> 的 <code>AutoProxy</code>，然后在 <code>规则列表网址</code> 中填写<code>https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt</code>，然后点击 <code>立即更新情景模式</code> 按钮<br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223100859.png" alt="" loading="lazy"></li>
+<li>在 <code>切换规则</code> 区域中，按照下图设置 <code>规则列表规则</code> 和 <code>默认情景模式</code><br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223100944.png" alt="" loading="lazy"></li>
+<li>然后点击左侧导航栏底部的 <code>应用选项</code></li>
+</ol>
+<h3 id="设置智能代理">设置智能代理</h3>
+<ol>
+<li>单击 Chrome 浏览器地址栏右侧的 <code>SwitchyOmega</code> 图标<br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223101021.png" alt="" loading="lazy"></li>
+<li>选择 <code>auto switch</code><br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223101011.png" alt="" loading="lazy"></li>
+</ol>
+<h3 id="设置全局代理-3">设置全局代理</h3>
+<ol>
+<li>单击 Chrome 浏览器地址栏右侧的 <code>SwitchyOmega</code> 图标<br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223101021.png" alt="" loading="lazy"></li>
+<li>选择 <code>proxy</code><br>
+<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223101042.png" alt="" loading="lazy"></li>
+</ol>
+<h1 id="终端代理">终端代理</h1>
+<blockquote>
+<p>系统代理和浏览器代理均不会对终端生效，终端需单独配置代理</p>
+</blockquote>
+<pre><code class="language-bash">export http_proxy=&quot;http://winservice.cm.com:10809&quot;; export https_proxy=&quot;http://winservice.cm.com:10809&quot;; export ftp_proxy=&quot;http://winservice.cm.com:10809&quot;
+</code></pre>
+<p>或者</p>
+<pre><code class="language-bash">export ALL_PROXY=socks5://winservice.cm.com:10808
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[PicGo]]></title>
         <id>http://www.ntlx.top/post/picgo/</id>
@@ -804,96 +937,6 @@ indent_size = 2
 <p>推荐不要指定某些EditorConfig属性。比如，<code>tab_width</code> 不需要特别指定，除非它与 <code>indent_size</code> 不同。同样的，当 <code>indent_style</code> 设为 <code>tab</code> 时，不需要配置 <code>indent_size</code>，这样才方便阅读者使用他们习惯的缩进格式。另外，如果某些属性并没有规范化（比如 <code>end_of_line</code>），就最好不要设置它。</p>
 <p><a href="https://github.com/editorconfig/editorconfig/wiki/Projects-Using-EditorConfig">这里</a>是一些使用了 EditorConfig 的示例项目</p>
 <p>注意：不是每种插件都支持所有的属性，具体可见<a href="https://github.com/editorconfig/editorconfig/wiki/EditorConfig-Properties">Wiki</a>。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[APP Collections]]></title>
-        <id>http://www.ntlx.top/post/app-collections/</id>
-        <link href="http://www.ntlx.top/post/app-collections/">
-        </link>
-        <updated>2021-05-21T02:01:16.000Z</updated>
-        <summary type="html"><![CDATA[<p>Collect usefull apps.</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>Collect usefull apps.</p>
-<!-- more -->
-<h1 id="web-based-tools">Web-based Tools</h1>
-<h2 id="search">Search</h2>
-<ul>
-<li><a href="https://socode.pro/">socode.pro</a>：程序员的搜索工具，将各种网络资源汇总在一个搜索框里面</li>
-</ul>
-<h2 id="file">File</h2>
-<ul>
-<li><a href="https://convertio.co/zh/">Convertio（File Format Converter）</a></li>
-</ul>
-<h3 id="pdf-tool">PDF Tool</h3>
-<ul>
-<li><a href="https://smallpdf.com/">SmallPDF</a></li>
-<li><a href="https://lightpdf.cn/">轻闪 PDF</a></li>
-</ul>
-<h2 id="text">Text</h2>
-<ul>
-<li><a href="https://www.mathcha.io/">Online Mathematics Editor: Mathcha</a></li>
-<li><a href="https://stackedit.io/">StackEdit – In-browser Markdown editor</a></li>
-</ul>
-<blockquote>
-<figure data-type="image" tabindex="1"><img src="https://stackedit.io/static/landing/favicon.ico" alt="" loading="lazy"></figure>
-<ul>
-<li>实时预览</li>
-<li>支持脚注</li>
-<li>自动保存</li>
-<li>可与云存储同步</li>
-<li>多种格式导出</li>
-<li>支持一键发布到GitHub等</li>
-<li>本身不支持<code>[TOC]</code>添加目录语法，但是在一键发布的时候，可以选择自动生成目录（只对一级和二级目录进行自动生成）</li>
-</ul>
-</blockquote>
-<h2 id="pic">Pic</h2>
-<ul>
-<li><a href="https://www.z4a.net/">Online Gallery: Z4A</a></li>
-<li><a href="https://www.yasuotu.com/">Pic resize, cut, zip</a></li>
-</ul>
-<h2 id="video">Video</h2>
-<ul>
-<li><a href="http://my.cuplayer.com/login">Video Cloud: CuPlayer</a></li>
-</ul>
-<h2 id="other">Other</h2>
-<ul>
-<li><a href="https://www.apowersoft.cn/">Screen Shot, Screen Record, Audio Record, Audio Edit&amp;Convert, Video Convert: Apowersoft</a></li>
-</ul>
-<h1 id="installable-tools">Installable Tools</h1>
-<h2 id="vscode">VSCode</h2>
-<figure data-type="image" tabindex="2"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Visual_Studio_Code_1.18_icon.svg/1200px-Visual_Studio_Code_1.18_icon.svg.png" alt="" loading="lazy"></figure>
-<p>Visual Studio Code 简称 VSCode。不是 IDE 的全能文本编辑器，Microsoft 出品的神器，<a href="https://code.visualstudio.com/download">点此下载</a>。</p>
-<blockquote>
-<p>其优点太多，你只需要知道它是最先进的文本编辑器就好了。另外，再强调一点，它不是 IDE，和 PyCharm 等软件有区别。</p>
-</blockquote>
-<ul>
-<li>Git 集成（可视化操作 Git）</li>
-<li>强大的自定义能力</li>
-<li>强大的插件功能</li>
-<li>强大的兼容性</li>
-<li>强大的社区支持</li>
-<li>强大的官方支持</li>
-</ul>
-<p><strong>最新特色：可直连服务器进行开发</strong></p>
-<p>更多特性请查看<a href="https://code.visualstudio.com/">官网</a></p>
-<h2 id="for-markdown">For Markdown</h2>
-<p><a href="https://github.com/Molunerfinn/PicGo">完美的图床软件</a><br>
-<img src="/img/picgo.png" alt="picgo.png" loading="lazy"></p>
-<p><a href="https://mathpix.com/">识别公式转换为 LaTeX 代码</a><br>
-<img src="https://mathpix.com/images/mathpix-page/snip_all.png" alt="" loading="lazy"></p>
-<p><a href="https://gitnoteapp.com/zh/">自带图床功能的基于 Git 的 Markdown 编辑器</a><br>
-<img src="/img/gitmarkdown.png" alt="gitmarkdown.png" loading="lazy"></p>
-<p><a href="https://ivarptr.github.io/yu-writer.site/">关注历史记录、版本恢复的 Markdown 编辑器</a><br>
-<img src="https://ivarptr.github.io/yu-writer.site/resources/images/screenshot.png" alt="" loading="lazy"></p>
-<h2 id="ide">IDE</h2>
-<h3 id="python">Python</h3>
-<p>PyCharm<br>
-<img src="https://confluence.jetbrains.com/download/thumbnails/51188837/PyCharm_400x400_Twitter_logo_white.png" alt="" loading="lazy"></p>
-<p>PyCharm 在 Mac OS X 的 <a href="https://resources.jetbrains.com/storage/products/pycharm/docs/PyCharm_ReferenceCard_mac.pdf">CheetSheet</a></p>
-<h3 id="perl">Perl</h3>
-<p>Komodo<br>
-<img src="https://www.activestate.com/wp-content/uploads/2018/09/screenshot.png" alt="" loading="lazy"></p>
 ]]></content>
     </entry>
 </feed>
