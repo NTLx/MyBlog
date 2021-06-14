@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://www.ntlx.top</id>
     <title>NTLx&apos;s Blog</title>
-    <updated>2021-06-14T08:47:05.364Z</updated>
+    <updated>2021-06-14T08:50:40.266Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://www.ntlx.top"/>
     <link rel="self" href="http://www.ntlx.top/atom.xml"/>
@@ -58,6 +58,9 @@ VPN_DNS_SRV1='1.1.1.1'
 VPN_DNS_SRV2='1.0.0.1'
 </code></pre>
 <h1 id="client">Client</h1>
+<blockquote>
+<p>Only Windows 10 need a little help</p>
+</blockquote>
 <h2 id="windows-10">Windows 10</h2>
 <ol>
 <li><a href="https://www.shrew.net/download/vpn/vpn-client-2.2.2-release.exe">Download client software</a></li>
