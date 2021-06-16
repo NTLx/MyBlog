@@ -4,7 +4,7 @@
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-<title>script | NTLx&#39;s Blog</title>
+<title>Auto Power Off for Linux | NTLx&#39;s Blog</title>
 
 <link rel="shortcut icon" href="http://www.ntlx.top/favicon.ico?v=1623811279336">
 
@@ -25,11 +25,11 @@
 
 
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
 </head>
 <body>
 <div class="main gt-bg-theme-color-first">
-    <div class="main-content">
-        <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg">
     <div class="navbar-brand">
         <img class="user-avatar" src="/images/avatar.png" alt="头像">
         <div class="site-name gt-c-content-color-first">
@@ -85,58 +85,103 @@
     </div>
 </nav>
 
-        <div class="current-tag-container">
-            <h2 class="title gt-c-content-color-first">
-                #script
-            </h2>
-        </div>
-        <div class="post-list-container">
-    <div class="post-inner">
-        
-            <div class="post gt-bg-theme-color-second">
-                <div class="post-left">
-                    <div>
-                        
-                        <a href="http://www.ntlx.top/post/perl-ke-xue-ji-suan-dai-ma-pian-duan/">
-                            <span class="post-title gt-c-content-color-first">Perl 科学计算代码片段</span>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    Auto Power Off for Linux
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2021-06-16 ·
+                    </time>
+                    
+                        <a href="http://www.ntlx.top/tag/hbvpXyRe-/" class="post-tags">
+                            # setting
                         </a>
-                    </div>
-                    <div class="gt-post-content post-abstract gt-c-content-color-second">
-                        <p>Snippets collect.</p>
-
-                    </div>
-                    <div class="post-info">
-                        <time class="post-time gt-c-content-color-first">
-                            发布于 · 2021-06-08 ·
-                        </time>
-                        
-                            <a href="http://www.ntlx.top/tag/5yApyhCGZ/" class="post-tag">
-                                # perl
-                            </a>
-                        
-                            <a href="http://www.ntlx.top/tag/tW34v23I4U/" class="post-tag">
-                                # script
-                            </a>
-                        
-                            <a href="http://www.ntlx.top/tag/ubzJ49yTIi/" class="post-tag">
-                                # snippets
-                            </a>
-                        
-                    </div>
+                    
+                        <a href="http://www.ntlx.top/tag/WJQpj0dJWf/" class="post-tags">
+                            # server
+                        </a>
+                    
                 </div>
-                
-                    <a href="http://www.ntlx.top/post/perl-ke-xue-ji-suan-dai-ma-pian-duan/" class="post-feature-image"
-                       style="background-image: url('http://www.ntlx.top/post-images/perl-ke-xue-ji-suan-dai-ma-pian-duan.png')">
-                    </a>
-                
+                <div class="post-content">
+                    <p>Auto detect AC power down &amp; auto shutdown system.</p>
+<!-- more -->
+<p>Create a shell script, named like <code>PowerCheck.AutoPowerOff.sh</code>:</p>
+<pre><code class="language-bash">#!/bin/bash
+MonitorIP=192.168.1.1
+DelayTime=300s
+ping -c 1 $MonitorIP &gt; /dev/null
+ret=$?
+if [ $ret -eq 0 ]
+then
+echo `date` &gt;&gt; /home/lx/PowerCheck.log
+echo ' AC Power OK ! ' &gt;&gt; /home/lx/PowerCheck.log
+else
+echo `date` &gt;&gt; /home/lx/PowerCheck.log
+echo ' AC Power maybe off, checking again after 1 minutes ! ' &gt;&gt; /home/lx/PowerCheck.log
+sleep $DelayTime
+ping -c 1 $MonitorIP &gt; /dev/null
+ret=$?
+if [ $ret -eq 0 ]
+then
+echo `date` &gt;&gt; /home/lx/PowerCheck.log
+echo ' Check again, AC Power OK ! ' &gt;&gt; /home/lx/PowerCheck.log
+else
+echo `date` &gt;&gt; /home/lx/PowerCheck.log
+echo 'poweroff' &gt;&gt; /home/lx/PowerCheck.log
+sudo -S poweroff &lt;&lt; EOF
+YourSuperUserPassword
+EOF
+fi
+fi
+</code></pre>
+<p>Then edit <code>crontab</code> by cmd <code>crontab -e</code>:</p>
+<pre><code class="language-bash">*/5 * * * * /home/lx/PowerCheck.AutoPowerOff.sh
+</code></pre>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="http://www.ntlx.top/post/docker-ipsec-vpn/" class="post-title gt-a-link">
+                    Docker IPsec VPN
+                </a>
             </div>
         
-    </div>
-</div>
-        <div class="pagination-container">
-    
-    
-</div>
+
+        
+
+        
+            
+
+            
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqusjs.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: 'ntlxtop',
+  apikey: 'qkYOLyDMvFLlG9amD55l4ALA8O4r3VLrYuycPz9GvCEkhk0FjnoobeFo2KKQKZdD',
+}
+if ('') {
+  options.api = ''
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+            
+        
+
+        
 
         <div class="site-footer gt-c-content-color-first">
     <div class="slogan gt-c-content-color-first">My Tech Notes & Thoughts</div>
