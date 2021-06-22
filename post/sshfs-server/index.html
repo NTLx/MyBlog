@@ -4,7 +4,7 @@
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-<title>SSHFS Client | NTLx&#39;s Blog</title>
+<title>SSHFS Server | NTLx&#39;s Blog</title>
 
 <link rel="shortcut icon" href="http://www.ntlx.top/favicon.ico?v=1624339055498">
 
@@ -89,7 +89,7 @@
         <div class="post-detail gt-bg-theme-color-second">
             <article class="gt-post-content">
                 <h2 class="post-title">
-                    SSHFS Client
+                    SSHFS Server
                 </h2>
                 <div class="post-info">
                     <time class="post-time gt-c-content-color-first">
@@ -100,62 +100,27 @@
                             # setting
                         </a>
                     
-                        <a href="http://www.ntlx.top/tag/8Ejdckh9k/" class="post-tags">
-                            # windows
+                        <a href="http://www.ntlx.top/tag/u4k_gqrYl/" class="post-tags">
+                            # linux
+                        </a>
+                    
+                        <a href="http://www.ntlx.top/tag/WJQpj0dJWf/" class="post-tags">
+                            # server
                         </a>
                     
                 </div>
                 <div class="post-content">
-                    <p>Client: mount remote disk through <code>SSH</code> using <code>SSHFS</code>.</p>
+                    <p>Deploy &amp; Settings for SFTP server.</p>
 <!-- more -->
-<h1 id="software-installation">Software installation</h1>
-<blockquote>
-<p>GUI manager was recommanded on windows</p>
-</blockquote>
-<h2 id="windows">Windows</h2>
-<ol>
-<li><a href="https://github.com/billziss-gh/winfsp/releases">winfsp</a></li>
-<li><a href="https://github.com/billziss-gh/sshfs-win/releases">sshfs-win</a></li>
-<li><a href="https://github.com/evsar3/sshfs-win-manager/releases">SSHFS-Win Manager</a> (GUI)</li>
-</ol>
-<h2 id="linux">Linux</h2>
-<p>Ubuntu for example:</p>
-<pre><code class="language-bash">sudo apt install sshfs
-</code></pre>
-<p>CentOS for example:</p>
-<pre><code class="language-bash">yum install -y epel-release
-yum -y install fuse-sshfs
-</code></pre>
-<h3 id="usage">Usage</h3>
-<pre><code class="language-bash">sshfs tecmint@x.x.x.x:/home/tecmint/ /mnt/tecmint
-sshfs -o ssh_command='sshpass -p 123456 ssh' -o cache=yes,allow_other tecmint@x.x.x.x:/home/tecmint/ /mnt/tecmint
+<h1 id="settings">Settings</h1>
+<p>Edit <code>/etc/ssh/sshd_config</code>:</p>
+<pre><code class="language-bash">Subsystem sftp /usr/lib/ssh/sftp-server -R
 </code></pre>
 <blockquote>
-<p><code>o transform_symlinks</code> 表示转换绝对链接符号为相对链接符号<br>
-<code>-o follow_symlinks</code> 沿用服务器上的链接符号<br>
-<code>-C</code> or <code>-o compression=yes</code> 压缩<br>
-<code>-o reconnect</code> 自动重连<br>
-<code>-o cache=yes</code><br>
-<code>-o allow_other</code></p>
+<p><code>-R</code> means read only</p>
 </blockquote>
-<h3 id="check-cmd">Check cmd</h3>
-<pre><code class="language-bash">df -hT
-</code></pre>
-<h3 id="unmount">Unmount</h3>
-<pre><code class="language-bash">umount /mnt/tecmint 
-</code></pre>
-<h3 id="auto-mount">Auto mount</h3>
-<p>Add below to <code>/etc/fstab</code>:</p>
-<pre><code class="language-bash">sshfs#tecmint@x.x.x.x:/home/tecmint/ /mnt/tecmint fuse defaults 0 0 
-sshfs#user@hostname:path mount_point fuse defaults,auto,allow_other 0 0
-</code></pre>
-<blockquote>
-<p><code>allow_other</code> 这个参数很重要，没有这个参数的话，挂载过来的目录只有 <code>root</code> 能够访问</p>
-</blockquote>
-<h4 id="mount-without-password">Mount without password</h4>
-<p>via SSH key, add below to <code>/etc/fstab</code>:</p>
-<pre><code class="language-bash">sshfs#tecmint@x.x.x.x:/home/tecmint/ /mnt/tecmint fuse IdentityFile=~/.ssh/id_rsa defaults 0 0
-</code></pre>
+<h1 id="reference">Reference</h1>
+<p><a href="https://saucer-man.com/operation_and_maintenance/480.html">基于SSHFS的网盘搭建</a></p>
 
                 </div>
             </article>
@@ -164,8 +129,8 @@ sshfs#user@hostname:path mount_point fuse defaults,auto,allow_other 0 0
         
             <div class="next-post">
                 <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="http://www.ntlx.top/post/rstudio-server/" class="post-title gt-a-link">
-                    Rstudio Server
+                <a href="http://www.ntlx.top/post/sshfs-for-windows/" class="post-title gt-a-link">
+                    SSHFS Client
                 </a>
             </div>
         

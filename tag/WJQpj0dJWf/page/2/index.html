@@ -4,7 +4,7 @@
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-<title>SSHFS Client | NTLx&#39;s Blog</title>
+<title>server | NTLx&#39;s Blog</title>
 
 <link rel="shortcut icon" href="http://www.ntlx.top/favicon.ico?v=1624339055498">
 
@@ -25,11 +25,11 @@
 
 
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
 </head>
 <body>
 <div class="main gt-bg-theme-color-first">
-    <nav class="navbar navbar-expand-lg">
+    <div class="main-content">
+        <nav class="navbar navbar-expand-lg">
     <div class="navbar-brand">
         <img class="user-avatar" src="/images/avatar.png" alt="头像">
         <div class="site-name gt-c-content-color-first">
@@ -85,119 +85,60 @@
     </div>
 </nav>
 
-    <div class="post-container">
-        <div class="post-detail gt-bg-theme-color-second">
-            <article class="gt-post-content">
-                <h2 class="post-title">
-                    SSHFS Client
-                </h2>
-                <div class="post-info">
-                    <time class="post-time gt-c-content-color-first">
-                        · 2021-06-22 ·
-                    </time>
-                    
-                        <a href="http://www.ntlx.top/tag/hbvpXyRe-/" class="post-tags">
-                            # setting
-                        </a>
-                    
-                        <a href="http://www.ntlx.top/tag/8Ejdckh9k/" class="post-tags">
-                            # windows
-                        </a>
-                    
-                </div>
-                <div class="post-content">
-                    <p>Client: mount remote disk through <code>SSH</code> using <code>SSHFS</code>.</p>
-<!-- more -->
-<h1 id="software-installation">Software installation</h1>
-<blockquote>
-<p>GUI manager was recommanded on windows</p>
-</blockquote>
-<h2 id="windows">Windows</h2>
-<ol>
-<li><a href="https://github.com/billziss-gh/winfsp/releases">winfsp</a></li>
-<li><a href="https://github.com/billziss-gh/sshfs-win/releases">sshfs-win</a></li>
-<li><a href="https://github.com/evsar3/sshfs-win-manager/releases">SSHFS-Win Manager</a> (GUI)</li>
-</ol>
-<h2 id="linux">Linux</h2>
-<p>Ubuntu for example:</p>
-<pre><code class="language-bash">sudo apt install sshfs
-</code></pre>
-<p>CentOS for example:</p>
-<pre><code class="language-bash">yum install -y epel-release
-yum -y install fuse-sshfs
-</code></pre>
-<h3 id="usage">Usage</h3>
-<pre><code class="language-bash">sshfs tecmint@x.x.x.x:/home/tecmint/ /mnt/tecmint
-sshfs -o ssh_command='sshpass -p 123456 ssh' -o cache=yes,allow_other tecmint@x.x.x.x:/home/tecmint/ /mnt/tecmint
-</code></pre>
-<blockquote>
-<p><code>o transform_symlinks</code> 表示转换绝对链接符号为相对链接符号<br>
-<code>-o follow_symlinks</code> 沿用服务器上的链接符号<br>
-<code>-C</code> or <code>-o compression=yes</code> 压缩<br>
-<code>-o reconnect</code> 自动重连<br>
-<code>-o cache=yes</code><br>
-<code>-o allow_other</code></p>
-</blockquote>
-<h3 id="check-cmd">Check cmd</h3>
-<pre><code class="language-bash">df -hT
-</code></pre>
-<h3 id="unmount">Unmount</h3>
-<pre><code class="language-bash">umount /mnt/tecmint 
-</code></pre>
-<h3 id="auto-mount">Auto mount</h3>
-<p>Add below to <code>/etc/fstab</code>:</p>
-<pre><code class="language-bash">sshfs#tecmint@x.x.x.x:/home/tecmint/ /mnt/tecmint fuse defaults 0 0 
-sshfs#user@hostname:path mount_point fuse defaults,auto,allow_other 0 0
-</code></pre>
-<blockquote>
-<p><code>allow_other</code> 这个参数很重要，没有这个参数的话，挂载过来的目录只有 <code>root</code> 能够访问</p>
-</blockquote>
-<h4 id="mount-without-password">Mount without password</h4>
-<p>via SSH key, add below to <code>/etc/fstab</code>:</p>
-<pre><code class="language-bash">sshfs#tecmint@x.x.x.x:/home/tecmint/ /mnt/tecmint fuse IdentityFile=~/.ssh/id_rsa defaults 0 0
-</code></pre>
-
-                </div>
-            </article>
+        <div class="current-tag-container">
+            <h2 class="title gt-c-content-color-first">
+                #server
+            </h2>
         </div>
-
+        <div class="post-list-container">
+    <div class="post-inner">
         
-            <div class="next-post">
-                <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="http://www.ntlx.top/post/rstudio-server/" class="post-title gt-a-link">
-                    Rstudio Server
-                </a>
+            <div class="post gt-bg-theme-color-second">
+                <div class="post-left">
+                    <div>
+                        
+                        <a href="http://www.ntlx.top/post/mdns/">
+                            <span class="post-title gt-c-content-color-first">mDNS</span>
+                        </a>
+                    </div>
+                    <div class="gt-post-content post-abstract gt-c-content-color-second">
+                        <p>Settings for mDNS under multi OS (Linux).</p>
+
+                    </div>
+                    <div class="post-info">
+                        <time class="post-time gt-c-content-color-first">
+                            发布于 · 2021-05-15 ·
+                        </time>
+                        
+                            <a href="http://www.ntlx.top/tag/u4k_gqrYl/" class="post-tag">
+                                # linux
+                            </a>
+                        
+                            <a href="http://www.ntlx.top/tag/WJQpj0dJWf/" class="post-tag">
+                                # server
+                            </a>
+                        
+                            <a href="http://www.ntlx.top/tag/J6nQkNGpFx/" class="post-tag">
+                                # network
+                            </a>
+                        
+                    </div>
+                </div>
+                
+                    <a href="http://www.ntlx.top/post/mdns/" class="post-feature-image"
+                       style="background-image: url('http://www.ntlx.top/post-images/mdns.png')">
+                    </a>
+                
             </div>
         
-
-        
-
-        
-            
-
-            
-                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqusjs.css">
-<script src="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqus.js"></script>
-
-<div id="disqus_thread"></div>
-
-<script>
-
-var options = {
-  shortname: 'ntlxtop',
-  apikey: 'qkYOLyDMvFLlG9amD55l4ALA8O4r3VLrYuycPz9GvCEkhk0FjnoobeFo2KKQKZdD',
-}
-if ('') {
-  options.api = ''
-}
-var dsqjs = new DisqusJS(options)
-
-</script>
-
-            
-        
-
-        
+    </div>
+</div>
+        <div class="pagination-container">
+    
+        <a href="http://www.ntlx.top/tag/WJQpj0dJWf" class="prev-page gt-a-link">上一页</a>
+    
+    
+</div>
 
         <div class="site-footer gt-c-content-color-first">
     <div class="slogan gt-c-content-color-first">My Tech Notes & Thoughts</div>

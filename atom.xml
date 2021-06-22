@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://www.ntlx.top</id>
     <title>NTLx&apos;s Blog</title>
-    <updated>2021-06-22T05:12:46.747Z</updated>
+    <updated>2021-06-22T05:17:38.087Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://www.ntlx.top"/>
     <link rel="self" href="http://www.ntlx.top/atom.xml"/>
@@ -11,14 +11,35 @@
     <icon>http://www.ntlx.top/favicon.ico</icon>
     <rights>All rights reserved 2021, NTLx&apos;s Blog</rights>
     <entry>
-        <title type="html"><![CDATA[SSHFS for Windows]]></title>
+        <title type="html"><![CDATA[SSHFS Server]]></title>
+        <id>http://www.ntlx.top/post/sshfs-server/</id>
+        <link href="http://www.ntlx.top/post/sshfs-server/">
+        </link>
+        <updated>2021-06-22T05:13:36.000Z</updated>
+        <summary type="html"><![CDATA[<p>Deploy &amp; Settings for SFTP server.</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>Deploy &amp; Settings for SFTP server.</p>
+<!-- more -->
+<h1 id="settings">Settings</h1>
+<p>Edit <code>/etc/ssh/sshd_config</code>:</p>
+<pre><code class="language-bash">Subsystem sftp /usr/lib/ssh/sftp-server -R
+</code></pre>
+<blockquote>
+<p><code>-R</code> means read only</p>
+</blockquote>
+<h1 id="reference">Reference</h1>
+<p><a href="https://saucer-man.com/operation_and_maintenance/480.html">基于SSHFS的网盘搭建</a></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[SSHFS Client]]></title>
         <id>http://www.ntlx.top/post/sshfs-for-windows/</id>
         <link href="http://www.ntlx.top/post/sshfs-for-windows/">
         </link>
         <updated>2021-06-22T02:24:01.000Z</updated>
-        <summary type="html"><![CDATA[<p>Mount remote disk through SSH using SSHFS.</p>
+        <summary type="html"><![CDATA[<p>Client: mount remote disk through <code>SSH</code> using <code>SSHFS</code>.</p>
 ]]></summary>
-        <content type="html"><![CDATA[<p>Mount remote disk through SSH using SSHFS.</p>
+        <content type="html"><![CDATA[<p>Client: mount remote disk through <code>SSH</code> using <code>SSHFS</code>.</p>
 <!-- more -->
 <h1 id="software-installation">Software installation</h1>
 <blockquote>
@@ -731,22 +752,6 @@ services:
 <ul>
 <li><a href="https://sspai.com/post/60185">Microsoft Editor vs. Grammarly</a></li>
 </ul>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Fonts]]></title>
-        <id>http://www.ntlx.top/post/fonts/</id>
-        <link href="http://www.ntlx.top/post/fonts/">
-        </link>
-        <updated>2021-05-21T02:11:57.000Z</updated>
-        <summary type="html"><![CDATA[<p>Fonts collection.</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>Fonts collection.</p>
-<!-- more -->
-<h1 id="recomendation">Recomendation</h1>
-<h2 id="for-coding">For Coding</h2>
-<p>推荐两款美观、护眼、符号全、辨识度高的 Mono Type 字体： <a href="http://192.168.10.133/EDL/files/MonacoforPowerline.zip">Monaco for Powerline</a>、<a href="http://192.168.10.133/EDL/files/FiraCode_1.206.zip">Fira Code</a></p>
-<p>包含图标（符号更全）的字体集： <a href="https://www.nerdfonts.com/">Nerd Fonts</a></p>
 ]]></content>
     </entry>
 </feed>
