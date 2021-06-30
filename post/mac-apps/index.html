@@ -4,7 +4,7 @@
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-<title>LanProxy by Docker | NTLx&#39;s Blog</title>
+<title>Mac Apps | NTLx&#39;s Blog</title>
 
 <link rel="shortcut icon" href="http://www.ntlx.top/favicon.ico?v=1625022049193">
 
@@ -89,167 +89,44 @@
         <div class="post-detail gt-bg-theme-color-second">
             <article class="gt-post-content">
                 <h2 class="post-title">
-                    LanProxy by Docker
+                    Mac Apps
                 </h2>
                 <div class="post-info">
                     <time class="post-time gt-c-content-color-first">
-                        · 2021-05-25 ·
+                        · 2021-06-30 ·
                     </time>
                     
-                        <a href="http://www.ntlx.top/tag/IT9r4N9Uo/" class="post-tags">
-                            # NAT
+                        <a href="http://www.ntlx.top/tag/iYRSpvHp1b/" class="post-tags">
+                            # software
                         </a>
                     
-                        <a href="http://www.ntlx.top/tag/hbvpXyRe-/" class="post-tags">
-                            # setting
-                        </a>
-                    
-                        <a href="http://www.ntlx.top/tag/WJQpj0dJWf/" class="post-tags">
-                            # server
+                        <a href="http://www.ntlx.top/tag/Il5XhIxkWG/" class="post-tags">
+                            # Mac
                         </a>
                     
                 </div>
                 <div class="post-content">
-                    <p>For NAT traversal.<br>
-Need a server which already had a public ip.</p>
+                    <p>Must have apps for Mac OS.</p>
 <!-- more -->
-<h1 id="server">Server</h1>
-<blockquote>
-<p>Must had a public ip already!</p>
-</blockquote>
-<h2 id="one-click-run">One-click run</h2>
-<p><code>docker-compose.yml</code>:</p>
-<pre><code class="language-yaml">version: '3.1'
-services:
-  lanproxy-client:
-    image: franklin5/lanproxy-server
-    container_name: lanproxy-server
-    volumes:
-     - ./config:/root/.lanproxy
-    environment:
-     - LANPROXY_USERNAME=your_username
-     - LANPROXY_PASSWORD=your_password
-    ports:
-     # for web config UI
-     - 8090:8090
-     - 4900:4900
-     - 4993:4993
-     # for redirect port
-     - 9000-9100:9000-9100
-    restart: always
-    logging:
-      options:
-        max-size: &quot;1m&quot;
-</code></pre>
-<h2 id="self-build">Self-build</h2>
-<p><code>Dockerfile</code>:</p>
-<pre><code class="language-Dockerfile">FROM alpine as git
-
-WORKDIR /lanproxy
-
-RUN apk update
-RUN apk add git
-RUN git clone https://github.com/NTLx/lanproxy.git ./
-
-FROM maven as maven
-
-WORKDIR /lanproxy
-
-COPY --from=git /lanproxy ./
-
-RUN mvn compile package -pl proxy-server -am 
-
-RUN cd distribution &amp;&amp; DIR_NAME=$(echo `ls` | awk '{print $NF}') &amp;&amp; mv $DIR_NAME /lanproxy/lanproxy-server
-
-FROM openjdk:8-jdk-alpine
-
-WORKDIR /lanproxy-server
-
-COPY --from=maven /lanproxy/lanproxy-server ./
-
-EXPOSE 8090 4900 4993
-
-CMD [&quot;sh&quot;, &quot;-c&quot;, &quot;sh bin/startup.sh &amp;&amp; tail -f logs/server.log&quot;]
-</code></pre>
-<p>Docker build CMD:</p>
-<pre><code class="language-bash">docker build -t lanserver:v1 .
-</code></pre>
-<p><code>docker-compose.yml</code>:</p>
-<pre><code class="language-yaml">version: '3.1'
-services:
-  lanproxy-client:
-    image: lanserver:v1
-    container_name: lanproxy-server
-    volumes:
-     - ./config:/root/.lanproxy
-    environment:
-     - LANPROXY_USERNAME=your_username
-     - LANPROXY_PASSWORD=your_password
-    ports:
-     # for web config UI
-     - 8090:8090
-     - 4900:4900
-     - 4993:4993
-     # for redirect port
-     - 9000-9100:9000-9100
-    restart: always
-    logging:
-      options:
-        max-size: &quot;1m&quot;
-</code></pre>
-<h1 id="client">Client</h1>
-<blockquote>
-<p><code>network_mode</code> is optional</p>
-</blockquote>
-<h2 id="one-click-run-2">One-click run</h2>
-<p><code>docker-compose.yml</code>:</p>
-<pre><code class="language-yaml">version: '3.1'
-services:
-  lanproxy-client:
-    image: franklin5/lanproxy-client
-    container_name: lanproxy-client
-    environment:
-     - LANPROXY_KEY=input_your_key
-     - LANPROXY_HOST=input_your_host
-    restart: always
-    logging:
-      options:
-        max-size: &quot;1m&quot;
-</code></pre>
-<h2 id="self-build-2">Self-build</h2>
-<p><code>Dockerfile</code> :</p>
-<pre><code class="language-Dockerfile">FROM ubuntu
-
-RUN apt update -y
-RUN apt install openjdk-8-jdk -y
-RUN apt install git -y
-
-WORKDIR /
-RUN git clone https://github.com/NTLx/lanproxy-client.git
-
-ENTRYPOINT [&quot;/lanproxy-client/init.sh&quot;]
-WORKDIR /lanproxy-client
-# EXPOSE 8888
-CMD [&quot;/bin/bash&quot;]
-</code></pre>
-<p>Docker build CMD:</p>
-<pre><code class="language-bash">docker build -t lan:v1 .
-</code></pre>
-<p><code>docker-compose.yml</code>:</p>
-<pre><code class="language-yaml">version: '3.1'
-services:
-  lanproxy-client:
-    image: lan:v1
-    container_name: lanproxy-client
-    environment:
-     - LANPROXY_KEY=input_your_key
-     - LANPROXY_HOST=input_your_host
-    restart: always
-    network_mode: &quot;host&quot;
-    logging:
-      options:
-        max-size: &quot;1m&quot;
-</code></pre>
+<ul>
+<li>balenaEtcher</li>
+<li>CleanMyMac X</li>
+<li>Gridea</li>
+<li>Irvue</li>
+<li>iSyncr</li>
+<li>iTerm</li>
+<li>KeyCastr</li>
+<li>MaxSnap</li>
+<li>Microsoft Remote Desktop Beta</li>
+<li>MyZip Pro</li>
+<li>PDF Expert</li>
+<li>PicGo</li>
+<li>Postbox</li>
+<li>RescueTime</li>
+<li>Sensei</li>
+<li>Transmit</li>
+<li>Visual Studio Code - Insiders</li>
+</ul>
 
                 </div>
             </article>
@@ -258,8 +135,8 @@ services:
         
             <div class="next-post">
                 <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="http://www.ntlx.top/post/how-to-write/" class="post-title gt-a-link">
-                    How To Write
+                <a href="http://www.ntlx.top/post/sshfs-server/" class="post-title gt-a-link">
+                    SSHFS Server
                 </a>
             </div>
         
