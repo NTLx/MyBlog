@@ -1,503 +1,478 @@
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8"/>
-<meta name="description" content=""/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-
-<title>setting | NTLx&#39;s Blog</title>
-
-<link rel="shortcut icon" href="http://www.ntlx.top/favicon.ico?v=1625022049193">
-
-<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>NTLx&#39;s Blog</title>
+<link rel="shortcut icon" href="http://www.ntlx.top/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="http://www.ntlx.top/media/css/tailwind.css">
 <link rel="stylesheet" href="http://www.ntlx.top/styles/main.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
-
-<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
-<!-- DEMO JS -->
-<!--<script src="media/scripts/index.js"></script>-->
+<link rel="alternate" type="application/atom+xml" title="NTLx&#39;s Blog - Atom Feed" href="http://www.ntlx.top/atom.xml">
 
 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PM6M384V04"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-PM6M384V04');
+  </script>
+    
 
+  <meta name="description" content="My Tech Notes & Thoughts" />
 </head>
 <body>
-<div class="main gt-bg-theme-color-first">
-    <div class="main-content">
-        <nav class="navbar navbar-expand-lg">
-    <div class="navbar-brand">
-        <img class="user-avatar" src="/images/avatar.png" alt="头像">
-        <div class="site-name gt-c-content-color-first">
-            NTLx&#39;s Blog
-        </div>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+
+    <div class="nav py-3 md:py-8 fixed w-full z-10 bg-gray-50 dark:bg-gray-700 transition-all duration-300" :class="{ 'scroll': scrolled }">
+  <div class="flex justify-end px-4">
+    <div class="w-8 h-8 flex justify-center items-center rounded-full md:hidden" @click="showMenu = !showMenu">
+      <i class="ri-close-line" v-show="showMenu"></i>
+      <i class="ri-menu-3-line" v-show="!showMenu"></i>
     </div>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <div class="navbar-nav mr-auto" style="text-align: center">
-            
-                <div class="nav-item">
-                    
-                        <a href="/" class="menu gt-a-link">
-                            首页
-                        </a>
-                    
-                </div>
-            
-                <div class="nav-item">
-                    
-                        <a href="/archives" class="menu gt-a-link">
-                            归档
-                        </a>
-                    
-                </div>
-            
-                <div class="nav-item">
-                    
-                        <a href="/tags" class="menu gt-a-link">
-                            标签
-                        </a>
-                    
-                </div>
-            
-                <div class="nav-item">
-                    
-                        <a href="/post/about" class="menu gt-a-link">
-                            关于
-                        </a>
-                    
-                </div>
-            
-        </div>
-        <div style="text-align: center">
-            <form id="gridea-search-form" style="position: relative" data-update="1625022049193" action="/search/index.html">
-                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
-                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
-            </form>
-        </div>
+  </div>
+  <nav class="max-w-4xl w-full mx-auto text-center flex flex-col md:flex-row justify-center md:block" :class="`${ showMenu ? 'block' : 'hidden' }`">
+    
+      <a href="/" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        首页
+      </a>
+    
+      <a href="/archives" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        归档
+      </a>
+    
+      <a href="/tags" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        标签
+      </a>
+    
+      <a href="/post/about" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        关于
+      </a>
+    
+    <a href="http://www.ntlx.top/atom.xml" target="_blank" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+      RSS
+    </a>
+  </nav>
+</div>
+
+    <div class="max-w-4xl w-full mx-auto pt-32">
+      <h1 class="text-2xl font-bold pb-8 flex justify-center items-center">
+        <i class="ri-hashtag"></i>
+        setting
+      </h1>
+      <div class="shadow-box bg-white dark:bg-gray-600 border-gray-300 rounded-none md:rounded-lg -mx-1 md:mx-0 md:px-0">
+        
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="http://www.ntlx.top/post/sshfs-server/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          SSHFS Server
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2021-06-22</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <p>Deploy &amp; Settings for SFTP server.</p>
+
+      </div>
+      <a href="http://www.ntlx.top/post/sshfs-server/" class="btn">
+        Read more
+      </a>
     </div>
-</nav>
+    
+      <img class="flex-shrink-0 self-start md:ml-4 mb-4 md:mb-0 rounded-sm object-cover featured-img order-1 md:order-2 w-full h-40 md:w-56 md:h-32" loading="lazy" src="http://www.ntlx.top/post-images/sshfs-server.png" alt="SSHFS Server">
+    
+  </div>
 
-        <div class="current-tag-container">
-            <h2 class="title gt-c-content-color-first">
-                #setting
-            </h2>
-        </div>
-        <div class="post-list-container">
-    <div class="post-inner">
-        
-            <div class="post gt-bg-theme-color-second">
-                <div class="post-left">
-                    <div>
-                        
-                        <a href="http://www.ntlx.top/post/sshfs-server/">
-                            <span class="post-title gt-c-content-color-first">SSHFS Server</span>
-                        </a>
-                    </div>
-                    <div class="gt-post-content post-abstract gt-c-content-color-second">
-                        <p>Deploy &amp; Settings for SFTP server.</p>
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="http://www.ntlx.top/post/sshfs-for-windows/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          SSHFS Client
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2021-06-22</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <p>Client: mount remote disk through <code>SSH</code> using <code>SSHFS</code>.</p>
 
-                    </div>
-                    <div class="post-info">
-                        <time class="post-time gt-c-content-color-first">
-                            发布于 · 2021-06-22 ·
-                        </time>
-                        
-                            <a href="http://www.ntlx.top/tag/hbvpXyRe-/" class="post-tag">
-                                # setting
-                            </a>
-                        
-                            <a href="http://www.ntlx.top/tag/u4k_gqrYl/" class="post-tag">
-                                # linux
-                            </a>
-                        
-                            <a href="http://www.ntlx.top/tag/WJQpj0dJWf/" class="post-tag">
-                                # server
-                            </a>
-                        
-                    </div>
-                </div>
-                
-                    <a href="http://www.ntlx.top/post/sshfs-server/" class="post-feature-image"
-                       style="background-image: url('http://www.ntlx.top/post-images/sshfs-server.png')">
-                    </a>
-                
-            </div>
-        
-            <div class="post gt-bg-theme-color-second">
-                <div class="post-left">
-                    <div>
-                        
-                        <a href="http://www.ntlx.top/post/sshfs-for-windows/">
-                            <span class="post-title gt-c-content-color-first">SSHFS Client</span>
-                        </a>
-                    </div>
-                    <div class="gt-post-content post-abstract gt-c-content-color-second">
-                        <p>Client: mount remote disk through <code>SSH</code> using <code>SSHFS</code>.</p>
+      </div>
+      <a href="http://www.ntlx.top/post/sshfs-for-windows/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+      <img class="flex-shrink-0 self-start md:ml-4 mb-4 md:mb-0 rounded-sm object-cover featured-img order-1 md:order-2 w-full h-40 md:w-56 md:h-32" loading="lazy" src="http://www.ntlx.top/post-images/sshfs-for-windows.png" alt="SSHFS Client">
+    
+  </div>
 
-                    </div>
-                    <div class="post-info">
-                        <time class="post-time gt-c-content-color-first">
-                            发布于 · 2021-06-22 ·
-                        </time>
-                        
-                            <a href="http://www.ntlx.top/tag/hbvpXyRe-/" class="post-tag">
-                                # setting
-                            </a>
-                        
-                            <a href="http://www.ntlx.top/tag/8Ejdckh9k/" class="post-tag">
-                                # windows
-                            </a>
-                        
-                    </div>
-                </div>
-                
-                    <a href="http://www.ntlx.top/post/sshfs-for-windows/" class="post-feature-image"
-                       style="background-image: url('http://www.ntlx.top/post-images/sshfs-for-windows.png')">
-                    </a>
-                
-            </div>
-        
-            <div class="post gt-bg-theme-color-second">
-                <div class="post-left">
-                    <div>
-                        
-                        <a href="http://www.ntlx.top/post/rstudio-server/">
-                            <span class="post-title gt-c-content-color-first">Rstudio Server</span>
-                        </a>
-                    </div>
-                    <div class="gt-post-content post-abstract gt-c-content-color-second">
-                        <p>Installation Note</p>
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="http://www.ntlx.top/post/rstudio-server/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          Rstudio Server
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2021-06-18</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <p>Installation Note</p>
 
-                    </div>
-                    <div class="post-info">
-                        <time class="post-time gt-c-content-color-first">
-                            发布于 · 2021-06-18 ·
-                        </time>
-                        
-                            <a href="http://www.ntlx.top/tag/fcZfrFpFu/" class="post-tag">
-                                # R
-                            </a>
-                        
-                            <a href="http://www.ntlx.top/tag/hbvpXyRe-/" class="post-tag">
-                                # setting
-                            </a>
-                        
-                            <a href="http://www.ntlx.top/tag/WJQpj0dJWf/" class="post-tag">
-                                # server
-                            </a>
-                        
-                    </div>
-                </div>
-                
-                    <a href="http://www.ntlx.top/post/rstudio-server/" class="post-feature-image"
-                       style="background-image: url('http://www.ntlx.top/post-images/rstudio-server.png')">
-                    </a>
-                
-            </div>
-        
-            <div class="post gt-bg-theme-color-second">
-                <div class="post-left">
-                    <div>
-                        
-                        <a href="http://www.ntlx.top/post/auto-power-off-for-linux/">
-                            <span class="post-title gt-c-content-color-first">Auto Power Off for Linux</span>
-                        </a>
-                    </div>
-                    <div class="gt-post-content post-abstract gt-c-content-color-second">
-                        <p>Auto detect AC power down &amp; auto shutdown system.</p>
+      </div>
+      <a href="http://www.ntlx.top/post/rstudio-server/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+      <img class="flex-shrink-0 self-start md:ml-4 mb-4 md:mb-0 rounded-sm object-cover featured-img order-1 md:order-2 w-full h-40 md:w-56 md:h-32" loading="lazy" src="http://www.ntlx.top/post-images/rstudio-server.png" alt="Rstudio Server">
+    
+  </div>
 
-                    </div>
-                    <div class="post-info">
-                        <time class="post-time gt-c-content-color-first">
-                            发布于 · 2021-06-16 ·
-                        </time>
-                        
-                            <a href="http://www.ntlx.top/tag/hbvpXyRe-/" class="post-tag">
-                                # setting
-                            </a>
-                        
-                            <a href="http://www.ntlx.top/tag/WJQpj0dJWf/" class="post-tag">
-                                # server
-                            </a>
-                        
-                    </div>
-                </div>
-                
-                    <a href="http://www.ntlx.top/post/auto-power-off-for-linux/" class="post-feature-image"
-                       style="background-image: url('http://www.ntlx.top/post-images/auto-power-off-for-linux.png')">
-                    </a>
-                
-            </div>
-        
-            <div class="post gt-bg-theme-color-second">
-                <div class="post-left">
-                    <div>
-                        
-                        <a href="http://www.ntlx.top/post/docker-ipsec-vpn/">
-                            <span class="post-title gt-c-content-color-first">Docker IPsec VPN</span>
-                        </a>
-                    </div>
-                    <div class="gt-post-content post-abstract gt-c-content-color-second">
-                        <p>Self-build VPN, easy &amp; free !</p>
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="http://www.ntlx.top/post/auto-power-off-for-linux/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          Auto Power Off for Linux
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2021-06-16</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <p>Auto detect AC power down &amp; auto shutdown system.</p>
 
-                    </div>
-                    <div class="post-info">
-                        <time class="post-time gt-c-content-color-first">
-                            发布于 · 2021-06-14 ·
-                        </time>
-                        
-                            <a href="http://www.ntlx.top/tag/a0bS9F0_g/" class="post-tag">
-                                # VPN
-                            </a>
-                        
-                            <a href="http://www.ntlx.top/tag/aac2IOTQy/" class="post-tag">
-                                # docker
-                            </a>
-                        
-                            <a href="http://www.ntlx.top/tag/hbvpXyRe-/" class="post-tag">
-                                # setting
-                            </a>
-                        
-                            <a href="http://www.ntlx.top/tag/WJQpj0dJWf/" class="post-tag">
-                                # server
-                            </a>
-                        
-                    </div>
-                </div>
-                
-                    <a href="http://www.ntlx.top/post/docker-ipsec-vpn/" class="post-feature-image"
-                       style="background-image: url('http://www.ntlx.top/post-images/docker-ipsec-vpn.png')">
-                    </a>
-                
-            </div>
-        
-            <div class="post gt-bg-theme-color-second">
-                <div class="post-left">
-                    <div>
-                        
-                        <a href="http://www.ntlx.top/post/proxy/">
-                            <span class="post-title gt-c-content-color-first">Proxy</span>
-                        </a>
-                    </div>
-                    <div class="gt-post-content post-abstract gt-c-content-color-second">
-                        <p><code>网络代理</code> 可以简单理解为更改特定或所有网络传输的数据通道（或线路），以达到绕过监测、提高数据传输安全性的目的。</p>
+      </div>
+      <a href="http://www.ntlx.top/post/auto-power-off-for-linux/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+      <img class="flex-shrink-0 self-start md:ml-4 mb-4 md:mb-0 rounded-sm object-cover featured-img order-1 md:order-2 w-full h-40 md:w-56 md:h-32" loading="lazy" src="http://www.ntlx.top/post-images/auto-power-off-for-linux.png" alt="Auto Power Off for Linux">
+    
+  </div>
 
-                    </div>
-                    <div class="post-info">
-                        <time class="post-time gt-c-content-color-first">
-                            发布于 · 2021-06-10 ·
-                        </time>
-                        
-                            <a href="http://www.ntlx.top/tag/Ohi1OuL2v/" class="post-tag">
-                                # proxy
-                            </a>
-                        
-                            <a href="http://www.ntlx.top/tag/hbvpXyRe-/" class="post-tag">
-                                # setting
-                            </a>
-                        
-                    </div>
-                </div>
-                
-                    <a href="http://www.ntlx.top/post/proxy/" class="post-feature-image"
-                       style="background-image: url('http://www.ntlx.top/post-images/proxy.png')">
-                    </a>
-                
-            </div>
-        
-            <div class="post gt-bg-theme-color-second">
-                <div class="post-left">
-                    <div>
-                        
-                        <a href="http://www.ntlx.top/post/picgo/">
-                            <span class="post-title gt-c-content-color-first">PicGo</span>
-                        </a>
-                    </div>
-                    <div class="gt-post-content post-abstract gt-c-content-color-second">
-                        <p>Self build image hosting service solution, for Free !</p>
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="http://www.ntlx.top/post/docker-ipsec-vpn/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          Docker IPsec VPN
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2021-06-14</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <p>Self-build VPN, easy &amp; free !</p>
 
-                    </div>
-                    <div class="post-info">
-                        <time class="post-time gt-c-content-color-first">
-                            发布于 · 2021-06-10 ·
-                        </time>
-                        
-                            <a href="http://www.ntlx.top/tag/iYRSpvHp1b/" class="post-tag">
-                                # software
-                            </a>
-                        
-                            <a href="http://www.ntlx.top/tag/hbvpXyRe-/" class="post-tag">
-                                # setting
-                            </a>
-                        
-                    </div>
-                </div>
-                
-                    <a href="http://www.ntlx.top/post/picgo/" class="post-feature-image"
-                       style="background-image: url('https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201225084631.png')">
-                    </a>
-                
-            </div>
-        
-            <div class="post gt-bg-theme-color-second">
-                <div class="post-left">
-                    <div>
-                        
-                        <a href="http://www.ntlx.top/post/lanproxy-by-docker/">
-                            <span class="post-title gt-c-content-color-first">LanProxy by Docker</span>
-                        </a>
-                    </div>
-                    <div class="gt-post-content post-abstract gt-c-content-color-second">
-                        <p>For NAT traversal.<br>
+      </div>
+      <a href="http://www.ntlx.top/post/docker-ipsec-vpn/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+      <img class="flex-shrink-0 self-start md:ml-4 mb-4 md:mb-0 rounded-sm object-cover featured-img order-1 md:order-2 w-full h-40 md:w-56 md:h-32" loading="lazy" src="http://www.ntlx.top/post-images/docker-ipsec-vpn.png" alt="Docker IPsec VPN">
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="http://www.ntlx.top/post/proxy/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          Proxy
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2021-06-10</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <p><code>网络代理</code> 可以简单理解为更改特定或所有网络传输的数据通道（或线路），以达到绕过监测、提高数据传输安全性的目的。</p>
+
+      </div>
+      <a href="http://www.ntlx.top/post/proxy/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+      <img class="flex-shrink-0 self-start md:ml-4 mb-4 md:mb-0 rounded-sm object-cover featured-img order-1 md:order-2 w-full h-40 md:w-56 md:h-32" loading="lazy" src="http://www.ntlx.top/post-images/proxy.png" alt="Proxy">
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="http://www.ntlx.top/post/picgo/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          PicGo
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2021-06-10</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <p>Self build image hosting service solution, for Free !</p>
+
+      </div>
+      <a href="http://www.ntlx.top/post/picgo/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+      <img class="flex-shrink-0 self-start md:ml-4 mb-4 md:mb-0 rounded-sm object-cover featured-img order-1 md:order-2 w-full h-40 md:w-56 md:h-32" loading="lazy" src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201225084631.png" alt="PicGo">
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="http://www.ntlx.top/post/lanproxy-by-docker/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          LanProxy by Docker
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2021-05-25</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <p>For NAT traversal.<br>
 Need a server which already had a public ip.</p>
 
-                    </div>
-                    <div class="post-info">
-                        <time class="post-time gt-c-content-color-first">
-                            发布于 · 2021-05-25 ·
-                        </time>
-                        
-                            <a href="http://www.ntlx.top/tag/IT9r4N9Uo/" class="post-tag">
-                                # NAT
-                            </a>
-                        
-                            <a href="http://www.ntlx.top/tag/hbvpXyRe-/" class="post-tag">
-                                # setting
-                            </a>
-                        
-                            <a href="http://www.ntlx.top/tag/WJQpj0dJWf/" class="post-tag">
-                                # server
-                            </a>
-                        
-                    </div>
-                </div>
-                
-                    <a href="http://www.ntlx.top/post/lanproxy-by-docker/" class="post-feature-image"
-                       style="background-image: url('http://www.ntlx.top/post-images/lanproxy-by-docker.png')">
-                    </a>
-                
-            </div>
-        
-            <div class="post gt-bg-theme-color-second">
-                <div class="post-left">
-                    <div>
-                        
-                        <a href="http://www.ntlx.top/post/git/">
-                            <span class="post-title gt-c-content-color-first">Git</span>
-                        </a>
-                    </div>
-                    <div class="gt-post-content post-abstract gt-c-content-color-second">
-                        <p>Usefull settings of Git.</p>
-
-                    </div>
-                    <div class="post-info">
-                        <time class="post-time gt-c-content-color-first">
-                            发布于 · 2021-05-21 ·
-                        </time>
-                        
-                            <a href="http://www.ntlx.top/tag/JuiCUKP_P/" class="post-tag">
-                                # Git
-                            </a>
-                        
-                            <a href="http://www.ntlx.top/tag/hbvpXyRe-/" class="post-tag">
-                                # setting
-                            </a>
-                        
-                    </div>
-                </div>
-                
-                    <a href="http://www.ntlx.top/post/git/" class="post-feature-image"
-                       style="background-image: url('http://www.ntlx.top/post-images/git.png')">
-                    </a>
-                
-            </div>
-        
-            <div class="post gt-bg-theme-color-second">
-                <div class="post-left">
-                    <div>
-                        
-                        <a href="http://www.ntlx.top/post/editor-config/">
-                            <span class="post-title gt-c-content-color-first">Editor Config</span>
-                        </a>
-                    </div>
-                    <div class="gt-post-content post-abstract gt-c-content-color-second">
-                        <p>An OS crossed format solution!</p>
-
-                    </div>
-                    <div class="post-info">
-                        <time class="post-time gt-c-content-color-first">
-                            发布于 · 2021-05-21 ·
-                        </time>
-                        
-                            <a href="http://www.ntlx.top/tag/SH-u4DUAF/" class="post-tag">
-                                # writting
-                            </a>
-                        
-                            <a href="http://www.ntlx.top/tag/w7AHcsR8XN/" class="post-tag">
-                                # Tool
-                            </a>
-                        
-                            <a href="http://www.ntlx.top/tag/hbvpXyRe-/" class="post-tag">
-                                # setting
-                            </a>
-                        
-                    </div>
-                </div>
-                
-                    <a href="http://www.ntlx.top/post/editor-config/" class="post-feature-image"
-                       style="background-image: url('http://www.ntlx.top/post-images/editor-config.png')">
-                    </a>
-                
-            </div>
-        
+      </div>
+      <a href="http://www.ntlx.top/post/lanproxy-by-docker/" class="btn">
+        Read more
+      </a>
     </div>
-</div>
-        <div class="pagination-container">
     
+      <img class="flex-shrink-0 self-start md:ml-4 mb-4 md:mb-0 rounded-sm object-cover featured-img order-1 md:order-2 w-full h-40 md:w-56 md:h-32" loading="lazy" src="http://www.ntlx.top/post-images/lanproxy-by-docker.png" alt="LanProxy by Docker">
     
-        <a href="http://www.ntlx.top/tag/hbvpXyRe-/page/2" class="prev-page gt-a-link">下一页</a>
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
     
-</div>
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="http://www.ntlx.top/post/git/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          Git
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2021-05-21</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <p>Usefull settings of Git.</p>
 
-        <div class="site-footer gt-c-content-color-first">
-    <div class="slogan gt-c-content-color-first">My Tech Notes & Thoughts</div>
-    <div class="social-container">
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
+      </div>
+      <a href="http://www.ntlx.top/post/git/" class="btn">
+        Read more
+      </a>
     </div>
-    <div class="footer-info">
-        Feel free to share & use
-    </div>
-    <div>
-        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
-                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="http://www.ntlx.top/atom.xml" target="_blank">RSS</a></a>
-    </div>
-</div>
+    
+      <img class="flex-shrink-0 self-start md:ml-4 mb-4 md:mb-0 rounded-sm object-cover featured-img order-1 md:order-2 w-full h-40 md:w-56 md:h-32" loading="lazy" src="http://www.ntlx.top/post-images/git.png" alt="Git">
+    
+  </div>
 
-<script>
-  hljs.initHighlightingOnLoad()
-</script>
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="http://www.ntlx.top/post/editor-config/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          Editor Config
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2021-05-21</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <p>An OS crossed format solution!</p>
+
+      </div>
+      <a href="http://www.ntlx.top/post/editor-config/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+      <img class="flex-shrink-0 self-start md:ml-4 mb-4 md:mb-0 rounded-sm object-cover featured-img order-1 md:order-2 w-full h-40 md:w-56 md:h-32" loading="lazy" src="http://www.ntlx.top/post-images/editor-config.png" alt="Editor Config">
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="http://www.ntlx.top/post/unraid/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          UNRAID
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2021-05-21</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <p><strong><a href="https://unraid.net/">Unleash Your Hardware</a></strong></p>
+<p>Unraid is an operating system for personal and small business use that brings enterprise-class features letting you configure your computer systems to maximize performance and capacity using any combination of applications, VMs, storage devices, and hardware.</p>
+
+      </div>
+      <a href="http://www.ntlx.top/post/unraid/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+      <img class="flex-shrink-0 self-start md:ml-4 mb-4 md:mb-0 rounded-sm object-cover featured-img order-1 md:order-2 w-full h-40 md:w-56 md:h-32" loading="lazy" src="http://www.ntlx.top/post-images/unraid.svg" alt="UNRAID">
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="http://www.ntlx.top/post/vmware/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          VMWare
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2021-05-21</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <p>Most of this artical was written for v6.7u3, and the lastest is v7.0U2a</p>
+
+      </div>
+      <a href="http://www.ntlx.top/post/vmware/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+      <img class="flex-shrink-0 self-start md:ml-4 mb-4 md:mb-0 rounded-sm object-cover featured-img order-1 md:order-2 w-full h-40 md:w-56 md:h-32" loading="lazy" src="http://www.ntlx.top/post-images/vmware.png" alt="VMWare">
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="http://www.ntlx.top/post/add-linux-to-ad/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          Add Linux to AD
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2021-05-18</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <p>Tested on Ubuntu</p>
+
+      </div>
+      <a href="http://www.ntlx.top/post/add-linux-to-ad/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+      <img class="flex-shrink-0 self-start md:ml-4 mb-4 md:mb-0 rounded-sm object-cover featured-img order-1 md:order-2 w-full h-40 md:w-56 md:h-32" loading="lazy" src="http://www.ntlx.top/post-images/add-linux-to-ad.png" alt="Add Linux to AD">
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="http://www.ntlx.top/post/active-directory/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          Active Directory
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2021-05-18</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <p>Usefull Settings Collection</p>
+
+      </div>
+      <a href="http://www.ntlx.top/post/active-directory/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+      <img class="flex-shrink-0 self-start md:ml-4 mb-4 md:mb-0 rounded-sm object-cover featured-img order-1 md:order-2 w-full h-40 md:w-56 md:h-32" loading="lazy" src="http://www.ntlx.top/post-images/active-directory.png" alt="Active Directory">
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="http://www.ntlx.top/post/docker/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          Docker
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2021-05-18</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <p>Usage &amp; Settings</p>
+
+      </div>
+      <a href="http://www.ntlx.top/post/docker/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+      <img class="flex-shrink-0 self-start md:ml-4 mb-4 md:mb-0 rounded-sm object-cover featured-img order-1 md:order-2 w-full h-40 md:w-56 md:h-32" loading="lazy" src="http://www.ntlx.top/post-images/docker.png" alt="Docker">
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="http://www.ntlx.top/post/raspberry-pi/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          Raspberry Pi
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2021-05-18</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <p>The most popular IoT core!</p>
+
+      </div>
+      <a href="http://www.ntlx.top/post/raspberry-pi/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+      <img class="flex-shrink-0 self-start md:ml-4 mb-4 md:mb-0 rounded-sm object-cover featured-img order-1 md:order-2 w-full h-40 md:w-56 md:h-32" loading="lazy" src="http://www.ntlx.top/post-images/raspberry-pi.gif" alt="Raspberry Pi">
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="http://www.ntlx.top/post/zsh/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          ZSH
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2021-05-18</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <p>ZSH Installation &amp; Settings Notes</p>
+
+      </div>
+      <a href="http://www.ntlx.top/post/zsh/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+      <img class="flex-shrink-0 self-start md:ml-4 mb-4 md:mb-0 rounded-sm object-cover featured-img order-1 md:order-2 w-full h-40 md:w-56 md:h-32" loading="lazy" src="http://www.ntlx.top/post-images/zsh.png" alt="ZSH">
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="http://www.ntlx.top/post/mac-os/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          Mac OS
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2021-05-18</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <p>Usage or Setting Notes</p>
+
+      </div>
+      <a href="http://www.ntlx.top/post/mac-os/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+      <img class="flex-shrink-0 self-start md:ml-4 mb-4 md:mb-0 rounded-sm object-cover featured-img order-1 md:order-2 w-full h-40 md:w-56 md:h-32" loading="lazy" src="http://www.ntlx.top/post-images/mac-os.png" alt="Mac OS">
+    
+  </div>
+  
+      </div>
+
+      
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Feel free to share & use
+</footer>
 
     </div>
-</div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="http://www.ntlx.top/media/scripts/main.js"></script>
 </body>
 </html>
