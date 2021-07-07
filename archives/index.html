@@ -1,363 +1,494 @@
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
 <title>NTLx&#39;s Blog</title>
-<link rel="shortcut icon" href="http://www.ntlx.top/favicon.ico">
-<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
-<link rel="stylesheet" href="http://www.ntlx.top/media/css/tailwind.css">
+
+<link rel="shortcut icon" href="http://www.ntlx.top/favicon.ico?v=1625620287876">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="http://www.ntlx.top/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="NTLx&#39;s Blog - Atom Feed" href="http://www.ntlx.top/atom.xml">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
 
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PM6M384V04"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-  
-    gtag('config', 'G-PM6M384V04');
-  </script>
-    
 
-  <meta name="description" content="My Tech Notes & Thoughts" />
 </head>
 <body>
-  <div class="antialiased flex flex-col min-h-screen" id="app">
-
-    <div class="nav py-3 md:py-8 fixed w-full z-10 bg-gray-50 dark:bg-gray-700 transition-all duration-300" :class="{ 'scroll': scrolled }">
-  <div class="flex justify-end px-4">
-    <div class="w-8 h-8 flex justify-center items-center rounded-full md:hidden" @click="showMenu = !showMenu">
-      <i class="ri-close-line" v-show="showMenu"></i>
-      <i class="ri-menu-3-line" v-show="!showMenu"></i>
+<div class="main gt-bg-theme-color-first">
+    <div class="main-content">
+        <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            NTLx&#39;s Blog
+        </div>
     </div>
-  </div>
-  <nav class="max-w-4xl w-full mx-auto text-center flex flex-col md:flex-row justify-center md:block" :class="`${ showMenu ? 'block' : 'hidden' }`">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1625620287876" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+
+        <div class="post-container">
+            <div class="post-detail gt-bg-theme-color-first">
+                <article class="gt-post-content">
+                    <h2 class="post-title">归档</h2>
+        
+
+<div class="archives-container">
     
-      <a href="/" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
-        首页
-      </a>
+        <h2 class="year gt-c-cotent-color-first">2021</h2>
+        
+            
+                <article class="post">
+                    <a href="http://www.ntlx.top/post/mac-apps/">
+                        <div class="post-title gt-c-content-color-first">
+                            <small><b>2021-06-30&nbsp;&nbsp;·&nbsp;&nbsp;</b></small>
+                            Mac Apps
+                        </div>
+                    </a>
+                </article>
+            
+        
+            
+                <article class="post">
+                    <a href="http://www.ntlx.top/post/sshfs-server/">
+                        <div class="post-title gt-c-content-color-first">
+                            <small><b>2021-06-22&nbsp;&nbsp;·&nbsp;&nbsp;</b></small>
+                            SSHFS Server
+                        </div>
+                    </a>
+                </article>
+            
+        
+            
+                <article class="post">
+                    <a href="http://www.ntlx.top/post/sshfs-for-windows/">
+                        <div class="post-title gt-c-content-color-first">
+                            <small><b>2021-06-22&nbsp;&nbsp;·&nbsp;&nbsp;</b></small>
+                            SSHFS Client
+                        </div>
+                    </a>
+                </article>
+            
+        
+            
+                <article class="post">
+                    <a href="http://www.ntlx.top/post/rstudio-server/">
+                        <div class="post-title gt-c-content-color-first">
+                            <small><b>2021-06-18&nbsp;&nbsp;·&nbsp;&nbsp;</b></small>
+                            Rstudio Server
+                        </div>
+                    </a>
+                </article>
+            
+        
+            
+                <article class="post">
+                    <a href="http://www.ntlx.top/post/auto-power-off-for-linux/">
+                        <div class="post-title gt-c-content-color-first">
+                            <small><b>2021-06-16&nbsp;&nbsp;·&nbsp;&nbsp;</b></small>
+                            Auto Power Off for Linux
+                        </div>
+                    </a>
+                </article>
+            
+        
+            
+                <article class="post">
+                    <a href="http://www.ntlx.top/post/docker-ipsec-vpn/">
+                        <div class="post-title gt-c-content-color-first">
+                            <small><b>2021-06-14&nbsp;&nbsp;·&nbsp;&nbsp;</b></small>
+                            Docker IPsec VPN
+                        </div>
+                    </a>
+                </article>
+            
+        
+            
+                <article class="post">
+                    <a href="http://www.ntlx.top/post/proxy/">
+                        <div class="post-title gt-c-content-color-first">
+                            <small><b>2021-06-10&nbsp;&nbsp;·&nbsp;&nbsp;</b></small>
+                            Proxy
+                        </div>
+                    </a>
+                </article>
+            
+        
+            
+                <article class="post">
+                    <a href="http://www.ntlx.top/post/picgo/">
+                        <div class="post-title gt-c-content-color-first">
+                            <small><b>2021-06-10&nbsp;&nbsp;·&nbsp;&nbsp;</b></small>
+                            PicGo
+                        </div>
+                    </a>
+                </article>
+            
+        
+            
+                <article class="post">
+                    <a href="http://www.ntlx.top/post/perl-ke-xue-ji-suan-dai-ma-pian-duan/">
+                        <div class="post-title gt-c-content-color-first">
+                            <small><b>2021-06-08&nbsp;&nbsp;·&nbsp;&nbsp;</b></small>
+                            Perl 科学计算代码片段
+                        </div>
+                    </a>
+                </article>
+            
+        
+            
+                <article class="post">
+                    <a href="http://www.ntlx.top/post/lanproxy-by-docker/">
+                        <div class="post-title gt-c-content-color-first">
+                            <small><b>2021-05-25&nbsp;&nbsp;·&nbsp;&nbsp;</b></small>
+                            LanProxy by Docker
+                        </div>
+                    </a>
+                </article>
+            
+        
+            
+                <article class="post">
+                    <a href="http://www.ntlx.top/post/how-to-write/">
+                        <div class="post-title gt-c-content-color-first">
+                            <small><b>2021-05-21&nbsp;&nbsp;·&nbsp;&nbsp;</b></small>
+                            How To Write
+                        </div>
+                    </a>
+                </article>
+            
+        
+            
+                <article class="post">
+                    <a href="http://www.ntlx.top/post/fonts/">
+                        <div class="post-title gt-c-content-color-first">
+                            <small><b>2021-05-21&nbsp;&nbsp;·&nbsp;&nbsp;</b></small>
+                            Fonts
+                        </div>
+                    </a>
+                </article>
+            
+        
+            
+                <article class="post">
+                    <a href="http://www.ntlx.top/post/r/">
+                        <div class="post-title gt-c-content-color-first">
+                            <small><b>2021-05-21&nbsp;&nbsp;·&nbsp;&nbsp;</b></small>
+                            R
+                        </div>
+                    </a>
+                </article>
+            
+        
+            
+                <article class="post">
+                    <a href="http://www.ntlx.top/post/python/">
+                        <div class="post-title gt-c-content-color-first">
+                            <small><b>2021-05-21&nbsp;&nbsp;·&nbsp;&nbsp;</b></small>
+                            Python
+                        </div>
+                    </a>
+                </article>
+            
+        
+            
+                <article class="post">
+                    <a href="http://www.ntlx.top/post/git/">
+                        <div class="post-title gt-c-content-color-first">
+                            <small><b>2021-05-21&nbsp;&nbsp;·&nbsp;&nbsp;</b></small>
+                            Git
+                        </div>
+                    </a>
+                </article>
+            
+        
+            
+                <article class="post">
+                    <a href="http://www.ntlx.top/post/editor-config/">
+                        <div class="post-title gt-c-content-color-first">
+                            <small><b>2021-05-21&nbsp;&nbsp;·&nbsp;&nbsp;</b></small>
+                            Editor Config
+                        </div>
+                    </a>
+                </article>
+            
+        
+            
+                <article class="post">
+                    <a href="http://www.ntlx.top/post/app-collections/">
+                        <div class="post-title gt-c-content-color-first">
+                            <small><b>2021-05-21&nbsp;&nbsp;·&nbsp;&nbsp;</b></small>
+                            APP Collections
+                        </div>
+                    </a>
+                </article>
+            
+        
+            
+                <article class="post">
+                    <a href="http://www.ntlx.top/post/postgresql/">
+                        <div class="post-title gt-c-content-color-first">
+                            <small><b>2021-05-21&nbsp;&nbsp;·&nbsp;&nbsp;</b></small>
+                            PostgreSQL
+                        </div>
+                    </a>
+                </article>
+            
+        
+            
+                <article class="post">
+                    <a href="http://www.ntlx.top/post/unraid/">
+                        <div class="post-title gt-c-content-color-first">
+                            <small><b>2021-05-21&nbsp;&nbsp;·&nbsp;&nbsp;</b></small>
+                            UNRAID
+                        </div>
+                    </a>
+                </article>
+            
+        
+            
+                <article class="post">
+                    <a href="http://www.ntlx.top/post/vmware/">
+                        <div class="post-title gt-c-content-color-first">
+                            <small><b>2021-05-21&nbsp;&nbsp;·&nbsp;&nbsp;</b></small>
+                            VMWare
+                        </div>
+                    </a>
+                </article>
+            
+        
+            
+                <article class="post">
+                    <a href="http://www.ntlx.top/post/ubuntu-server-installation-note/">
+                        <div class="post-title gt-c-content-color-first">
+                            <small><b>2021-05-20&nbsp;&nbsp;·&nbsp;&nbsp;</b></small>
+                            Ubuntu Server Installation Note
+                        </div>
+                    </a>
+                </article>
+            
+        
+            
+                <article class="post">
+                    <a href="http://www.ntlx.top/post/add-linux-to-ad/">
+                        <div class="post-title gt-c-content-color-first">
+                            <small><b>2021-05-18&nbsp;&nbsp;·&nbsp;&nbsp;</b></small>
+                            Add Linux to AD
+                        </div>
+                    </a>
+                </article>
+            
+        
+            
+                <article class="post">
+                    <a href="http://www.ntlx.top/post/active-directory/">
+                        <div class="post-title gt-c-content-color-first">
+                            <small><b>2021-05-18&nbsp;&nbsp;·&nbsp;&nbsp;</b></small>
+                            Active Directory
+                        </div>
+                    </a>
+                </article>
+            
+        
+            
+                <article class="post">
+                    <a href="http://www.ntlx.top/post/rss-collections/">
+                        <div class="post-title gt-c-content-color-first">
+                            <small><b>2021-05-18&nbsp;&nbsp;·&nbsp;&nbsp;</b></small>
+                            RSS Collections
+                        </div>
+                    </a>
+                </article>
+            
+        
+            
+                <article class="post">
+                    <a href="http://www.ntlx.top/post/docker/">
+                        <div class="post-title gt-c-content-color-first">
+                            <small><b>2021-05-18&nbsp;&nbsp;·&nbsp;&nbsp;</b></small>
+                            Docker
+                        </div>
+                    </a>
+                </article>
+            
+        
+            
+                <article class="post">
+                    <a href="http://www.ntlx.top/post/raspberry-pi/">
+                        <div class="post-title gt-c-content-color-first">
+                            <small><b>2021-05-18&nbsp;&nbsp;·&nbsp;&nbsp;</b></small>
+                            Raspberry Pi
+                        </div>
+                    </a>
+                </article>
+            
+        
+            
+                <article class="post">
+                    <a href="http://www.ntlx.top/post/zsh/">
+                        <div class="post-title gt-c-content-color-first">
+                            <small><b>2021-05-18&nbsp;&nbsp;·&nbsp;&nbsp;</b></small>
+                            ZSH
+                        </div>
+                    </a>
+                </article>
+            
+        
+            
+                <article class="post">
+                    <a href="http://www.ntlx.top/post/mac-os/">
+                        <div class="post-title gt-c-content-color-first">
+                            <small><b>2021-05-18&nbsp;&nbsp;·&nbsp;&nbsp;</b></small>
+                            Mac OS
+                        </div>
+                    </a>
+                </article>
+            
+        
+            
+                <article class="post">
+                    <a href="http://www.ntlx.top/post/self-host-matomo/">
+                        <div class="post-title gt-c-content-color-first">
+                            <small><b>2021-05-18&nbsp;&nbsp;·&nbsp;&nbsp;</b></small>
+                            Self-host Matomo
+                        </div>
+                    </a>
+                </article>
+            
+        
+            
+                <article class="post">
+                    <a href="http://www.ntlx.top/post/self-host-ghost/">
+                        <div class="post-title gt-c-content-color-first">
+                            <small><b>2021-05-18&nbsp;&nbsp;·&nbsp;&nbsp;</b></small>
+                            Self-host Ghost
+                        </div>
+                    </a>
+                </article>
+            
+        
+            
+                <article class="post">
+                    <a href="http://www.ntlx.top/post/windows-system-settings/">
+                        <div class="post-title gt-c-content-color-first">
+                            <small><b>2021-05-18&nbsp;&nbsp;·&nbsp;&nbsp;</b></small>
+                            Windows System Settings
+                        </div>
+                    </a>
+                </article>
+            
+        
+            
+                <article class="post">
+                    <a href="http://www.ntlx.top/post/mdns/">
+                        <div class="post-title gt-c-content-color-first">
+                            <small><b>2021-05-15&nbsp;&nbsp;·&nbsp;&nbsp;</b></small>
+                            mDNS
+                        </div>
+                    </a>
+                </article>
+            
+        
     
-      <a href="/archives" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
-        归档
-      </a>
-    
-      <a href="/tags" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
-        标签
-      </a>
-    
-      <a href="/post/about" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
-        关于
-      </a>
-    
-    <a href="http://www.ntlx.top/atom.xml" target="_blank" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
-      RSS
-    </a>
-  </nav>
 </div>
 
-    <div class="max-w-4xl w-full mx-auto pt-32">
-      <div class="py-8 shadow-box bg-white dark:bg-gray-600 border-gray-300 rounded-none md:rounded-lg -mx-1 md:mx-0 md:px-0">
-        
-          <div class="px-8 pb-5 flex relative overflow-hidden">
-            
-            <div class="flex-1">
-              <a href="http://www.ntlx.top/post/mac-apps/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
-                Mac Apps
-              </a>
-            </div>
-          </div>
-        
-          <div class="px-8 pb-5 flex relative overflow-hidden">
-            
-            <div class="flex-1">
-              <a href="http://www.ntlx.top/post/sshfs-server/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
-                SSHFS Server
-              </a>
-            </div>
-          </div>
-        
-          <div class="px-8 pb-5 flex relative overflow-hidden">
-            
-            <div class="flex-1">
-              <a href="http://www.ntlx.top/post/sshfs-for-windows/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
-                SSHFS Client
-              </a>
-            </div>
-          </div>
-        
-          <div class="px-8 pb-5 flex relative overflow-hidden">
-            
-            <div class="flex-1">
-              <a href="http://www.ntlx.top/post/rstudio-server/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
-                Rstudio Server
-              </a>
-            </div>
-          </div>
-        
-          <div class="px-8 pb-5 flex relative overflow-hidden">
-            
-            <div class="flex-1">
-              <a href="http://www.ntlx.top/post/auto-power-off-for-linux/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
-                Auto Power Off for Linux
-              </a>
-            </div>
-          </div>
-        
-          <div class="px-8 pb-5 flex relative overflow-hidden">
-            
-            <div class="flex-1">
-              <a href="http://www.ntlx.top/post/docker-ipsec-vpn/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
-                Docker IPsec VPN
-              </a>
-            </div>
-          </div>
-        
-          <div class="px-8 pb-5 flex relative overflow-hidden">
-            
-            <div class="flex-1">
-              <a href="http://www.ntlx.top/post/proxy/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
-                Proxy
-              </a>
-            </div>
-          </div>
-        
-          <div class="px-8 pb-5 flex relative overflow-hidden">
-            
-            <div class="flex-1">
-              <a href="http://www.ntlx.top/post/picgo/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
-                PicGo
-              </a>
-            </div>
-          </div>
-        
-          <div class="px-8 pb-5 flex relative overflow-hidden">
-            
-            <div class="flex-1">
-              <a href="http://www.ntlx.top/post/perl-ke-xue-ji-suan-dai-ma-pian-duan/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
-                Perl 科学计算代码片段
-              </a>
-            </div>
-          </div>
-        
-          <div class="px-8 pb-5 flex relative overflow-hidden">
-            
-            <div class="flex-1">
-              <a href="http://www.ntlx.top/post/lanproxy-by-docker/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
-                LanProxy by Docker
-              </a>
-            </div>
-          </div>
-        
-          <div class="px-8 pb-5 flex relative overflow-hidden">
-            
-            <div class="flex-1">
-              <a href="http://www.ntlx.top/post/how-to-write/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
-                How To Write
-              </a>
-            </div>
-          </div>
-        
-          <div class="px-8 pb-5 flex relative overflow-hidden">
-            
-            <div class="flex-1">
-              <a href="http://www.ntlx.top/post/fonts/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
-                Fonts
-              </a>
-            </div>
-          </div>
-        
-          <div class="px-8 pb-5 flex relative overflow-hidden">
-            
-            <div class="flex-1">
-              <a href="http://www.ntlx.top/post/r/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
-                R
-              </a>
-            </div>
-          </div>
-        
-          <div class="px-8 pb-5 flex relative overflow-hidden">
-            
-            <div class="flex-1">
-              <a href="http://www.ntlx.top/post/python/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
-                Python
-              </a>
-            </div>
-          </div>
-        
-          <div class="px-8 pb-5 flex relative overflow-hidden">
-            
-            <div class="flex-1">
-              <a href="http://www.ntlx.top/post/git/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
-                Git
-              </a>
-            </div>
-          </div>
-        
-          <div class="px-8 pb-5 flex relative overflow-hidden">
-            
-            <div class="flex-1">
-              <a href="http://www.ntlx.top/post/editor-config/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
-                Editor Config
-              </a>
-            </div>
-          </div>
-        
-          <div class="px-8 pb-5 flex relative overflow-hidden">
-            
-            <div class="flex-1">
-              <a href="http://www.ntlx.top/post/app-collections/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
-                APP Collections
-              </a>
-            </div>
-          </div>
-        
-          <div class="px-8 pb-5 flex relative overflow-hidden">
-            
-            <div class="flex-1">
-              <a href="http://www.ntlx.top/post/postgresql/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
-                PostgreSQL
-              </a>
-            </div>
-          </div>
-        
-          <div class="px-8 pb-5 flex relative overflow-hidden">
-            
-            <div class="flex-1">
-              <a href="http://www.ntlx.top/post/unraid/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
-                UNRAID
-              </a>
-            </div>
-          </div>
-        
-          <div class="px-8 pb-5 flex relative overflow-hidden">
-            
-            <div class="flex-1">
-              <a href="http://www.ntlx.top/post/vmware/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
-                VMWare
-              </a>
-            </div>
-          </div>
-        
-          <div class="px-8 pb-5 flex relative overflow-hidden">
-            
-            <div class="flex-1">
-              <a href="http://www.ntlx.top/post/ubuntu-server-installation-note/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
-                Ubuntu Server Installation Note
-              </a>
-            </div>
-          </div>
-        
-          <div class="px-8 pb-5 flex relative overflow-hidden">
-            
-            <div class="flex-1">
-              <a href="http://www.ntlx.top/post/add-linux-to-ad/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
-                Add Linux to AD
-              </a>
-            </div>
-          </div>
-        
-          <div class="px-8 pb-5 flex relative overflow-hidden">
-            
-            <div class="flex-1">
-              <a href="http://www.ntlx.top/post/active-directory/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
-                Active Directory
-              </a>
-            </div>
-          </div>
-        
-          <div class="px-8 pb-5 flex relative overflow-hidden">
-            
-            <div class="flex-1">
-              <a href="http://www.ntlx.top/post/rss-collections/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
-                RSS Collections
-              </a>
-            </div>
-          </div>
-        
-          <div class="px-8 pb-5 flex relative overflow-hidden">
-            
-            <div class="flex-1">
-              <a href="http://www.ntlx.top/post/docker/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
-                Docker
-              </a>
-            </div>
-          </div>
-        
-          <div class="px-8 pb-5 flex relative overflow-hidden">
-            
-            <div class="flex-1">
-              <a href="http://www.ntlx.top/post/raspberry-pi/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
-                Raspberry Pi
-              </a>
-            </div>
-          </div>
-        
-          <div class="px-8 pb-5 flex relative overflow-hidden">
-            
-            <div class="flex-1">
-              <a href="http://www.ntlx.top/post/zsh/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
-                ZSH
-              </a>
-            </div>
-          </div>
-        
-          <div class="px-8 pb-5 flex relative overflow-hidden">
-            
-            <div class="flex-1">
-              <a href="http://www.ntlx.top/post/mac-os/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
-                Mac OS
-              </a>
-            </div>
-          </div>
-        
-          <div class="px-8 pb-5 flex relative overflow-hidden">
-            
-            <div class="flex-1">
-              <a href="http://www.ntlx.top/post/self-host-matomo/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
-                Self-host Matomo
-              </a>
-            </div>
-          </div>
-        
-          <div class="px-8 pb-5 flex relative overflow-hidden">
-            
-            <div class="flex-1">
-              <a href="http://www.ntlx.top/post/self-host-ghost/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
-                Self-host Ghost
-              </a>
-            </div>
-          </div>
-        
-          <div class="px-8 pb-5 flex relative overflow-hidden">
-            
-            <div class="flex-1">
-              <a href="http://www.ntlx.top/post/windows-system-settings/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
-                Windows System Settings
-              </a>
-            </div>
-          </div>
-        
-          <div class="px-8 pb-5 flex relative overflow-hidden">
-            
-            <div class="flex-1">
-              <a href="http://www.ntlx.top/post/mdns/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
-                mDNS
-              </a>
-            </div>
-          </div>
-        
-      </div>
+        <div class="pagination-container">
+    
+    
+</div>
 
-      
-      <footer class="py-12 text-center px-4 md:px-0" v-pre>
-  Feel free to share & use
-</footer>
+    </article>
+</div>
+</div>
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">My Tech Notes & Thoughts</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
     </div>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <script src="http://www.ntlx.top/media/scripts/main.js"></script>
+    <div class="footer-info">
+        Feel free to share & use
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="http://www.ntlx.top/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
 </body>
 </html>
