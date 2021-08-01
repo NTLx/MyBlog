@@ -6,7 +6,7 @@
 
 <title>Tensorflow installation through conda | NTLx&#39;s Blog</title>
 
-<link rel="shortcut icon" href="http://www.ntlx.top/favicon.ico?v=1627790649583">
+<link rel="shortcut icon" href="http://www.ntlx.top/favicon.ico?v=1627790928871">
 
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="http://www.ntlx.top/styles/main.css">
@@ -77,7 +77,7 @@
             
         </div>
         <div style="text-align: center">
-            <form id="gridea-search-form" style="position: relative" data-update="1627790649583" action="/search/index.html">
+            <form id="gridea-search-form" style="position: relative" data-update="1627790928871" action="/search/index.html">
                 <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
                 <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
             </form>
@@ -120,7 +120,7 @@
 <p>Through <a href="https://docs.conda.io/en/latest/miniconda.html#windows-installers">Official Site</a> or <a href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/">Mirror Site</a>, or just <a href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-py37_4.9.2-Windows-x86_64.exe">Click Here</a>.</p>
 <h2 id="install-miniconda3">Install Miniconda3</h2>
 <p>Run Miniconda3 Installer, for example <code>Miniconda3-py37_4.9.2-Windows-x86_64.exe</code>, keep every configuration as default, then open <code>Anaconda Prompt</code>, and type this:</p>
-<pre><code class="language-powershell">conda init
+<pre><code class="language-shell">conda init
 exit
 </code></pre>
 <p>Then you can use <code>Anaconda Prompt</code> or <code>Microsoft Terminal</code> or <code>Microsoft Visual Studio Code</code> or any terminal you want.</p>
@@ -134,7 +134,7 @@ exit
 <li>Open terminal and run <code>conda config --set show_channel_urls yes</code>.</li>
 <li>Edit <code>.condarc</code> file which under your home dir, replace the content as below:</li>
 </ol>
-<pre><code class="language-bash">channels:
+<pre><code class="language-yaml">channels:
     - defaults
 show_channel_urls: true
 default_channels:
@@ -149,13 +149,13 @@ custom_channels:
     pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
     simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
 </code></pre>
-<ol start="3">
+<ol>
 <li>Run <code>conda clean -i</code> to make sure you are using mirror.</li>
 </ol>
 <h2 id="mamba">Mamba</h2>
 <p>After the installation of Miniconda3, the package <code>mamba</code> was recommanded to use, it will be very fast compared to use <code>conda</code> command directly.</p>
 <p>Mamba Installation:</p>
-<pre><code class="language-powershell">conda install mamba -n base -c conda-forge
+<pre><code class="language-bash">conda install mamba -n base -c conda-forge
 </code></pre>
 <blockquote>
 <p>The documents of mamba will be at the <a href="https://github.com/mamba-org/mamba">GitHub Project</a>.</p>
@@ -170,11 +170,11 @@ conda activate tf
 </code></pre>
 <h2 id="install-tensorflow-dependency-tools">Install Tensorflow &amp; Dependency &amp; Tools</h2>
 <p>Run commands as below:</p>
-<pre><code class="language-powershell">mamba install numpy pandas matplotlib scikit-learn notebook
+<pre><code class="language-bash">mamba install numpy pandas matplotlib scikit-learn notebook
 </code></pre>
 <h3 id="use-jupyter-notebook">Use Jupyter Notebook</h3>
 <p>For example, run command as below:</p>
-<pre><code class="language-powershell">conda activate tf
+<pre><code class="language-bash">conda activate tf
 jupyter-notebook
 </code></pre>
 
