@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://www.ntlx.top</id>
     <title>NTLx&apos;s Blog</title>
-    <updated>2021-08-01T04:08:52.490Z</updated>
+    <updated>2021-08-01T09:34:27.007Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://www.ntlx.top"/>
     <link rel="self" href="http://www.ntlx.top/atom.xml"/>
@@ -68,7 +68,11 @@ custom_channels:
 <blockquote>
 <p>The documents of mamba will be at the <a href="https://github.com/mamba-org/mamba">GitHub Project</a>.</p>
 </blockquote>
-<h2 id="create-use-env">Create &amp; Use ENV</h2>
+<h2 id="only-use-conda">Only Use Conda</h2>
+<blockquote>
+<p>May cause some problem.</p>
+</blockquote>
+<h3 id="create-use-env">Create &amp; Use ENV</h3>
 <blockquote>
 <p>Create ENV was optional but recommanded, you can just use the default ENV (base).</p>
 </blockquote>
@@ -76,15 +80,21 @@ custom_channels:
 <pre><code class="language-bash">mamba create -n tf tensorflow=1.15.0
 conda activate tf
 </code></pre>
-<h2 id="install-tensorflow-dependency-tools">Install Tensorflow &amp; Dependency &amp; Tools</h2>
+<h3 id="install-tensorflow-dependency-tools">Install Tensorflow &amp; Dependency &amp; Tools</h3>
 <p>Run commands as below:</p>
 <pre><code class="language-bash">mamba install numpy pandas matplotlib scikit-learn notebook
 </code></pre>
-<h3 id="use-jupyter-notebook">Use Jupyter Notebook</h3>
+<h4 id="use-jupyter-notebook">Use Jupyter Notebook</h4>
 <p>For example, run command as below:</p>
 <pre><code class="language-bash">conda activate tf
 jupyter-notebook
 </code></pre>
+<h2 id="use-pip-manage-python-packages">Use pip manage python packages</h2>
+<ol>
+<li>(Optional) Create a python ENV and switch to this ENV.</li>
+<li>Run <code>mamba install numpy pandas matplotlib scikit-learn notebook</code>.</li>
+<li>Run <code>pip install -i https://pypi.tuna.tsinghua.edu.cn/simple tensorflow==1.15</code></li>
+</ol>
 ]]></content>
     </entry>
     <entry>

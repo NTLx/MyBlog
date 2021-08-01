@@ -6,7 +6,7 @@
 
 <title>Tensorflow installation through conda | NTLx&#39;s Blog</title>
 
-<link rel="shortcut icon" href="http://www.ntlx.top/favicon.ico?v=1627790928871">
+<link rel="shortcut icon" href="http://www.ntlx.top/favicon.ico?v=1627810462249">
 
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="http://www.ntlx.top/styles/main.css">
@@ -77,7 +77,7 @@
             
         </div>
         <div style="text-align: center">
-            <form id="gridea-search-form" style="position: relative" data-update="1627790928871" action="/search/index.html">
+            <form id="gridea-search-form" style="position: relative" data-update="1627810462249" action="/search/index.html">
                 <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
                 <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
             </form>
@@ -160,7 +160,11 @@ custom_channels:
 <blockquote>
 <p>The documents of mamba will be at the <a href="https://github.com/mamba-org/mamba">GitHub Project</a>.</p>
 </blockquote>
-<h2 id="create-use-env">Create &amp; Use ENV</h2>
+<h2 id="only-use-conda">Only Use Conda</h2>
+<blockquote>
+<p>May cause some problem.</p>
+</blockquote>
+<h3 id="create-use-env">Create &amp; Use ENV</h3>
 <blockquote>
 <p>Create ENV was optional but recommanded, you can just use the default ENV (base).</p>
 </blockquote>
@@ -168,15 +172,21 @@ custom_channels:
 <pre><code class="language-bash">mamba create -n tf tensorflow=1.15.0
 conda activate tf
 </code></pre>
-<h2 id="install-tensorflow-dependency-tools">Install Tensorflow &amp; Dependency &amp; Tools</h2>
+<h3 id="install-tensorflow-dependency-tools">Install Tensorflow &amp; Dependency &amp; Tools</h3>
 <p>Run commands as below:</p>
 <pre><code class="language-bash">mamba install numpy pandas matplotlib scikit-learn notebook
 </code></pre>
-<h3 id="use-jupyter-notebook">Use Jupyter Notebook</h3>
+<h4 id="use-jupyter-notebook">Use Jupyter Notebook</h4>
 <p>For example, run command as below:</p>
 <pre><code class="language-bash">conda activate tf
 jupyter-notebook
 </code></pre>
+<h2 id="use-pip-manage-python-packages">Use pip manage python packages</h2>
+<ol>
+<li>(Optional) Create a python ENV and switch to this ENV.</li>
+<li>Run <code>mamba install numpy pandas matplotlib scikit-learn notebook</code>.</li>
+<li>Run <code>pip install -i https://pypi.tuna.tsinghua.edu.cn/simple tensorflow==1.15</code></li>
+</ol>
 
                 </div>
             </article>
