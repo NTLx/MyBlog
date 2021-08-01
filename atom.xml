@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://www.ntlx.top</id>
     <title>NTLx&apos;s Blog</title>
-    <updated>2021-08-01T03:40:10.704Z</updated>
+    <updated>2021-08-01T04:04:12.796Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://www.ntlx.top"/>
     <link rel="self" href="http://www.ntlx.top/atom.xml"/>
@@ -10,6 +10,83 @@
     <logo>http://www.ntlx.top/images/avatar.png</logo>
     <icon>http://www.ntlx.top/favicon.ico</icon>
     <rights>All rights reserved 2021, NTLx&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[Tensorflow installation through conda]]></title>
+        <id>http://www.ntlx.top/post/tensorflow-installation-through-conda/</id>
+        <link href="http://www.ntlx.top/post/tensorflow-installation-through-conda/">
+        </link>
+        <updated>2021-08-01T03:48:25.000Z</updated>
+        <summary type="html"><![CDATA[<p>Install tensorflow and it's environment though miniconda3.</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>Install tensorflow and it's environment though miniconda3.</p>
+<!-- more -->
+<h1 id="windows">Windows</h1>
+<blockquote>
+<p>Installation instruction under Windows.</p>
+</blockquote>
+<h2 id="download-miniconda3">Download Miniconda3</h2>
+<p>Through <a href="https://docs.conda.io/en/latest/miniconda.html#windows-installers">Official Site</a> or <a href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/">Mirror Site</a>, or just <a href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-py37_4.9.2-Windows-x86_64.exe">Click Here</a>.</p>
+<h2 id="install-miniconda3">Install Miniconda3</h2>
+<p>Run Miniconda3 Installer, for example <code>Miniconda3-py37_4.9.2-Windows-x86_64.exe</code>, keep every configuration as default, then open <code>Anaconda Prompt</code>, and type this:</p>
+<pre><code class="language-powershell">conda init
+exit
+</code></pre>
+<p>Then you can use <code>Anaconda Prompt</code> or <code>Microsoft Terminal</code> or <code>Microsoft Visual Studio Code</code> or any terminal you want.</p>
+<blockquote>
+<p>If you prefer to use different terminal rather than <code>Anaconda Prompt</code>, the first time you open it, you should run <code>conda init</code> command to make sure the system environment was correct, it is importent!</p>
+</blockquote>
+<h2 id="mirror">Mirror</h2>
+<p>For speed up package download, you should set up mirror for your conda.</p>
+<p>Here gives <code>mirrors.tuna.tsinghua.edu.cn</code> for example.</p>
+<ol>
+<li>Open terminal and run <code>conda config --set show_channel_urls yes</code>.</li>
+<li>Edit <code>.condarc</code> file which under your home dir, replace the content as below:</li>
+</ol>
+<pre><code class="language-bash">channels:
+    - defaults
+show_channel_urls: true
+default_channels:
+    - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+    - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r
+    - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2
+custom_channels:
+    conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+    msys2: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+    bioconda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+    menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+    pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+    simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+</code></pre>
+<ol start="3">
+<li>Run <code>conda clean -i</code> to make sure you are using mirror.</li>
+</ol>
+<h2 id="mamba">Mamba</h2>
+<p>After the installation of Miniconda3, the package <code>mamba</code> was recommanded to use, it will be very fast compared to use <code>conda</code> command directly.</p>
+<p>Mamba Installation:</p>
+<pre><code class="language-powershell">conda install mamba -n base -c conda-forge
+</code></pre>
+<blockquote>
+<p>The documents of mamba will be at the <a href="https://github.com/mamba-org/mamba">GitHub Project</a>.</p>
+</blockquote>
+<h2 id="create-use-env">Create &amp; Use ENV</h2>
+<blockquote>
+<p>Create ENV was optional but recommanded, you can just use the default ENV (base).</p>
+</blockquote>
+<p>Run as below (for example) to create &amp; use conda ENV:</p>
+<pre><code class="language-bash">mamba create -n tf tensorflow=1.15.0
+conda activate tf
+</code></pre>
+<h2 id="install-tensorflow-dependency-tools">Install Tensorflow &amp; Dependency &amp; Tools</h2>
+<p>Run commands as below:</p>
+<pre><code class="language-powershell">mamba install numpy pandas matplotlib scikit-learn notebook
+</code></pre>
+<h3 id="use-jupyter-notebook">Use Jupyter Notebook</h3>
+<p>For example, run command as below:</p>
+<pre><code class="language-powershell">conda activate tf
+jupyter-notebook
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Mac Apps]]></title>
         <id>http://www.ntlx.top/post/mac-apps/</id>
@@ -603,157 +680,6 @@ sub scale{
             return @result;
         }
 }
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[LanProxy by Docker]]></title>
-        <id>http://www.ntlx.top/post/lanproxy-by-docker/</id>
-        <link href="http://www.ntlx.top/post/lanproxy-by-docker/">
-        </link>
-        <updated>2021-05-25T10:19:31.000Z</updated>
-        <summary type="html"><![CDATA[<p>For NAT traversal.<br>
-Need a server which already had a public ip.</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>For NAT traversal.<br>
-Need a server which already had a public ip.</p>
-<!-- more -->
-<h1 id="server">Server</h1>
-<blockquote>
-<p>Must had a public ip already!</p>
-</blockquote>
-<h2 id="one-click-run">One-click run</h2>
-<p><code>docker-compose.yml</code>:</p>
-<pre><code class="language-yaml">version: '3.1'
-services:
-  lanproxy-client:
-    image: franklin5/lanproxy-server
-    container_name: lanproxy-server
-    volumes:
-     - ./config:/root/.lanproxy
-    environment:
-     - LANPROXY_USERNAME=your_username
-     - LANPROXY_PASSWORD=your_password
-    ports:
-     # for web config UI
-     - 8090:8090
-     - 4900:4900
-     - 4993:4993
-     # for redirect port
-     - 9000-9100:9000-9100
-    restart: always
-    logging:
-      options:
-        max-size: &quot;1m&quot;
-</code></pre>
-<h2 id="self-build">Self-build</h2>
-<p><code>Dockerfile</code>:</p>
-<pre><code class="language-Dockerfile">FROM alpine as git
-
-WORKDIR /lanproxy
-
-RUN apk update
-RUN apk add git
-RUN git clone https://github.com/NTLx/lanproxy.git ./
-
-FROM maven as maven
-
-WORKDIR /lanproxy
-
-COPY --from=git /lanproxy ./
-
-RUN mvn compile package -pl proxy-server -am 
-
-RUN cd distribution &amp;&amp; DIR_NAME=$(echo `ls` | awk '{print $NF}') &amp;&amp; mv $DIR_NAME /lanproxy/lanproxy-server
-
-FROM openjdk:8-jdk-alpine
-
-WORKDIR /lanproxy-server
-
-COPY --from=maven /lanproxy/lanproxy-server ./
-
-EXPOSE 8090 4900 4993
-
-CMD [&quot;sh&quot;, &quot;-c&quot;, &quot;sh bin/startup.sh &amp;&amp; tail -f logs/server.log&quot;]
-</code></pre>
-<p>Docker build CMD:</p>
-<pre><code class="language-bash">docker build -t lanserver:v1 .
-</code></pre>
-<p><code>docker-compose.yml</code>:</p>
-<pre><code class="language-yaml">version: '3.1'
-services:
-  lanproxy-client:
-    image: lanserver:v1
-    container_name: lanproxy-server
-    volumes:
-     - ./config:/root/.lanproxy
-    environment:
-     - LANPROXY_USERNAME=your_username
-     - LANPROXY_PASSWORD=your_password
-    ports:
-     # for web config UI
-     - 8090:8090
-     - 4900:4900
-     - 4993:4993
-     # for redirect port
-     - 9000-9100:9000-9100
-    restart: always
-    logging:
-      options:
-        max-size: &quot;1m&quot;
-</code></pre>
-<h1 id="client">Client</h1>
-<blockquote>
-<p><code>network_mode</code> is optional</p>
-</blockquote>
-<h2 id="one-click-run-2">One-click run</h2>
-<p><code>docker-compose.yml</code>:</p>
-<pre><code class="language-yaml">version: '3.1'
-services:
-  lanproxy-client:
-    image: franklin5/lanproxy-client
-    container_name: lanproxy-client
-    environment:
-     - LANPROXY_KEY=input_your_key
-     - LANPROXY_HOST=input_your_host
-    restart: always
-    logging:
-      options:
-        max-size: &quot;1m&quot;
-</code></pre>
-<h2 id="self-build-2">Self-build</h2>
-<p><code>Dockerfile</code> :</p>
-<pre><code class="language-Dockerfile">FROM ubuntu
-
-RUN apt update -y
-RUN apt install openjdk-8-jdk -y
-RUN apt install git -y
-
-WORKDIR /
-RUN git clone https://github.com/NTLx/lanproxy-client.git
-
-ENTRYPOINT [&quot;/lanproxy-client/init.sh&quot;]
-WORKDIR /lanproxy-client
-# EXPOSE 8888
-CMD [&quot;/bin/bash&quot;]
-</code></pre>
-<p>Docker build CMD:</p>
-<pre><code class="language-bash">docker build -t lan:v1 .
-</code></pre>
-<p><code>docker-compose.yml</code>:</p>
-<pre><code class="language-yaml">version: '3.1'
-services:
-  lanproxy-client:
-    image: lan:v1
-    container_name: lanproxy-client
-    environment:
-     - LANPROXY_KEY=input_your_key
-     - LANPROXY_HOST=input_your_host
-    restart: always
-    network_mode: &quot;host&quot;
-    logging:
-      options:
-        max-size: &quot;1m&quot;
 </code></pre>
 ]]></content>
     </entry>

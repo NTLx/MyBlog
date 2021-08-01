@@ -4,7 +4,7 @@
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-<title>Fonts | NTLx&#39;s Blog</title>
+<title>Tensorflow installation through conda | NTLx&#39;s Blog</title>
 
 <link rel="shortcut icon" href="http://www.ntlx.top/favicon.ico?v=1627790649583">
 
@@ -89,29 +89,94 @@
         <div class="post-detail gt-bg-theme-color-second">
             <article class="gt-post-content">
                 <h2 class="post-title">
-                    Fonts
+                    Tensorflow installation through conda
                 </h2>
                 <div class="post-info">
                     <time class="post-time gt-c-content-color-first">
-                        · 2021-05-21 ·
+                        · 2021-08-01 ·
                     </time>
                     
-                        <a href="http://www.ntlx.top/tag/iDVSuBEHf/" class="post-tags">
-                            # Font
+                        <a href="http://www.ntlx.top/tag/XdaOer_pv/" class="post-tags">
+                            # tensorflow
                         </a>
                     
-                        <a href="http://www.ntlx.top/tag/WB90WRmFLg/" class="post-tags">
-                            # resource
+                        <a href="http://www.ntlx.top/tag/hbvpXyRe-/" class="post-tags">
+                            # setting
+                        </a>
+                    
+                        <a href="http://www.ntlx.top/tag/8Ejdckh9k/" class="post-tags">
+                            # windows
                         </a>
                     
                 </div>
                 <div class="post-content">
-                    <p>Fonts collection.</p>
+                    <p>Install tensorflow and it's environment though miniconda3.</p>
 <!-- more -->
-<h1 id="recomendation">Recomendation</h1>
-<h2 id="for-coding">For Coding</h2>
-<p>推荐两款美观、护眼、符号全、辨识度高的 Mono Type 字体： <a href="http://192.168.10.133/EDL/files/MonacoforPowerline.zip">Monaco for Powerline</a>、<a href="http://192.168.10.133/EDL/files/FiraCode_1.206.zip">Fira Code</a></p>
-<p>包含图标（符号更全）的字体集： <a href="https://www.nerdfonts.com/">Nerd Fonts</a></p>
+<h1 id="windows">Windows</h1>
+<blockquote>
+<p>Installation instruction under Windows.</p>
+</blockquote>
+<h2 id="download-miniconda3">Download Miniconda3</h2>
+<p>Through <a href="https://docs.conda.io/en/latest/miniconda.html#windows-installers">Official Site</a> or <a href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/">Mirror Site</a>, or just <a href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-py37_4.9.2-Windows-x86_64.exe">Click Here</a>.</p>
+<h2 id="install-miniconda3">Install Miniconda3</h2>
+<p>Run Miniconda3 Installer, for example <code>Miniconda3-py37_4.9.2-Windows-x86_64.exe</code>, keep every configuration as default, then open <code>Anaconda Prompt</code>, and type this:</p>
+<pre><code class="language-powershell">conda init
+exit
+</code></pre>
+<p>Then you can use <code>Anaconda Prompt</code> or <code>Microsoft Terminal</code> or <code>Microsoft Visual Studio Code</code> or any terminal you want.</p>
+<blockquote>
+<p>If you prefer to use different terminal rather than <code>Anaconda Prompt</code>, the first time you open it, you should run <code>conda init</code> command to make sure the system environment was correct, it is importent!</p>
+</blockquote>
+<h2 id="mirror">Mirror</h2>
+<p>For speed up package download, you should set up mirror for your conda.</p>
+<p>Here gives <code>mirrors.tuna.tsinghua.edu.cn</code> for example.</p>
+<ol>
+<li>Open terminal and run <code>conda config --set show_channel_urls yes</code>.</li>
+<li>Edit <code>.condarc</code> file which under your home dir, replace the content as below:</li>
+</ol>
+<pre><code class="language-bash">channels:
+    - defaults
+show_channel_urls: true
+default_channels:
+    - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+    - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r
+    - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2
+custom_channels:
+    conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+    msys2: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+    bioconda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+    menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+    pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+    simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+</code></pre>
+<ol start="3">
+<li>Run <code>conda clean -i</code> to make sure you are using mirror.</li>
+</ol>
+<h2 id="mamba">Mamba</h2>
+<p>After the installation of Miniconda3, the package <code>mamba</code> was recommanded to use, it will be very fast compared to use <code>conda</code> command directly.</p>
+<p>Mamba Installation:</p>
+<pre><code class="language-powershell">conda install mamba -n base -c conda-forge
+</code></pre>
+<blockquote>
+<p>The documents of mamba will be at the <a href="https://github.com/mamba-org/mamba">GitHub Project</a>.</p>
+</blockquote>
+<h2 id="create-use-env">Create &amp; Use ENV</h2>
+<blockquote>
+<p>Create ENV was optional but recommanded, you can just use the default ENV (base).</p>
+</blockquote>
+<p>Run as below (for example) to create &amp; use conda ENV:</p>
+<pre><code class="language-bash">mamba create -n tf tensorflow=1.15.0
+conda activate tf
+</code></pre>
+<h2 id="install-tensorflow-dependency-tools">Install Tensorflow &amp; Dependency &amp; Tools</h2>
+<p>Run commands as below:</p>
+<pre><code class="language-powershell">mamba install numpy pandas matplotlib scikit-learn notebook
+</code></pre>
+<h3 id="use-jupyter-notebook">Use Jupyter Notebook</h3>
+<p>For example, run command as below:</p>
+<pre><code class="language-powershell">conda activate tf
+jupyter-notebook
+</code></pre>
 
                 </div>
             </article>
@@ -120,8 +185,8 @@
         
             <div class="next-post">
                 <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="http://www.ntlx.top/post/r/" class="post-title gt-a-link">
-                    R
+                <a href="http://www.ntlx.top/post/mac-apps/" class="post-title gt-a-link">
+                    Mac Apps
                 </a>
             </div>
         
