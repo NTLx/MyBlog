@@ -6,7 +6,7 @@
 
 <title>Git | NTLx&#39;s Blog</title>
 
-<link rel="shortcut icon" href="http://www.ntlx.top/favicon.ico?v=1634115078585">
+<link rel="shortcut icon" href="http://www.ntlx.top/favicon.ico?v=1634178632906">
 
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="http://www.ntlx.top/styles/main.css">
@@ -77,7 +77,7 @@
             
         </div>
         <div style="text-align: center">
-            <form id="gridea-search-form" style="position: relative" data-update="1634115078585" action="/search/index.html">
+            <form id="gridea-search-form" style="position: relative" data-update="1634178632906" action="/search/index.html">
                 <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
                 <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
             </form>
@@ -116,7 +116,13 @@ git config --global http.proxy http://127.0.0.1:8888
 git config --global https.proxy http://127.0.0.1:8888
 </code></pre>
 <h1 id="modify-commit-info">Modify commit info</h1>
+<blockquote>
+<p>by command line</p>
+</blockquote>
 <h2 id="change-author-info">Change Author Info</h2>
+<blockquote>
+<p>name &amp; email</p>
+</blockquote>
 <h3 id="all">All</h3>
 <pre><code class="language-bash">git filter-branch --env-filter 'export GIT_AUTHOR_EMAIL=new_author_email' --
 </code></pre>
@@ -141,10 +147,16 @@ fi
 ' --tag-name-filter cat -- --branches --tags
 </code></pre>
 <h1 id="log">Log</h1>
+<blockquote>
+<p>tips of using</p>
+</blockquote>
 <h2 id="see-specific-author">See Specific Author</h2>
 <pre><code class="language-bash">git log --author=&quot;Author Name&quot;
 </code></pre>
 <h1 id="notification-integration">Notification Integration</h1>
+<blockquote>
+<p>webhook</p>
+</blockquote>
 <h2 id="gitlab-telegram-bot-通知集成">GitLab &amp; Telegram Bot 通知集成</h2>
 <p>Telegram 需科学上网使用</p>
 <blockquote>
@@ -174,6 +186,9 @@ fi
 <li><a href="github.com/hoxu/gitstats">gitstats</a></li>
 </ul>
 <h1 id="documents-collection">Documents Collection</h1>
+<blockquote>
+<p>collected from the internet</p>
+</blockquote>
 <h2 id="cheat-sheet">Cheat Sheet</h2>
 <p><a href="http://rogerdudler.github.io/git-guide/files/git_cheat_sheet.pdf">Check PDF</a></p>
 <h2 id="the-simple-guide">The Simple Guide</h2>

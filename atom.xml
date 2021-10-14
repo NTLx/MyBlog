@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://www.ntlx.top</id>
     <title>NTLx&apos;s Blog</title>
-    <updated>2021-10-13T08:51:26.312Z</updated>
+    <updated>2021-10-14T02:30:46.638Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://www.ntlx.top"/>
     <link rel="self" href="http://www.ntlx.top/atom.xml"/>
@@ -110,6 +110,7 @@ jupyter-notebook
 <ul>
 <li>balenaEtcher</li>
 <li>CleanMyMac X</li>
+<li>Edge</li>
 <li>Gridea</li>
 <li>Irvue</li>
 <li>iSyncr</li>
@@ -120,11 +121,11 @@ jupyter-notebook
 <li>MyZip Pro</li>
 <li>PDF Expert</li>
 <li>PicGo</li>
-<li>Postbox</li>
 <li>RescueTime</li>
 <li>Sensei</li>
 <li>Transmit</li>
 <li>Visual Studio Code - Insiders</li>
+<li>网易邮箱大师</li>
 </ul>
 ]]></content>
     </entry>
@@ -372,6 +373,9 @@ VPN_DNS_SRV2='1.0.0.1'
 <p>本文配置参数仅作示例</p>
 </blockquote>
 <h1 id="系统代理">系统代理</h1>
+<blockquote>
+<p><code>系统代理</code> 将对除 <code>终端</code> 外的所有程序生效</p>
+</blockquote>
 <h2 id="windows-10">Windows 10</h2>
 <blockquote>
 <p>若系统代理配置不生效，请注销后再次登录即可</p>
@@ -396,6 +400,9 @@ VPN_DNS_SRV2='1.0.0.1'
 <li>点击 <code>保存</code> 按钮即可</li>
 </ol>
 <h2 id="mac-os">Mac OS</h2>
+<blockquote>
+<p>若系统代理配置不生效，请将其它网络相关配置还原至默认值，或咨询网络管理员</p>
+</blockquote>
 <h3 id="进入系统代理设置-2">进入系统代理设置</h3>
 <ol>
 <li>进入设置：点击 Dock 上的 <code>系统偏好设置</code> 图标，或者点击屏幕左上角的 Apple 徽标，单击 <code>系统偏好设置...</code></li>
@@ -425,6 +432,9 @@ VPN_DNS_SRV2='1.0.0.1'
 <p>若已开启系统代理，请先关闭，不建议与浏览器代理一同开启</p>
 </blockquote>
 <h2 id="chrome">Chrome</h2>
+<blockquote>
+<p>Chrome 浏览器默认的插件安装方式是从其官方插件商店操作，该商店需要科学上网</p>
+</blockquote>
 <h3 id="下载代理切换插件">下载代理切换插件</h3>
 <ol>
 <li>第一次配置前，请先配置并开启系统全局代理</li>
