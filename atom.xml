@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://www.ntlx.top</id>
     <title>NTLx&apos;s Blog</title>
-    <updated>2021-10-14T06:45:54.386Z</updated>
+    <updated>2021-10-17T01:26:36.950Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://www.ntlx.top"/>
     <link rel="self" href="http://www.ntlx.top/atom.xml"/>
@@ -10,6 +10,46 @@
     <logo>http://www.ntlx.top/images/avatar.png</logo>
     <icon>http://www.ntlx.top/favicon.ico</icon>
     <rights>All rights reserved 2021, NTLx&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[Docker Resilio Sync]]></title>
+        <id>http://www.ntlx.top/post/docker-resilio-sync/</id>
+        <link href="http://www.ntlx.top/post/docker-resilio-sync/">
+        </link>
+        <updated>2021-10-17T01:22:54.000Z</updated>
+        <summary type="html"><![CDATA[<p>Deploy Resilio Sync by Docker.</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>Deploy Resilio Sync by Docker.</p>
+<!-- more -->
+<p>Through Docker Compose:</p>
+<pre><code class="language-yaml">version: &quot;2.1&quot;
+networks:
+  resilio:
+    external: false
+services:
+  resilio-sync:
+    image: lscr.io/linuxserver/resilio-sync
+    container_name: resilio-sync
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Shanghai
+      - UMASK=022
+    volumes:
+      - ./config:/config
+      - /path/to/downloads:/downloads
+      - /path/to/data:/sync
+    ports:
+      - 9999:8888
+      - 55555:55555
+    restart: unless-stopped
+    logging:
+      options:
+        max-size: &quot;1m&quot;
+    networks:
+      - resilio
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Tensorflow installation through conda]]></title>
         <id>http://www.ntlx.top/post/tensorflow-installation-through-conda/</id>
@@ -553,155 +593,6 @@ VPN_DNS_SRV2='1.0.0.1'
 <p>各项参数填写完毕后，点击 <code>确定</code> 按钮，然后点击 <code>设为默认图床</code> 按钮，关闭软件主界面即可</p>
 <h1 id="usage">Usage</h1>
 <p>请参考<a href="https://picgo.github.io/PicGo-Doc/zh/guide/">官方文档</a>。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Perl 科学计算代码片段]]></title>
-        <id>http://www.ntlx.top/post/perl-ke-xue-ji-suan-dai-ma-pian-duan/</id>
-        <link href="http://www.ntlx.top/post/perl-ke-xue-ji-suan-dai-ma-pian-duan/">
-        </link>
-        <updated>2021-06-08T02:54:13.000Z</updated>
-        <summary type="html"><![CDATA[<p>Snippets collect.</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>Snippets collect.</p>
-<!-- more -->
-<h1 id="分布函数">分布函数</h1>
-<pre><code class="language-perl">my @ex8=(1,9,4,9,10,12,13,15,12,13);
-my %hash=&amp;frequency(\@ex8);
-print join(&quot;,&quot;,values %hash);
-print join(&quot;,&quot;,keys %hash);
-
-sub frequency{
-    my($vec)=@_;
-    my %hash;
-    foreach(@$vec){
-        ++$hash{$_};
-    }
-    return %hash;
-}
-</code></pre>
-<h1 id="排序函数">排序函数</h1>
-<pre><code class="language-perl">my @ex9=(1,9,4,9,10,12,13,15,12,13);
-print join(',',&amp;sortf(&quot;numeric&quot;,&quot;asc&quot;,\@ex9));
-
-sub sortf{
-    my($type,$direction,$vec)=@_;
-    my @vec_sort;
-    if(($type eq &quot;numeric&quot;) &amp; ($direction eq &quot;asc&quot;)){
-        @vec_sort=sort{$a&lt;=&gt;$b}@$vec;
-    }
-    if(($type eq &quot;numeric&quot;) &amp; ($direction eq &quot;desc&quot;)){
-        @vec_sort=sort{$b&lt;=&gt;$a}@$vec;
-    }
-    if(($type eq &quot;string&quot;) &amp; ($direction eq &quot;asc&quot;)){
-        @vec_sort=sort{$a cmp $b}@$vec;
-    }
-    if(($type eq &quot;string&quot;) &amp; ($direction eq &quot;desc&quot;)){
-        @vec_sort=sort{$b cmp $a}@$vec;
-    }
-    return @vec_sort;
-}
-</code></pre>
-<h1 id="众数">众数</h1>
-<pre><code class="language-perl">my @ex10=(1,9,4,9,10,12,13,15,12,13);
-print join(',',&amp;mode(\@ex10));
-
-sub mode{
-    my($vec)=@_;
-    my %hash=&amp;frequency($vec);
-    my @result;
-    foreach(sort{ $hash{$b}&lt;=&gt;$hash{$a} }  keys %hash){
-        last if @result &amp;&amp; $hash{$_} != $hash{$result[0]};
-        push(@result,$_);
-    }
-    return @result;
-}
-</code></pre>
-<h1 id="中位数">中位数</h1>
-<pre><code class="language-perl">my @ex111=(1,9,4,5);
-print &amp;median(\@ex11);
-my @ex112=(1,9,4,5,5);
-
-sub median{
-    my($vec)=@_;
-    my @vec1=&amp;sortf('numeric','asc',$vec);
-    my $length=scalar @$vec;
-    my $result;
-    if($length % 2){
-        $result=$vec1[($length-1)/2];
-    }else{
-        $result=($vec1[$length/2]+$vec1[$length/2-1])/2;
-    }
-    return $result;
-}
-</code></pre>
-<h1 id="四分之一分位数">四分之一分位数</h1>
-<pre><code class="language-perl">my @ex12=( 7, 15, 36, 39, 40, 41);
-print join(',',&amp;quantile(\@ex12));
-
-sub quantile{
-    my($vec)=@_;
-    my @vec1=&amp;sortf('numeric','asc',$vec);
-    my $length=scalar @$vec+1;
-    my($upper,$lower);
-    if($length %4 ){
-        my $temp1=int($length/4);
-        my $temp2=int(3*$length/4);
-        $upper=$vec1[$temp1-1]+($vec1[$temp1]-$vec1[$temp1-1])*($length/4-$temp1);
-        $lower=$vec1[$temp2-1]+($vec1[$temp2]-$vec1[$temp2-1])*(3*$length/4-$temp2);
-    }else{
-        $upper=$vec1[$length/4-1];
-        $lower=$vec1[3*$length/4-1];
-    }
-    my @result=($upper,$lower);
-    return @result;
-}
-</code></pre>
-<h1 id="最大值">最大值</h1>
-<pre><code class="language-perl">my @ex13=( 7, 15, 36, 39, 40, 41);
-print &amp;max(\@ex13);
-
-sub max{
-    my($vec)=@_;
-    my @result=&amp;sortf('numeric','desc',$vec);
-    return $result[0];
-}
-</code></pre>
-<h1 id="最小值">最小值</h1>
-<pre><code class="language-perl">my @ex14=( 7, 15, 36, 39, 40, 41);
-print &amp;min(\@ex14);
-
-sub min{
-    my($vec)=@_;
-    my @result=&amp;sortf('numeric','asc',$vec);
-    return $result[0];
-}
-</code></pre>
-<h1 id="标准化共2种方法">标准化，共2种方法</h1>
-<pre><code class="language-perl">my @ex15=( 7, 15, 36, 39, 40, 41);
-print join(',',&amp;scale(\@ex15,2));
-
-sub scale{
-    my($vec,$m)=@_;
-    my @result;
-    if($m eq 1){
-        if(&amp;max($vec) eq &amp;min($vec)){
-            die &quot;could not scale as range method!&quot;;
-        }else{
-            @result=map(($_-&amp;min($vec))/(&amp;max($vec)-&amp;min($vec)),@$vec);
-            }
-        return @result;
-        }
-        if($m eq  2){
-            if(&amp;var($vec) eq 0){
-            die &quot;could not scale as centered method!&quot;;
-            }else{
-                @result=map(($_-&amp;mean($vec))/&amp;sd($vec),@$vec);           
-            }
-            return @result;
-        }
-}
-</code></pre>
 ]]></content>
     </entry>
 </feed>
