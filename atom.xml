@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://www.ntlx.top</id>
     <title>NTLx&apos;s Blog</title>
-    <updated>2021-10-17T01:26:36.950Z</updated>
+    <updated>2021-10-27T13:10:52.020Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://www.ntlx.top"/>
     <link rel="self" href="http://www.ntlx.top/atom.xml"/>
@@ -10,6 +10,35 @@
     <logo>http://www.ntlx.top/images/avatar.png</logo>
     <icon>http://www.ntlx.top/favicon.ico</icon>
     <rights>All rights reserved 2021, NTLx&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[KMS Server]]></title>
+        <id>http://www.ntlx.top/post/kms-server/</id>
+        <link href="http://www.ntlx.top/post/kms-server/">
+        </link>
+        <updated>2021-10-27T13:04:09.000Z</updated>
+        <summary type="html"><![CDATA[<p>Deploy KMS Server through Docker.</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>Deploy KMS Server through Docker.</p>
+<!-- more -->
+<ol>
+<li>get code:</li>
+</ol>
+<pre><code class="language-shell">git clone https://github.com/Wind4/vlmcsd-docker.git vlmcsd
+cd vlmcsd
+</code></pre>
+<ol start="2">
+<li>use docker compose:</li>
+</ol>
+<pre><code class="language-shell">docker-compose up -d
+</code></pre>
+<ol start="3">
+<li>or build on local server:</li>
+</ol>
+<pre><code class="language-shell">docker build --build-arg http_proxy=http://192.168.0.109:20171 --build-arg https_proxy=http://192.168.0.109:20171 -t vlmcsd .
+docker run -idt -p 1688:1688 vlmcsd
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Docker Resilio Sync]]></title>
         <id>http://www.ntlx.top/post/docker-resilio-sync/</id>
@@ -535,64 +564,6 @@ VPN_DNS_SRV2='1.0.0.1'
 <p>或者</p>
 <pre><code class="language-bash">export ALL_PROXY=socks5://winservice.cm.com:10808
 </code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[PicGo]]></title>
-        <id>http://www.ntlx.top/post/picgo/</id>
-        <link href="http://www.ntlx.top/post/picgo/">
-        </link>
-        <updated>2021-06-10T02:48:36.000Z</updated>
-        <summary type="html"><![CDATA[<p>Self build image hosting service solution, for Free !</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>Self build image hosting service solution, for Free !</p>
-<!-- more -->
-<h1 id="introduction">Introduction</h1>
-<p><a href="https://molunerfinn.com/PicGo/">PicGo</a> 是一款开源的跨平台<a href="https://baike.baidu.com/item/%E5%9B%BE%E5%BA%8A">图床</a>工具软件，我们用它来进行图片托管，实现文本与文件的分离。</p>
-<h1 id="installation">Installation</h1>
-<blockquote>
-<p>以 Windows 系统为例</p>
-</blockquote>
-<ol>
-<li>下载软件安装包：可从<a href="http://dsm.cm.com:100/d/f/549941883955099824">文件服务器</a>下载 <code>v2.2.2</code> 版本，或从<a href="https://github.com/Molunerfinn/PicGo/releases">官方 release</a> 下载最新版本</li>
-<li>运行安装包，显示如下界面，点击 <code>下一步</code> 按钮即可<br>
-<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201225084555.png" alt="" loading="lazy"></li>
-<li>接下来选择软件安装位置，一般保持默认即可，然后点击<code>安装</code>按钮<br>
-<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201225084609.png" alt="" loading="lazy"></li>
-<li>待安装完成，点击<code>完成</code>按钮即可，此时可在系统的任务栏托盘上找到 PicGo 的图标：<br>
-<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201225084619.png" alt="" loading="lazy"></li>
-<li>左键单击 PicGo 的任务栏图标可打开软件主界面：<br>
-<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201225084631.png" alt="" loading="lazy"></li>
-<li>右键单击 PicGo 的任务栏图标可打开快捷菜单：<br>
-<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201225084641.png" alt="" loading="lazy"></li>
-</ol>
-<h1 id="setting">Setting</h1>
-<p>PicGo 安装好后，需要进行一些配置才能正常使用。</p>
-<h2 id="github-jsdeliver">GitHub + jsDeliver</h2>
-<blockquote>
-<p>使用 GitHub 作为免费图床，通过免费 CDN 加速图片加载</p>
-</blockquote>
-<p><a href="https://blog.csdn.net/Rivalsx/article/details/106994195">设置方法</a></p>
-<h2 id="nextcloud">NextCloud</h2>
-<blockquote>
-<p>使用 NextCloud 作为云存储方案提供图床功能，这里以自建的 NextCloud 服务作为说明</p>
-</blockquote>
-<ol>
-<li>打开软件主界面，在左侧导航栏点击 <code>插件设置</code>，然后输入 <code>nextcloud</code>，安装 <code>nextcloud-uploader</code> 插件（如果弹出提示“需要安装 Node”，根据提示安装 Node 即可）<br>
-<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201225084709.png" alt="" loading="lazy"></li>
-<li>点击左侧导航栏中的 <code>图床设置</code>，然后在展开的列表里点击 <code>NextCloud图床</code></li>
-<li>然后按照下图进行配置（配置参数仅作示例）：<br>
-<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201225084659.png" alt="" loading="lazy"></li>
-</ol>
-<blockquote>
-<p>服务地址：<code>http://cloud.cubicise.com:82</code><br>
-用户名：<code>PicGo</code><br>
-密码：<code>password</code><br>
-保存路径：<code>PicGo</code></p>
-</blockquote>
-<p>各项参数填写完毕后，点击 <code>确定</code> 按钮，然后点击 <code>设为默认图床</code> 按钮，关闭软件主界面即可</p>
-<h1 id="usage">Usage</h1>
-<p>请参考<a href="https://picgo.github.io/PicGo-Doc/zh/guide/">官方文档</a>。</p>
 ]]></content>
     </entry>
 </feed>
