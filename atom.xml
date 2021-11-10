@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://www.ntlx.top</id>
     <title>NTLx&apos;s Blog</title>
-    <updated>2021-10-28T05:43:36.678Z</updated>
+    <updated>2021-11-10T12:07:11.202Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://www.ntlx.top"/>
     <link rel="self" href="http://www.ntlx.top/atom.xml"/>
@@ -10,6 +10,44 @@
     <logo>http://www.ntlx.top/images/avatar.png</logo>
     <icon>http://www.ntlx.top/favicon.ico</icon>
     <rights>All rights reserved 2021, NTLx&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[n8n]]></title>
+        <id>http://www.ntlx.top/post/n8n/</id>
+        <link href="http://www.ntlx.top/post/n8n/">
+        </link>
+        <updated>2021-11-10T11:47:25.000Z</updated>
+        <summary type="html"><![CDATA[<p>Deploy n8n via Docker.</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>Deploy n8n via Docker.</p>
+<!-- more -->
+<pre><code class="language-yaml">version: &quot;3&quot;
+networks:
+  n8n:
+    external: false
+services:
+  n8n:
+    image: n8nio/n8n
+    container_name: n8n
+    restart: unless-stopped
+    environment:
+      TZ: &quot;Asia/Shanghai&quot;
+      N8N_BASIC_AUTH_ACTIVE: &quot;true&quot;
+      N8N_BASIC_AUTH_USER: &quot;username&quot;
+      N8N_BASIC_AUTH_PASSWORD: &quot;password&quot;
+      WEBHOOK_URL: &quot;http://your.domain:xxx/&quot;
+      GENERIC_TIMEZONE: &quot;Asia/Shanghai&quot;
+    ports:
+      - &quot;5678:5678&quot;
+    networks:
+      - n8n
+    volumes:
+      - ./data:/home/node/.n8n
+    logging:
+      options:
+        max-size: &quot;1m&quot;
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[KMS Server]]></title>
         <id>http://www.ntlx.top/post/kms-server/</id>
@@ -417,153 +455,6 @@ VPN_DNS_SRV2='1.0.0.1'
 </ol>
 <h2 id="other-os">Other OS</h2>
 <p>Just use build-in VPN support.</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Proxy]]></title>
-        <id>http://www.ntlx.top/post/proxy/</id>
-        <link href="http://www.ntlx.top/post/proxy/">
-        </link>
-        <updated>2021-06-10T04:55:14.000Z</updated>
-        <summary type="html"><![CDATA[<p><code>网络代理</code> 可以简单理解为更改特定或所有网络传输的数据通道（或线路），以达到绕过监测、提高数据传输安全性的目的。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p><code>网络代理</code> 可以简单理解为更改特定或所有网络传输的数据通道（或线路），以达到绕过监测、提高数据传输安全性的目的。</p>
-<!-- more -->
-<h1 id="说明">说明</h1>
-<p><code>网络代理</code> 有两种策略：</p>
-<ul>
-<li>智能代理：智能代理根据预先设定的地址列表决定是否对某个互联网连接进行代理，因此并不能保证所有需要代理的连接全部都会进行代理，但一般能够保证大部分连接的使用，且不会影响不需要代理的连接，推荐日常使用</li>
-<li>全局代理：全局代理即让 <code>网络代理</code> 接管所有的网络数据传输，可以保证所有需要代理的连接全部都会进行代理，但不需要代理的连接也会强制进行代理，会造成部分国内网络访问的困难，故一般在智能代理无法满足需求时使用</li>
-</ul>
-<blockquote>
-<p>一般先让系统所有流量走代理，把浏览器的代理工具配置好，然后关掉系统代理，仅让浏览器或其它需要代理的软件单独代理流量</p>
-</blockquote>
-<blockquote>
-<p>本文配置参数仅作示例</p>
-</blockquote>
-<h1 id="系统代理">系统代理</h1>
-<blockquote>
-<p><code>系统代理</code> 将对除 <code>终端</code> 外的所有程序生效</p>
-</blockquote>
-<h2 id="windows-10">Windows 10</h2>
-<blockquote>
-<p>若系统代理配置不生效，请注销后再次登录即可</p>
-</blockquote>
-<h3 id="进入系统代理设置">进入系统代理设置</h3>
-<ol>
-<li>点击任务栏上的网络状态图标，位置如图所示：<br>
-<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223095853.png" alt="" loading="lazy"></li>
-<li>在弹出的界面中点击 <code>网络和 Internet 设置</code><br>
-<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223095902.png" alt="" loading="lazy"></li>
-<li>在弹出的界面中点击左侧导航栏里的 <code>代理</code><br>
-<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223095910.png" alt="" loading="lazy"></li>
-<li>如果 <code>自动检测设置</code> 的状态为 <code>开</code>（如下图所示），请将其切换为 <code>关</code> 的状态<br>
-<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223095918.png" alt="" loading="lazy"></li>
-</ol>
-<h3 id="设置全局代理">设置全局代理</h3>
-<ol>
-<li>在 <code>手动设置代理</code> 设置区域内，将 <code>使用代理服务器</code> 的状态切换为 <code>开</code><br>
-<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223100001.png" alt="" loading="lazy"></li>
-<li>在 <code>地址</code> 一栏填写代理服务器地址，在 <code>端口</code> 一栏填写代理服务器端口，在 <code>请勿对以下列条目开头的地址使用代理服务器</code> 一栏填写 <code>127.0.*;192.168.*;localhost</code>，将 <code>请勿将代理服务器用于本地(Intranet)地址</code> 前的复选框选中，如下图所示：<br>
-<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223100007.png" alt="" loading="lazy"></li>
-<li>点击 <code>保存</code> 按钮即可</li>
-</ol>
-<h2 id="mac-os">Mac OS</h2>
-<blockquote>
-<p>若系统代理配置不生效，请将其它网络相关配置还原至默认值，或咨询网络管理员</p>
-</blockquote>
-<h3 id="进入系统代理设置-2">进入系统代理设置</h3>
-<ol>
-<li>进入设置：点击 Dock 上的 <code>系统偏好设置</code> 图标，或者点击屏幕左上角的 Apple 徽标，单击 <code>系统偏好设置...</code></li>
-<li>单击 <code>网络</code><br>
-<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223100437.png" alt="" loading="lazy"></li>
-<li>选中需要进行代理设置的网络连接（或当前网络连接，例如此处示例的 <code>以太网</code>），然后点击 <code>高级...</code> 按钮<br>
-<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223100449.png" alt="" loading="lazy"></li>
-<li>单击 <code>代理</code> 选项卡<br>
-<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223100458.png" alt="" loading="lazy"></li>
-</ol>
-<h3 id="设置全局代理-2">设置全局代理</h3>
-<ol>
-<li>取消勾选 <code>自动代理配置</code></li>
-<li>勾选 <code>SOCKS 代理</code>，并按下图配置（需填写上文提供的 Socks 代理服务器地址）<br>
-<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223100544.png" alt="" loading="lazy"></li>
-<li>勾选 <code>FTP 代理</code>，并按下图配置（需填写上文提供的 Http 代理服务器地址）<br>
-<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223100552.png" alt="" loading="lazy"></li>
-<li>勾选 <code>网页代理</code>，并按下图配置（需填写上文提供的 Http 代理服务器地址）<br>
-<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223100601.png" alt="" loading="lazy"></li>
-<li>勾选 <code>安全网页代理</code>，并按下图配置（需填写上文提供的 Http 代理服务器地址）<br>
-<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223100609.png" alt="" loading="lazy"></li>
-<li>点击 <code>好</code> 按钮，然后点击 <code>应用</code> 按钮即可</li>
-</ol>
-<h1 id="浏览器代理">浏览器代理</h1>
-<p>顾名思义，仅让浏览器使用代理进行网络访问</p>
-<blockquote>
-<p>若已开启系统代理，请先关闭，不建议与浏览器代理一同开启</p>
-</blockquote>
-<h2 id="chrome">Chrome</h2>
-<blockquote>
-<p>Chrome 浏览器默认的插件安装方式是从其官方插件商店操作，该商店需要科学上网</p>
-</blockquote>
-<h3 id="下载代理切换插件">下载代理切换插件</h3>
-<ol>
-<li>第一次配置前，请先配置并开启系统全局代理</li>
-<li>访问 <a href="https://chrome.google.com/webstore">Chrome 网上应用商店</a></li>
-<li>找到页面左上角的 <code>搜索店内应用</code> 输入框（确保图中蓝色色块选中的是 <code>扩展程序</code>），并输入 <code>Proxy SwitchyOmega</code>（如下图所示），然后点击键盘 <code>Enter</code> 键<br>
-<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223100649.png" alt="" loading="lazy"></li>
-<li>点击 Chrome 扩展程序 <code>Proxy SwitchyOmega</code> 的 <code>添加至 Chrome</code> 按钮<br>
-<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223100754.png" alt="" loading="lazy"></li>
-<li>在弹出的对话框中选择 <code>添加扩展程序</code><br>
-<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223100712.png" alt="" loading="lazy"></li>
-<li>安装成功后，会跳出设置界面，并自动开始自带的介绍流程，请不要跳过<br>
-<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223100812.png" alt="" loading="lazy"></li>
-<li>关闭系统全局代理</li>
-</ol>
-<h3 id="一般配置">一般配置</h3>
-<ol>
-<li>在 <code>SwithyOmega</code> 设置界面左侧导航栏中点击<code>界面</code><br>
-<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223100822.png" alt="" loading="lazy"></li>
-<li>在 <code>切换选项</code> 中的 <code>初始情景模式</code> 中选择 <code>auto switch</code><br>
-<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223100831.png" alt="" loading="lazy"></li>
-<li>然后点击左侧导航栏底部的 <code>应用选项</code><br>
-<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223100846.png" alt="" loading="lazy"></li>
-<li>在 <code>SwithyOmega</code> 设置界面左侧导航栏中点击 <code>proxy</code><br>
-<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223101244.png" alt="" loading="lazy"></li>
-<li>按照下图进行设置：<br>
-<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223101252.png" alt="" loading="lazy"></li>
-<li>然后点击左侧导航栏底部的 <code>应用选项</code></li>
-<li>在 <code>SwithyOmega</code> 设置界面左侧导航栏中点击 <code>auto switch</code><br>
-<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223101301.png" alt="" loading="lazy"></li>
-<li>在 <code>规则设置列表</code> 区域中，点击选中 <code>规则列表格式</code> 的 <code>AutoProxy</code>，然后在 <code>规则列表网址</code> 中填写<code>https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt</code>，然后点击 <code>立即更新情景模式</code> 按钮<br>
-<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223100859.png" alt="" loading="lazy"></li>
-<li>在 <code>切换规则</code> 区域中，按照下图设置 <code>规则列表规则</code> 和 <code>默认情景模式</code><br>
-<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223100944.png" alt="" loading="lazy"></li>
-<li>然后点击左侧导航栏底部的 <code>应用选项</code></li>
-</ol>
-<h3 id="设置智能代理">设置智能代理</h3>
-<ol>
-<li>单击 Chrome 浏览器地址栏右侧的 <code>SwitchyOmega</code> 图标<br>
-<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223101021.png" alt="" loading="lazy"></li>
-<li>选择 <code>auto switch</code><br>
-<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223101011.png" alt="" loading="lazy"></li>
-</ol>
-<h3 id="设置全局代理-3">设置全局代理</h3>
-<ol>
-<li>单击 Chrome 浏览器地址栏右侧的 <code>SwitchyOmega</code> 图标<br>
-<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223101021.png" alt="" loading="lazy"></li>
-<li>选择 <code>proxy</code><br>
-<img src="https://cdn.jsdelivr.net/gh/NTLx/Pic/PicGo/20201223101042.png" alt="" loading="lazy"></li>
-</ol>
-<h2 id="edge">Edge</h2>
-<p>微软基于 <code>Chromium</code> 开发的新版 <code>Edge</code> 浏览器可从其自带插件商店安装 <code>SwithyOmega</code> 插件来使用网络代理，而且整个过程无需在系统开启全局代理的环境下操作。</p>
-<h1 id="终端代理">终端代理</h1>
-<blockquote>
-<p>系统代理和浏览器代理均不会对终端生效，终端需单独配置代理</p>
-</blockquote>
-<pre><code class="language-bash">export http_proxy=&quot;http://winservice.cm.com:10809&quot;; export https_proxy=&quot;http://winservice.cm.com:10809&quot;; export ftp_proxy=&quot;http://winservice.cm.com:10809&quot;
-</code></pre>
-<p>或者</p>
-<pre><code class="language-bash">export ALL_PROXY=socks5://winservice.cm.com:10808
-</code></pre>
 ]]></content>
     </entry>
 </feed>

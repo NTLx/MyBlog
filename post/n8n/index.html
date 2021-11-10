@@ -4,7 +4,7 @@
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-<title>App | NTLx&#39;s Blog</title>
+<title>n8n | NTLx&#39;s Blog</title>
 
 <link rel="shortcut icon" href="http://www.ntlx.top/favicon.ico?v=1636545843097">
 
@@ -25,11 +25,11 @@
 
 
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
 </head>
 <body>
 <div class="main gt-bg-theme-color-first">
-    <div class="main-content">
-        <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg">
     <div class="navbar-brand">
         <img class="user-avatar" src="/images/avatar.png" alt="头像">
         <div class="site-name gt-c-content-color-first">
@@ -85,58 +85,97 @@
     </div>
 </nav>
 
-        <div class="current-tag-container">
-            <h2 class="title gt-c-content-color-first">
-                #App
-            </h2>
-        </div>
-        <div class="post-list-container">
-    <div class="post-inner">
-        
-            <div class="post gt-bg-theme-color-second">
-                <div class="post-left">
-                    <div>
-                        
-                        <a href="http://www.ntlx.top/post/app-collections/">
-                            <span class="post-title gt-c-content-color-first">APP Collections</span>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    n8n
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2021-11-10 ·
+                    </time>
+                    
+                        <a href="http://www.ntlx.top/tag/aac2IOTQy/" class="post-tags">
+                            # docker
                         </a>
-                    </div>
-                    <div class="gt-post-content post-abstract gt-c-content-color-second">
-                        <p>Collect usefull apps.</p>
-
-                    </div>
-                    <div class="post-info">
-                        <time class="post-time gt-c-content-color-first">
-                            发布于 · 2021-05-21 ·
-                        </time>
-                        
-                            <a href="http://www.ntlx.top/tag/15oEtHZtf/" class="post-tag">
-                                # App
-                            </a>
-                        
-                            <a href="http://www.ntlx.top/tag/w7AHcsR8XN/" class="post-tag">
-                                # Tool
-                            </a>
-                        
-                            <a href="http://www.ntlx.top/tag/WB90WRmFLg/" class="post-tag">
-                                # resource
-                            </a>
-                        
-                    </div>
+                    
+                        <a href="http://www.ntlx.top/tag/WJQpj0dJWf/" class="post-tags">
+                            # server
+                        </a>
+                    
                 </div>
-                
-                    <a href="http://www.ntlx.top/post/app-collections/" class="post-feature-image"
-                       style="background-image: url('http://www.ntlx.top/post-images/app-collections.png')">
-                    </a>
-                
+                <div class="post-content">
+                    <p>Deploy n8n via Docker.</p>
+<!-- more -->
+<pre><code class="language-yaml">version: &quot;3&quot;
+networks:
+  n8n:
+    external: false
+services:
+  n8n:
+    image: n8nio/n8n
+    container_name: n8n
+    restart: unless-stopped
+    environment:
+      TZ: &quot;Asia/Shanghai&quot;
+      N8N_BASIC_AUTH_ACTIVE: &quot;true&quot;
+      N8N_BASIC_AUTH_USER: &quot;username&quot;
+      N8N_BASIC_AUTH_PASSWORD: &quot;password&quot;
+      WEBHOOK_URL: &quot;http://your.domain:xxx/&quot;
+      GENERIC_TIMEZONE: &quot;Asia/Shanghai&quot;
+    ports:
+      - &quot;5678:5678&quot;
+    networks:
+      - n8n
+    volumes:
+      - ./data:/home/node/.n8n
+    logging:
+      options:
+        max-size: &quot;1m&quot;
+</code></pre>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="http://www.ntlx.top/post/kms-server/" class="post-title gt-a-link">
+                    KMS Server
+                </a>
             </div>
         
-    </div>
-</div>
-        <div class="pagination-container">
-    
-    
-</div>
+
+        
+
+        
+            
+
+            
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqusjs.css">
+<script src="https://cdn.jsdelivr.net/npm/disqusjs/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: 'ntlxtop',
+  apikey: 'qkYOLyDMvFLlG9amD55l4ALA8O4r3VLrYuycPz9GvCEkhk0FjnoobeFo2KKQKZdD',
+}
+if ('') {
+  options.api = ''
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+            
+        
+
+        
 
         <div class="site-footer gt-c-content-color-first">
     <div class="slogan gt-c-content-color-first">My Tech Notes & Thoughts</div>
