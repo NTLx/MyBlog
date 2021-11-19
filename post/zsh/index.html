@@ -6,7 +6,7 @@
 
 <title>ZSH | NTLx&#39;s Blog</title>
 
-<link rel="shortcut icon" href="http://www.ntlx.top/favicon.ico?v=1636545843097">
+<link rel="shortcut icon" href="http://www.ntlx.top/favicon.ico?v=1637312279872">
 
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="http://www.ntlx.top/styles/main.css">
@@ -77,7 +77,7 @@
             
         </div>
         <div style="text-align: center">
-            <form id="gridea-search-form" style="position: relative" data-update="1636545843097" action="/search/index.html">
+            <form id="gridea-search-form" style="position: relative" data-update="1637312279872" action="/search/index.html">
                 <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
                 <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
             </form>
@@ -121,20 +121,21 @@
 git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/themes/powerlevel10k
-echo &quot;ZSH_THEME=powerlevel10k/powerlevel10k&quot; &gt;&gt; ~/.zshrc
-p10k configure
 
 # For Mac OS:
 cd ~/.oh-my-zsh/custom/plugins
 git clone https://github.com/scriptingosx/mac-zsh-completions.git
+
+#p10k configure
 </code></pre>
 <p>Edit <code>~/.zshrc</code> for setting:</p>
 <pre><code class="language-bash">ZSH_THEME=powerlevel10k/powerlevel10k
-plugins=(git zsh-syntax-highlighting zsh-completions)
-autoload -U compinit &amp;&amp; compinit
+plugins=(git zsh-completions zsh-syntax-highlighting bedtools docker-compose extract systemadmin urltools)
 
 # For Mac OS:
 plugins=(... mac-zsh-completions)
+
+#autoload -U compinit &amp;&amp; compinit
 </code></pre>
 <h1 id="default-settings-within-popular-oss">Default Settings within Popular OSs</h1>
 <h2 id="manjaro-architect">Manjaro Architect</h2>
